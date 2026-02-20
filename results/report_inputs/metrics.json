@@ -1,0 +1,14 @@
+{
+    "avg_temp_base": 29.56418800354004,
+    "avg_temp_intervention": 29.5591983795166,
+    "max_cooling": -5.8313446044921875,
+    "avg_lst_change": -0.00498956860974431,
+    "total_ozone_twin_ppb": 55202.51953125,
+    "total_ozone_intervention_ppb": 42169.4921875,
+    "ozone_reduction_ppb": 13033.02734375,
+    "ozone_percentage_improvement": 23.60947915859536,
+    "total_energy_consumption_twin_MWh_year": 3406.85302734375,
+    "total_energy_consumption_intervention_MWh_year": 3060.983154296875,
+    "energy_savings_MWh": 345.869873046875,
+    "total_population_global": 3817.173828125
+}

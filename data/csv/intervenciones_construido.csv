@@ -1,0 +1,11 @@
+intervencion,Albedo,NDVI,MNDWI
+Techos Fríos,0.8,0,0
+Tejas Claras,0.35,0,0
+Revegetación con follaje escaso,0.15,0.3,-0.45
+Revegetación con follaje moderado,0.15,0.5,-0.3
+Revegetación con follaje denso,0.2,0.7,-0.45
+Tejas Oscuras,0.15,0,0
+Hormigón claro,0.5,0,0
+Revestimiento de Pintura,0.25,0,0
+Espejo de agua,0.05,0.15,0.1
+Cuerpo de agua poco profundo / Alberca,0.05,0.15,0.3

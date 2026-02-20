@@ -1,0 +1,33 @@
+CVE_ENT,Estado,Temperatura_Comfort ,grupo,consumption_sensitivity_ per_increased_degree_KWh_month_person
+1,Aguascalientes,18.56,frío,2.83
+2,Baja California,18.56,frío,2.83
+3,Baja California Sur,24.33,cálido,4.09
+4,Campeche,24.33,cálido,4.09
+5,Chiapas,24.33,cálido,4.09
+6,Chihuahua,18.56,frío,2.83
+7,Coahuila,24.33,cálido,4.09
+8,Colima,24.33,cálido,4.09
+9,Distrito Federal,18.56,frío,2.83
+10,Durango,18.56,frío,2.83
+11,Guanajuato,18.56,frío,2.83
+12,Guerrero,24.33,cálido,4.09
+13,Hidalgo,18.56,frío,2.83
+14,Jalisco,18.56,frío,2.83
+15,México,18.56,frío,2.83
+16,Michoacán,18.56,frío,2.83
+17,Morelos,18.56,frío,2.83
+18,Nayarit,24.33,cálido,4.09
+19,Nuevo León,24.33,cálido,4.09
+20,Oaxaca,24.33,cálido,4.09
+21,Puebla,18.56,frío,2.83
+22,Querétaro,18.56,frío,2.83
+23,Quintana Roo,24.33,cálido,4.09
+24,San Luis Potosí,18.56,frío,2.83
+25,Sinaloa,24.33,cálido,4.09
+26,Sonora,24.33,cálido,4.09
+27,Tabasco,24.33,cálido,4.09
+28,Tamaulipas,24.33,cálido,4.09
+29,Tlaxcala,18.56,frío,2.83
+30,Veracruz,24.33,cálido,4.09
+31,Yucatán,24.33,cálido,4.09
+32,Zacatecas,18.56,frío,2.83
