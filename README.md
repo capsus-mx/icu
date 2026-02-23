@@ -82,5 +82,3 @@ El modelo de aprendizaje automático ha sido entrenado para entender la compleja
 ## **Licencia**
 
 Este proyecto está bajo la licencia **MIT**, Comisión Ambiental de la Megalópolis (CAMe, 2026).
-
-[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAABbUlEQVR4Xu2UvS8EURTFN1ugkhBRTGbmzVckpqLSSCQUOpvtRSfR6JQqf4GEQij0/AOiotVQi2ylUm1CIcFy7ro7npN57C7l/pKXee+ec++8d+ejUhnQK3EcmzAMD4wx+1mWjbLeF1EU7aLgOwqvyTpJkhDrB4xn9vZCVYtesiBAe8VocbwrpDBGg+MdoC3qzZdY+xEk3Usix4n2yTBOWXCCHi9o0gVrNtjxmPqarDmB+UWScJMR1mxQfFWL37DmRBN+a4mc8FY3scFaKWmaTnZbnH15ng+Zz1f0EWPP9hZo0hvHbaDfqW/aisl6S+fS2uuvDEVNzp1Dm1XPEWsdVK9zXB7Uuooxa+hvJBouJ6wJyN2E3oC+zFoBxHMpEgTBioaqSDzTwnPfzCXA14JvhuMFvu+Pw7QN0xWuO/inTLHHBTZyLBvheF94njehp2p/G5gf/ltxAcWerLm0pWbrfwbtmJdW4n8/zNqAUj4A1plnNJd11hAAAAAASUVORK5CYII=>
