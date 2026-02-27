@@ -1021,8 +1021,8 @@ class ResultProcessor:
 
         story.append(PageBreak()) # Force new page after title
 
-        # --- EXECUTIVE SUMMARY ---
-        # 1. Extracting key dynamic variables from the simulation
+        # --- RESUMEN EJECUTIVO (NEW) ---
+        # 1. Extraer variables clave dinámicas de la simulación
         ozone_impr = self.result.kpis.get('ozone_percentage_improvement', 0)
         ozone_str = f"{ozone_impr:.2f}%" if ozone_impr is not None and not np.isnan(ozone_impr) else "N/D"
 
@@ -1037,7 +1037,7 @@ class ResultProcessor:
         
         energy_savings_str = f"{energy_savings:.0f} MWh" if energy_savings is not None and not np.isnan(energy_savings) else "N/D"
 
-        # 2. Build excecutive summary narrative
+        # 2. Construir la narrativa del Resumen Ejecutivo en el PDF
         story.append(Paragraph("Resumen Ejecutivo", styles['Heading1']))
         story.append(Spacer(1, 12))
         story.append(Paragraph("<b>Estimación de los posibles impactos de las acciones de prevención, adaptación y/o mitigación (a través de la Herramienta de evaluación de proyectos de mitigación de las ICU)</b>", styles['IntroJustify']))
@@ -1081,10 +1081,47 @@ class ResultProcessor:
         story.append(Paragraph("<b>Mejor salud pública:</b> Respirar aire más limpio se traduce en menos enfermedades respiratorias y cardiovasculares para la población.", styles['Bullet']))
         story.append(Spacer(1, 12))
 
+        # --- RESUMEN GRÁFICO (GRID TIPO FACET_WRAP) ---
+        story.append(Paragraph("Resumen Visual de Impactos Globales", styles['Heading2Custom']))
+        
+        # Calculamos el ancho disponible dividiendo la página en 3 columnas (dejando un margen)
+        grid_col_width = (doc.width / 3.0) - 6 
+        
+        # Recopilamos las imágenes globales ya generadas
+        impact_map_img = get_image_for_reportlab(self.paths.get("map_impact"), grid_col_width)
+        energy_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
+        energy_chart_img = get_image_for_reportlab(energy_chart_path, grid_col_width)
+        ozone_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
+        ozone_chart_img = get_image_for_reportlab(ozone_chart_path, grid_col_width)
+        
+        # Solo armamos el grid si las imágenes existen
+        if impact_map_img and energy_chart_img and ozone_chart_img:
+            grid_titles = [
+                Paragraph("<b>Enfriamiento LST</b>", styles['Centro']),
+                Paragraph("<b>Ahorro de Energía</b>", styles['Centro']),
+                Paragraph("<b>Reducción Ozono</b>", styles['Centro'])
+            ]
+            grid_images = [impact_map_img, energy_chart_img, ozone_chart_img]
+            
+            # Matriz de la tabla (Fila 1: Títulos, Fila 2: Imágenes)
+            grid_table = Table([grid_titles, grid_images], colWidths=[grid_col_width]*3)
+            grid_table.setStyle(TableStyle([
+                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+                ('LEFTPADDING', (0,0), (-1,-1), 2),
+                ('RIGHTPADDING', (0,0), (-1,-1), 2),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+                ('TOPPADDING', (0,0), (-1,-1), 2),
+            ]))
+            
+            story.append(KeepTogether([grid_table])) # Evita que se divida en dos páginas
+            story.append(Spacer(1, 12))
+
         story.append(Paragraph("Conclusión", styles['Heading2Custom']))
         story.append(Paragraph(f"Los datos revelan que combatir las Islas de Calor no es solo un tema de confort, sino una inversión directa en salud pública, economía familiar y sostenibilidad ambiental. Implementar infraestructura verde, techos y pavimentos fríos en {municipality_name} es una estrategia altamente efectiva para proteger a la ciudadanía y construir una ciudad más resiliente ante el cambio climático.", styles['IntroJustify']))
         
         story.append(PageBreak()) # Force new page after executive summary
+
 
         # --- SECTION 1: INTRODUCTION ---
 
@@ -1103,7 +1140,7 @@ class ResultProcessor:
         # --- SECTION 2: GLOBAL GEOGRAPHIC ANALYSIS OF LST SCENARIOS ---
         story.append(Paragraph("2. Análisis Geográfico Global de Escenarios de LST", styles['Heading1']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiple variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
+        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiples variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
         story.append(Paragraph(f"<b>1) Temperatura de la Superficie Terrestre (LST)</b>: Representación digital de la temperatura de la superficie terrestre en grados celsius. Esta capa se calcula como la mediana de las imágenes de Landsat 8 dentro del período de análisis<sup>4</sup>. Específicamente, después de filtrar las imágenes por límites espaciales, fechas y remover nubosidad, se obtiene un compuesto mediano de todas las imágenes conseguidas en el período de análisis.", styles['Bullet']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>2) Albedo</b>: Reflectividad superficial, calculada de manera similar a la LST. Esta capa de Albedo se calcula como la mediana de los valores de Albedo para cada píxel dentro de tu período de análisis<sup>5</sup>. ", styles['Bullet']))
