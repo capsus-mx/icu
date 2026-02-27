@@ -1021,6 +1021,70 @@ class ResultProcessor:
 
         story.append(PageBreak()) # Force new page after title
 
+        # --- EXECUTIVE SUMMARY ---
+        # 1. Extracting key dynamic variables from the simulation
+        ozone_impr = self.result.kpis.get('ozone_percentage_improvement', 0)
+        ozone_str = f"{ozone_impr:.2f}%" if ozone_impr is not None and not np.isnan(ozone_impr) else "N/D"
+
+        energy_twin = self.result.kpis.get('total_energy_consumption_twin_MWh_year', 0)
+        energy_savings = self.result.kpis.get('energy_savings_MWh', 0)
+        
+        if energy_twin and not np.isnan(energy_twin) and energy_twin > 0:
+            energy_perc = (energy_savings / energy_twin) * 100
+            energy_perc_str = f"{energy_perc:.2f}%"
+        else:
+            energy_perc_str = "N/D"
+        
+        energy_savings_str = f"{energy_savings:.0f} MWh" if energy_savings is not None and not np.isnan(energy_savings) else "N/D"
+
+        # 2. Build excecutive summary narrative
+        story.append(Paragraph("Resumen Ejecutivo", styles['Heading1']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph("<b>Estimación de los posibles impactos de las acciones de prevención, adaptación y/o mitigación (a través de la Herramienta de evaluación de proyectos de mitigación de las ICU)</b>", styles['IntroJustify']))
+        story.append(Spacer(1, 12))
+        
+        story.append(Paragraph("El Reto del Calor Urbano", styles['Heading2Custom']))
+        story.append(Paragraph("En la actualidad, el asfalto, el concreto y la falta de áreas verdes en nuestras ciudades absorben y retienen el calor del sol, creando lo que se conoce como <b>Islas de Calor Urbana (ICU)</b>. Este fenómeno provoca que ciertas zonas de la ciudad experimenten temperaturas mucho más altas que sus alrededores, afectando nuestra salud, aumentando el gasto en electricidad y empeorando la calidad del aire que respiramos.", styles['IntroJustify']))
+        story.append(Spacer(1, 6))
+        story.append(Paragraph(f"Para enfrentar este desafío en el municipio de <b>{municipality_name}</b>, se utilizó tecnología avanzada de simulación (un 'gemelo digital') para probar distintas soluciones antes de construirlas en la vida real. El objetivo es responder a una pregunta clave: <i>¿Qué pasaría si transformamos nuestros espacios urbanos con infraestructura más fresca y natural?</i>", styles['IntroJustify']))
+        story.append(Spacer(1, 12))
+
+        story.append(Paragraph("Las Acciones Evaluadas", styles['Heading2Custom']))
+        story.append(Paragraph("En este análisis, simulamos la implementación de medidas estratégicas en zonas específicas de la ciudad. Estas acciones incluyeron:", styles['IntroJustify']))
+        story.append(Paragraph("<b>Arborización y vegetación:</b> Integración de nuevas áreas verdes con follaje escaso y moderado.", styles['Bullet']))
+        story.append(Paragraph("<b>Techos fríos:</b> Aplicación de recubrimientos reflectantes en las azoteas de las construcciones para rebotar la luz solar.", styles['Bullet']))
+        story.append(Paragraph("<b>Pavimentos frescos:</b> Sustitución de superficies viales tradicionales por materiales que absorben menos calor.", styles['Bullet']))
+        story.append(Spacer(1, 12))
+
+        story.append(Paragraph("Impactos y Beneficios Esperados", styles['Heading2Custom']))
+        story.append(Paragraph("Al comparar las condiciones actuales de la ciudad ('Escenario Base') contra nuestra ciudad mejorada ('Escenario de Intervención'), los resultados demuestran que estas acciones generan beneficios inmediatos y profundos en tres áreas fundamentales para nuestra calidad de vida:", styles['IntroJustify']))
+        story.append(Spacer(1, 6))
+        
+        story.append(Paragraph("<b>1. Protección a las Personas y Enfriamiento de la Ciudad</b>", styles['Normal']))
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Las intervenciones logran una reducción significativa de la temperatura en las calles y hogares.", styles['IntroJustify']))
+        story.append(Paragraph("<b>Menos personas en riesgo:</b> La simulación muestra un desplazamiento masivo de habitantes que dejarían de vivir en 'Zonas de Impacto' (áreas de alto estrés térmico) para pasar a zonas de confort ('Fondo Térmico Urbano').", styles['Bullet']))
+        story.append(Paragraph("<b>Cuidado a los más vulnerables:</b> Este enfriamiento beneficia directamente a la primera infancia y a los adultos mayores, reduciendo drásticamente su vulnerabilidad ante golpes de calor y deshidratación.", styles['Bullet']))
+        story.append(Spacer(1, 6))
+
+        story.append(Paragraph("<b>2. Ahorro Económico y Energético</b>", styles['Normal']))
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Al tener hogares y calles más frescas, la necesidad de utilizar ventiladores o aire acondicionado disminuye notablemente.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>Reducción en el recibo de luz:</b> Se estima que estas acciones generarían un <b>ahorro del {energy_perc_str}</b> en el consumo total residencial de electricidad en las áreas analizadas.", styles['Bullet']))
+        story.append(Paragraph(f"<b>Impacto global:</b> Esto equivale a dejar de consumir aproximadamente <b>{energy_savings_str} al año</b>, aliviando no solo el bolsillo de las familias, sino también la presión sobre la red eléctrica municipal.", styles['Bullet']))
+        story.append(Spacer(1, 6))
+
+        story.append(Paragraph("<b>3. Aire Más Limpio y Sano</b>", styles['Normal']))
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("El calor extremo funciona como un 'motor' que acelera la creación de contaminación, especialmente del ozono, un gas que irrita las vías respiratorias.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>Menos contaminación:</b> Al bajar la temperatura de la ciudad, la simulación proyecta una <b>reducción del {ozone_str} en la formación de ozono troposférico</b>.", styles['Bullet']))
+        story.append(Paragraph("<b>Mejor salud pública:</b> Respirar aire más limpio se traduce en menos enfermedades respiratorias y cardiovasculares para la población.", styles['Bullet']))
+        story.append(Spacer(1, 12))
+
+        story.append(Paragraph("Conclusión", styles['Heading2Custom']))
+        story.append(Paragraph(f"Los datos revelan que combatir las Islas de Calor no es solo un tema de confort, sino una inversión directa en salud pública, economía familiar y sostenibilidad ambiental. Implementar infraestructura verde, techos y pavimentos fríos en {municipality_name} es una estrategia altamente efectiva para proteger a la ciudadanía y construir una ciudad más resiliente ante el cambio climático.", styles['IntroJustify']))
+        
+        story.append(PageBreak()) # Force new page after executive summary
 
         # --- SECTION 1: INTRODUCTION ---
 
