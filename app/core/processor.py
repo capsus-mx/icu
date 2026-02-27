@@ -117,10 +117,10 @@ class ResultProcessor:
             4: '#FF0000'   # Red - Core Zone
         }
         self.LST_CLASS_LABELS = {
-            1: 'Fondo térmico urbano \n(TST < Promedio)',
-            2: 'Zona \nde Transición \n( TST >= Promedio)',
-            3: 'Zona \nImpactada \n( TST >= Promedio + 2)',
-            4: 'Zona \nNúcleo \n( TST >= Promedio + 3)'
+            1: 'Fondo térmico urbano \n(LST < Promedio)',
+            2: 'Zona \nde Transición \n( LST >= Promedio)',
+            3: 'Zona \nImpactada \n( LST >= Promedio + 2)',
+            4: 'Zona \nNúcleo \n( LST >= Promedio + 3)'
         }
 
         # Zonal Stats Chart Titles (from df0e84ac)
@@ -128,7 +128,7 @@ class ResultProcessor:
         self.chart_titles = {}
         for band_display_name in self.target_attributes_names:
             sanitized_band_name = self._sanitize_band_name(band_display_name)
-            self.chart_titles[f'zonal_stats_percentage_Global_{sanitized_band_name}.png'] = f'{band_display_name} por Zona TST (Global)'
+            self.chart_titles[f'zonal_stats_percentage_Global_{sanitized_band_name}.png'] = f'{band_display_name} por Zona LST (Global)'
 
         # Add the non-zonal stats chart titles
         self.chart_titles['ozone_improvement_donut_chart_global.png'] = 'Porcentaje de cambio en la concentración de ozono (O3) Global'
@@ -273,8 +273,8 @@ class ResultProcessor:
         # Add grid with coordinates
         # ax.set_xticks(np.linspace(clipped_extent[0], clipped_extent[1], 5))
         # ax.set_yticks(np.linspace(clipped_extent[2], clipped_extent[3], 5))
-        # ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f°'))
-        # ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f°'))
+        # ax.xaxis.set_major_formatter(FormaLSTrFormatter('%.2f°'))
+        # ax.yaxis.set_major_formatter(FormaLSTrFormatter('%.2f°'))
         # ax.tick_params(axis='x', rotation=0, labelsize=8)
         # ax.tick_params(axis='y', rotation=0, labelsize=8)
         ax.grid(True, linestyle='--', alpha=0.6, color='gray')
@@ -462,6 +462,10 @@ class ResultProcessor:
             # Per-polygon Intervention LST map
             path = self._plot_and_save_map_helper(self.result.intervention_lst, "LST Escenario Intervención", "lst_intervention_polygon", plt.colormaps.get_cmap('RdYlBu_r'), vmin_lst_percentile, vmax_lst_percentile, None, 'Temperatura superficial (°C)', polygon_geometry, polygon_id_str, row_start, col_start, row_end, col_end, clipped_extent, is_global=False)
             self.generated_per_polygon_chart_details.append({'polygon_id': polygon_id_str, 'chart_type': 'lst_intervention_polygon', 'path': path, 'title': "LST Escenario Intervención"})
+
+            # Per-polygon Difference LST map (heatmap impact)
+            path = self._plot_and_save_map_helper(self.result.difference_lst, "Diferencia LST (Intervención - Base)", "heatmap_impact", plt.colormaps.get_cmap('RdBu_r'), -max_abs_diff_value, max_abs_diff_value, None, 'Temperatura superficial (°C)', polygon_geometry, polygon_id_str, row_start, col_start, row_end, col_end, clipped_extent, is_global=False)
+            self.generated_per_polygon_chart_details.append({'polygon_id': polygon_id_str, 'chart_type': 'heatmap_impact', 'path': path, 'title': "Diferencia LST (Intervención - Base)"})
         logger.info(f"   ✅ Per-polygon Heatmap images (PNG) saved.")
 
         # --- Generate GeoTIFFs ---
@@ -498,13 +502,13 @@ class ResultProcessor:
         # Generate the 'Base' LST Classification global map
         self._plot_and_save_map_helper(icu_classes_base_data, "Clasificación LST Escenario Base",
                                        "lst_classification_twin_map", self.cmap_classification,
-                                       None, None, self.norm_classification, 'Categoría de TST',
+                                       None, None, self.norm_classification, 'Categoría de LST',
                                        None, None, None, None, None, None, global_plot_extent, is_global=True)
 
         # Generate the 'Intervention' LST Classification global map
         self._plot_and_save_map_helper(icu_classes_intervention_data, "Clasificación LST Escenario Intervención",
                                        "lst_classification_intervention_map", self.cmap_classification,
-                                       None, None, self.norm_classification, 'Categoría de TST',
+                                       None, None, self.norm_classification, 'Categoría de LST',
                                        None, None, None, None, None, None, global_plot_extent, is_global=True)
 
         # Generate per-polygon LST Classification maps
@@ -531,14 +535,14 @@ class ResultProcessor:
             # Per-polygon Base LST classification map
             path = self._plot_and_save_map_helper(icu_classes_base_data, "Clasificación LST Escenario Base",
                                            "lst_classification_twin_polygon", self.cmap_classification,
-                                           None, None, self.norm_classification, 'Categoría de TST',
+                                           None, None, self.norm_classification, 'Categoría de LST',
                                            polygon_geometry, polygon_id_str, row_start, col_start, row_end, col_end, clipped_extent, is_global=False)
             self.generated_per_polygon_chart_details.append({'polygon_id': polygon_id_str, 'chart_type': 'lst_classification_twin_polygon', 'path': path, 'title': "Clasificación LST Escenario Base"})
 
             # Per-polygon Intervention LST classification map
             path = self._plot_and_save_map_helper(icu_classes_intervention_data, "Clasificación LST Escenario Intervención",
                                            "lst_classification_intervention_polygon", self.cmap_classification,
-                                           None, None, self.norm_classification, 'Categoría de TST',
+                                           None, None, self.norm_classification, 'Categoría de LST',
                                            polygon_geometry, polygon_id_str, row_start, col_start, row_end, col_end, clipped_extent, is_global=False)
             self.generated_per_polygon_chart_details.append({'polygon_id': polygon_id_str, 'chart_type': 'lst_classification_intervention_polygon', 'path': path, 'title': "Clasificación LST Escenario Intervención"})
         logger.info("   LST Classification maps generated.")
@@ -762,7 +766,7 @@ class ResultProcessor:
 
                 fig, ax = plt.subplots(figsize=(10, 6))
                 plot = pivot_df_perc_sum.plot(kind='bar', ax=ax, color=[custom_scenario_colors[col] for col in pivot_df_perc_sum.columns])
-                ax.set_title(f'Global: Porcentaje de {band_name_display} por Zona TST', fontsize=14)
+                ax.set_title(f'Global: Porcentaje de {band_name_display} por Zona LST', fontsize=14)
                 ax.set_ylabel('Porcentaje', fontsize=12)
                 ax.set_xlabel('Clasificación de Zonas', fontsize=12)
                 ax.tick_params(axis='x', rotation=0)
@@ -808,7 +812,7 @@ class ResultProcessor:
 
                     fig, ax = plt.subplots(figsize=(10, 6))
                     plot = pivot_df_perc_sum.plot(kind='bar', ax=ax, color=[custom_scenario_colors[col] for col in pivot_df_perc_sum.columns])
-                    ax.set_title(f'Polígono {polygon_id}: Porcentaje de {band_name_display} por Zona TST', fontsize=14)
+                    ax.set_title(f'Polígono {polygon_id}: Porcentaje de {band_name_display} por Zona LST', fontsize=14)
                     ax.set_ylabel('Porcentaje', fontsize=12)
                     ax.set_xlabel('Clasificación de Zonas', fontsize=12)
                     ax.tick_params(axis='x', rotation=0)
@@ -827,7 +831,7 @@ class ResultProcessor:
                     plt.savefig(output_zonal_stats_chart_filename, dpi=300, bbox_inches='tight')
                     plt.close(fig)
                     logger.info(f"       Plot saved: {output_zonal_stats_chart_filename}")
-                    self.generated_per_polygon_chart_details.append({'polygon_id': str(polygon_id), 'chart_type': 'zonal_stats', 'source_band': band_name_display, 'path': output_zonal_stats_chart_filename, 'title': f'Porcentaje de {band_name_display} por Zona TST'})
+                    self.generated_per_polygon_chart_details.append({'polygon_id': str(polygon_id), 'chart_type': 'zonal_stats', 'source_band': band_name_display, 'path': output_zonal_stats_chart_filename, 'title': f'Porcentaje de {band_name_display} por Zona LST'})
 
             logger.info("   All Zonal Statistics Plots Generated and Saved.")
         else:
@@ -857,11 +861,11 @@ class ResultProcessor:
         styles.add(ParagraphStyle(
             name='Footnote',
             parent=styles['Normal'],
-            fontSize=8,
+            fontSize=7,
             leading=10,
             textColor=colors.gray,
-            leftIndent=20,
-            spaceBefore=12,
+            leftIndent=0,
+            spaceBefore=5,
             allowMarkup=1 # Enable HTML markup
         ))
         styles.add(ParagraphStyle(name='CodeStyle', parent=styles['Normal'], fontSize=7, leading=14, borderPadding=5, backColor=colors.white, minHeight=10))
@@ -943,6 +947,10 @@ class ResultProcessor:
             try:
                 pil_img = PILImage.open(image_path)
                 original_width_px, original_height_px = pil_img.size
+                
+                if original_width_px <= 0 or original_height_px <= 0:
+                    logger.warning(f"Advertencia: Dimensiones de imagen inválidas en {image_path} ({original_width_px}x{original_height_px}).")
+                    return None
 
                 scale_factor = max_width / original_width_px
                 final_width = original_width_px * scale_factor
@@ -952,6 +960,13 @@ class ResultProcessor:
                     scale_factor = max_height / original_height_px
                     final_width = original_width_px * scale_factor
                     final_height = original_height_px * scale_factor
+                
+                # Safety check for absurdly large heights (e.g. > page height) which cause layout crashes
+                if final_height > 10 * inch:
+                    logger.warning(f"Advertencia: Altura de imagen excesiva ({final_height}) en {image_path}. Ajustando a límite seguro.")
+                    ratio = (10 * inch) / final_height
+                    final_height = 10 * inch
+                    final_width = final_width * ratio
 
                 return Image(image_path, width=final_width, height=final_height)
             except Exception as e:
@@ -1013,26 +1028,24 @@ class ResultProcessor:
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"En respuesta a los retos que plantean las islas de calor urbana (ICU) en la megalópolis, la Comisión Ambiental de la Megalópolis (CAMe) dentro del 'Proyecto Piloto de identificación y evaluación de acciones y proyectos estratégicos para atención de las Islas de Calor Urbanas en la Megalópolis', ha priorizado determinar y evaluar acciones y proyectos puntuales de prevención, adaptación y mitigación que protejan a la población y el medio ambiente. Esta iniciativa es clave para abordar el desafío de las ICU en 10 demarcaciones territoriales de la Megalópolis, seleccionadas a partir de estudios previos de la UNAM financiados por CONAHCyT y SECTEI, que ya identificaron la presencia y evolución de las ICU a nivel municipal.", styles['IntroJustify']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"<b>El objetivo de este reporte técnico es mostrar el impacto de diversas intervenciones urbanas (infraestructura verde, techos reflectivos, etc.) para mitigar el efecto de isla de calor en el municipio de {municipality_name}</b>. Este reporte presenta un análisis del impacto de diversas intervenciones urbanas en la Temperatura Superficial Terrestre (TST) así como sus posibles efectos en el consumo de energía y la calidad del aire. Para ello, se comparan dos escenarios: un escenario base, construído con información actual, y un escenario alternativo, que asume la implementación de intervenciones capaces de modificar la temperatura de la superficie terrestre (TST).", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>El objetivo de este reporte técnico es mostrar el impacto de diversas intervenciones urbanas (infraestructura verde, techos reflectivos, etc.) para mitigar el efecto de isla de calor en el municipio de {municipality_name}</b>. Este reporte presenta un análisis del impacto de diversas intervenciones urbanas en la Temperatura Superficial Terrestre (LST) así como sus posibles efectos en el consumo de energía y la calidad del aire. Para ello, se comparan dos escenarios: un escenario base, construído con información actual, y un escenario alternativo, que asume la implementación de intervenciones capaces de modificar la LST. La herramienta permite la simulación de intervenciones dentro de los límites de la demarcación territorial, sin embargo como parte del proyecto 'Proyecto Piloto de identificación y evaluación de acciones y proyectos estratégicos para atención de las Islas de Calor Urbanas en la Megalópolis' se espera que las intervenciones se propongan dentro de las ICUS priorizadas por cada demarcación territorial.", styles['IntroJustify']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"<b>Los resultados de ambos escenarios se estiman mediante modelos de aprendizaje automático.</b> Específicamente, a través de un modelo de regresión de refuerzo de gradiente basado en histograma (HistGBR por sus siglas en inglés), la herramienta simula las acciones definidas por el usuario y genera predicciones precisas sobre su impacto potencial en la TST así como algunos beneficios ambientales y socioeconómicos. El informe se divide en dos secciones: la primera presenta los resultados globales del municipio {municipality_name}, mientras que la segunda detalla el impacto en cada polígono de intervención establecido por la persona usuaria.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>Los resultados de ambos escenarios se estiman mediante modelos de aprendizaje automático.</b> Específicamente, a través de un modelo de regresión de refuerzo de gradiente basado en histograma (HistGBR por sus siglas en inglés), la herramienta simula las acciones definidas por el usuario y genera predicciones precisas sobre su impacto potencial en la LST así como algunos beneficios ambientales y socioeconómicos. El informe se divide en dos secciones: la primera presenta los resultados globales del municipio {municipality_name}, mientras que la segunda detalla el impacto en cada polígono de intervención establecido por la persona usuaria.", styles['IntroJustify']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>El propósito final de este reporte y de la herramienta es facilitar la toma de decisiones informadas, identificar las acciones más prometedoras y optimizar las estrategias de intervención para mitigar las causas y efectos de las ICU en la Megalópolis</b>, particularmente en el municipio de {municipality_name}, permitiendo así una gestión urbana más resiliente y sostenible a nivel municipal.", styles['IntroJustify']))
-        story.append(Spacer(1, 12))
-        story.append(Spacer(1, 24))
         story.append(PageBreak())
 
 
         # --- SECTION 2: GLOBAL GEOGRAPHIC ANALYSIS OF LST SCENARIOS ---
-        story.append(Paragraph("2. Análisis Geográfico Global de Escenarios de TST", styles['Heading1']))
+        story.append(Paragraph("2. Análisis Geográfico Global de Escenarios de LST", styles['Heading1']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (TST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiple variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
-        story.append(Paragraph(f"<b>1) Temperatura de la Superficie Terrestre (TST)</b>: Representación digital de la temperatura de la superficie terrestre en grados celsius. Esta capa se calcula como la mediana de las imágenes de Landsat 8 dentro del período de análisis<sup>4</sup>. Específicamente, después de filtrar las imágenes por límites espaciales, fechas y remover nubosidad, se obtiene un compuesto mediano de todas las imágenes conseguidas en el período de análisis.", styles['Bullet']))
+        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiple variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>1) Temperatura de la Superficie Terrestre (LST)</b>: Representación digital de la temperatura de la superficie terrestre en grados celsius. Esta capa se calcula como la mediana de las imágenes de Landsat 8 dentro del período de análisis<sup>4</sup>. Específicamente, después de filtrar las imágenes por límites espaciales, fechas y remover nubosidad, se obtiene un compuesto mediano de todas las imágenes conseguidas en el período de análisis.", styles['Bullet']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"<b>2) Albedo</b>: Reflectividad superficial, calculada de manera similar a la TST. Esta capa de Albedo se calcula como la mediana de los valores de Albedo para cada píxel dentro de tu período de análisis<sup>5</sup>. ", styles['Bullet']))
+        story.append(Paragraph(f"<b>2) Albedo</b>: Reflectividad superficial, calculada de manera similar a la LST. Esta capa de Albedo se calcula como la mediana de los valores de Albedo para cada píxel dentro de tu período de análisis<sup>5</sup>. ", styles['Bullet']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>3) Índice de Vegetación de Diferencia Normalizada (NDVI):</b> Evalúa la cobertura y calidad de la cobertura vegetal. Para cada imagen individual de Landsat 8, se calculó el NDVI utilizando la diferencia normalizada de las bandas infrarrojo cercano (SR_B5) y rojo (SR_B4)<sup>6</sup>. Después de calcular el NDVI para cada imagen en el período de análisis, se tomó la mediana de estos valores para cada píxel. Esto significa que el ráster final de NDVI que se exporta representa el valor mediano de NDVI observado en el período especificado.", styles['Bullet']))
-        story.append(Spacer(1, 30))
+        story.append(Spacer(1, 10))
         story.append(Paragraph(
         "<sup>1</sup> Toscan, P. C., Seong, K., Jiao, J., Ribeiro, C. A. L. R., Carvalho, F. A. C., Oliveira, M. L. S., & Pereira, E. B. (2025). Impact of nature-based solutions (NBS) on urban surface temperatures and land cover changes using remote sensing and machine learning. Remote Sensing Applications: Society and Environment, 39, 101721. https://doi.org/10.1016/j.rsase.2025.1016/j.rsase.2025.101721",
         styles['Footnote']))
@@ -1043,7 +1056,7 @@ class ResultProcessor:
         "<sup>3</sup> Bai, Y., Wang, M., Yan, Y., & Wang, H. (2025). Exploring the impact of 2D/3D urban morphology on land surface temperature within the diurnal cycle in Tianjin. Scientific Reports, 15(1), 39740. https://doi.org/10.1038/s41598-025-17849-7",
         styles['Footnote']))
         story.append(Paragraph(
-        "<sup>4</sup> El período de análisis considerado va del <b>1 de enero de 2023</b> al <b>31 de diciembre de 2024</b>.",
+        "<sup>4</sup> El período de análisis considera imágenes del <b>1 de enero de 2025</b> al <b>30 de septiembre de 2025</b>. Debido al alto porcentaje de nubosidad en algunas imágenes satelitales, fue necesario excluir meses específicos del análisis. Las excepciones fueron Jiutepec (17011) y Cuautlancingo (21041), cuyos conjuntos de datos permitieron un análisis ininterrumpido. Para los municipios de Gustavo A. Madero (09005), Tláhuac (09011) y Zacatelco (29044) se excluyó el mes de julio. En Iztapalapa (09007) y Querétaro (22014) se excluyeron los meses de junio, julio y septiembre. En el municipio de Nezahualcóyotl (15058) se excluyó el mes de septiembre. En el municipio de Toluca (15106) se excluyeron los meses de enero y julio. En el municipio de Pachuca (13048) se excluyeron los meses de abril y mayo.",
         styles['Footnote']))
         story.append(Paragraph(
         "<sup>5</sup> Datos base de Landsat 8, Nivel 2, Colección 2, Nivel 1 utilizada en Google Earth Engine es USGS. (2020). Landsat 8 Collection 2 Tier 1 Surface Reflectance. Google Earth Engine. La capa de albedo se calcula con el método de Tasumi, M., Allen, R. G., & Trezza, R. (2008). At-Surface Reflectance and Albedo from Satellite for Operational Calculation of Land Surface Energy Balance. Journal of Hydrologic Engineering, 13(2), 51–63. https://doi.org/10.1061/(ASCE)1084-0699(2008)13:2(51).",
@@ -1063,7 +1076,11 @@ class ResultProcessor:
         story.append(Paragraph(f"<b>7) Luces de noche:</b> Captura la luz emitida desde la superficie terrestre durante la noche. Similar a las variables de Landsat 8, la colección de imágenes de luces nocturnas (VIIRS<sup>10</sup>) se filtra por el período de análisis y luego se agrega calculando la mediana dentro del período de tiempo especificado.", styles['Bullet']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>8) Modelo Digital de Elevación:</b> Representación digital del relieve de la superficie terrestre. Esta capa proviene del conjunto de datos estáticos de SRTM<sup>11</sup>, por lo que representa un valor o estado fijo en un momento dado. Por lo tanto, no son un promedio ni una mediana calculada sobre el período de análisis. Se utilizan como capas de entrada individuales que se recortan de acuerdo al área de estudio sin una aggregación temporal.", styles['Bullet']))
-        story.append(Spacer(1, 70))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph(f"<b>9) Superficie construida:</b> Distribución de la superficie construida dentro del área de estudio. Esta capa proviene del conjunto de datos estáticos de GHSL<sup>12</sup>, por lo que representa un valor o estado fijo en un momento dado. Por lo tanto, no son un promedio ni una mediana calculada sobre el período de análisis. Se utilizan como capas de entrada individuales que se recortan de acuerdo al área de estudio sin una aggregación temporal.", styles['Bullet']))
+        story.append(Spacer(1, 20))
+        
+        # --- FOOTER ---
         story.append(Paragraph(
         "<sup>7</sup> MNDWI = (SR_B3 - SR_B6) / (SR_B3 + SR_B6) de acuerdo con Kaya, Z., & Dervisoglu, A. (2023). Determination of Urban Areas Using Google Earth Engine and Spectral Indices; Esenyurt Case Study. International Journal of Environment and Geoinformatics, 10(1), 1–8. https://doi.org/10.30897/ijegeo.1214001.",
         styles['Footnote']))
@@ -1079,12 +1096,13 @@ class ResultProcessor:
         story.append(Paragraph(
         "<sup>11</sup> Farr, T. G., et al. (2007), The Shuttle Radar Topography Mission (SRTM), Rev. Geophys., 45, RG2004, doi:10.1029/2005RG000183.",
         styles['Footnote']))
+        story.append(Paragraph(
+        "<sup>12</sup> GHS-BUILT-S R2023A tomado de Pesaresi M., Politis P. (2023): GHS-BUILT-S R2023A - GHS built-up surface grid, derived from Sentinel2 composite and Landsat, multitemporal (1975-2030)European Commission, Joint Research Centre (JRC). PID: Joint Research Centre Data Catalogue - GHS-BUILT-S R2023A - GHS built-up surface grid, European Commission doi:10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA.",
+        styles['Footnote']))
         story.append(PageBreak())
 
 
-        story.append(Paragraph(f"<b>9) Superficie construida:</b> Distribución de la superficie construida dentro del área de estudio. Esta capa proviene del conjunto de datos estáticos de GHSL<sup>12</sup>, por lo que representa un valor o estado fijo en un momento dado. Por lo tanto, no son un promedio ni una mediana calculada sobre el período de análisis. Se utilizan como capas de entrada individuales que se recortan de acuerdo al área de estudio sin una aggregación temporal.", styles['Bullet']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph(f"La clasificación térmica para el escenario Base y escenario Intervención (alternativo) consideró los siguientes intervalos térmicos de referencia, establecidos por Centro EURE:", styles['IntroJustify']))
+        story.append(Paragraph(f"La delimitación de isotermas para el escenario Base y escenario Intervención (alternativo) consideró los siguientes intervalos térmicos de referencia, establecidos por la metodología de Centro EURE, aplicados sobre la capa de LST:", styles['IntroJustify']))
         story.append(Spacer(1, 4))
         story.append(Paragraph(f"<b>1) Zona núcleo:</b> Temperatura \u2265 +3 \u00b0C respecto al promedio urbano de la demarcación territorial.", styles['Bullet']))
         story.append(Spacer(1, 4))
@@ -1093,11 +1111,305 @@ class ResultProcessor:
         story.append(Paragraph(f"<b>3) Zona de transición:</b> Temperatura de +1\u00b0C a +2\u00b0C respecto al promedio urbano de la demarcación territorial.", styles['Bullet']))
         story.append(Spacer(1, 4))
         story.append(Paragraph(f"<b>4) Fondo térmico urbano:</b> Temperatura \u2264 +1\u00b0C respecto al promedio urbano de la demarcación territorial.", styles['Bullet']))
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("2.1 Intervenciones modeladas", styles['Heading2Custom']))
+        story.append(Paragraph(f"<b>La herramienta permite a los usuarios asignar intervenciones específicas dentro de los polígonos de intervención, con el fin de modelar su efecto sobre la capa de LST dentro de las ICU identificadas</b>. Las intervenciones del cátalogo son predefinidas por la CAMe y están diseñadas para alterar parámetros del balance energético urbano, facilitando la evaluación tanto de estrategias de mitigación como de escenarios de impacto adverso. Entre las principales estrategias de mitigación, orientadas a reducir la absorción de calor y promover el enfriamiento evaporativo, se encuentran las siguientes:", styles['IntroJustify']))
+        story.append(Paragraph(f"-Implementación de techos fríos", styles['Bullet']))
+        story.append(Paragraph(f"-Uso de pavimentos fríos (alta reflectividad)", styles['Bullet']))
+        story.append(Paragraph(f"-Arborización y creación de infraestructura verde", styles['Bullet']))
+        story.append(Paragraph(f"-Recuperación o desarrollo de cuerpos de agua", styles['Bullet']))
+        story.append(Paragraph(f"-Incremento de la cobertura vegetal", styles['Bullet']))
+        story.append(Spacer(1, 10))
+        story.append(Paragraph(f"<b>La modelación de estas intervenciones se realiza para cada tipo de cobertura de suelo dentro del polígono establecido</b>. El usuario es responsable de seleccionar la intervención propuesta para cada categoría de cobertura de suelo: superficie vial, superficie construida, cuerpos de agua (estanques poco profundos o profundos), áreas verdes (vegetación escasa, moderada o densa) y suelo descubierto. En consecuencia, las medidas relacionadas con pavimentos reflejantes o fríos se aplican exclusivamente en las áreas identificadas como superficies viales.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>En este ejercicio, las intervenciones modeladas en la simulación fueron las siguientes:</b>", styles['IntroJustify']))
+    
 
-        story.append(Spacer(1, 320))
+        # Attempt to decode intervention codes using CSV lookup tables in data/csv
+        try:
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+            csv_dir = os.path.join(project_root, 'data', 'csv')
+
+            csv_map_files = {
+                'Street': 'intervenciones_vialidades.csv',
+                'Builtup': 'intervenciones_construido.csv',
+                'Shallow_Water': 'intervenciones_agua.csv',
+                'Deep_Water': 'intervenciones_agua.csv',
+                'Sparse_Green': 'intervenciones_areas_verdes.csv',
+                'Moderate_Green': 'intervenciones_areas_verdes.csv',
+                'Dense_Green': 'intervenciones_areas_verdes.csv',
+                'Bareland': 'intervenciones_suelo_descubierto.csv'
+            }
+
+            # Load CSV lookup tables into memory (1-based index -> intervention name)
+            lookup_tables = {}
+            for key, fname in csv_map_files.items():
+                path = os.path.join(csv_dir, fname)
+                if os.path.exists(path):
+                    try:
+                        df_lookup = pd.read_csv(path)
+                        if 'intervencion' in df_lookup.columns:
+                            lookup_tables[fname] = df_lookup['intervencion'].astype(str).tolist()
+                        else:
+                            lookup_tables[fname] = []
+                    except Exception:
+                        lookup_tables[fname] = []
+                else:
+                    lookup_tables[fname] = []
+
+            # Generate a per-polygon list of interventions with human-readable surface labels
+            prop_to_surface_label = {
+                'Street': 'Superficie vial',
+                'Builtup': 'Superficie construida',
+                'Shallow_Water': 'Superficie agua',
+                'Deep_Water': 'Superficie agua',
+                'Sparse_Green': 'Superficie verde',
+                'Moderate_Green': 'Superficie verde',
+                'Dense_Green': 'Superficie verde',
+                'Bareland': 'Superficie suelo descubierto'
+            }
+
+            any_found = False
+            if hasattr(self, 'gdf_interventions') and not self.gdf_interventions.empty:
+                for idx, feat in self.gdf_interventions.iterrows():
+                    try:
+                        prop_dict = feat.to_dict()
+                    except Exception:
+                        prop_dict = {}
+
+                    # Determine polygon id
+                    polygon_id = prop_dict.get('id', None)
+                    polygon_id_str = str(int(polygon_id)) if isinstance(polygon_id, (int, float)) else str(polygon_id) if polygon_id is not None else f"{idx}"
+
+                    # For each relevant property, if value>0 then map to intervention name and append
+                    for prop_name, csv_fname in csv_map_files.items():
+                        if prop_name in prop_dict:
+                            try:
+                                val = prop_dict.get(prop_name)
+                                if val is None or (isinstance(val, float) and np.isnan(val)):
+                                    continue
+                                val_int = int(val)
+                            except Exception:
+                                continue
+                            if val_int > 0:
+                                lookup_list = lookup_tables.get(csv_fname, [])
+                                # The value from the GeoJSON is a 1-based index. Convert to 0-based for list access.
+                                csv_index = val_int - 1
+
+                                if lookup_list and 0 <= csv_index < len(lookup_list):
+                                    interv_name = lookup_list[csv_index]
+                                else:
+                                    # Fallback if index is out of bounds or lookup list is empty
+                                    interv_name = f"Intervención {val_int} ({prop_name})"
+
+                                surface_label = prop_to_surface_label.get(prop_name, prop_name)
+                                story.append(Paragraph(f"- Polígono ID {polygon_id_str}: Se realizó la intervención \"{interv_name}\" en \"{surface_label}\".", styles['Bullet']))
+                                any_found = True
+
+            if not any_found:
+                story.append(Paragraph("<i>No se detectaron intervenciones en el archivo proporcionado.</i>", styles['Normal']))
+        except Exception as e:
+            logger.warning(f"No se pudo cargar o decodificar las intervenciones: {e}")
+            story.append(Paragraph("<i>No fue posible listar las intervenciones modeladas (error de decodificación).</i>", styles['Normal']))
+
+        story.append(Spacer(1, 10))
+        story.append(Paragraph(f"<b>La estimación del impacto térmico se realizó mediante modelos de aprendizaje automático (machine learning) calibrados específicamente para cada demarcación.</b> Una vez definidos los polígonos y las estrategias a implementar, el algoritmo procesa estas variables de entrada y simula la modificación de las propiedades físicas de las superficies (albedo, NDVI, MNDWI, etc.). Este enfoque analítico permite proyectar la variación de la LST contrastando dos escenarios: el escenario base o gemelo (sin intervención) y el escenario proyectado (con intervención). Aunque se evaluaron diversos algoritmos de aprendizaje automático<sup>13</sup> , para la estimación de la LST se seleccionó un modelo de regresión de gradiente basado en histogramas (Histogram-based Gradient Boosting Regressor - Hist Gradient Boosting). Este algoritmo proyecta los cambios en la temperatura superficial a partir de variables clave (como albedo, NDVI, MNDWI, entre otras), habiendo demostrado consistentemente una mayor precisión y robustez analítica frente a las demás alternativas evaluadas.", styles['IntroJustify']))
+        
         story.append(Paragraph(
-        "<sup>12</sup> GHS-BUILT-S R2023A tomado de Pesaresi M., Politis P. (2023): GHS-BUILT-S R2023A - GHS built-up surface grid, derived from Sentinel2 composite and Landsat, multitemporal (1975-2030)European Commission, Joint Research Centre (JRC). PID: Joint Research Centre Data Catalogue - GHS-BUILT-S R2023A - GHS built-up surface grid, European Commission doi:10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA.",
+        "<sup>13</sup> La herramienta evaluó la implementación de los siguientes modelos de aprendizaje automático: Árboles Aleatorios (Random Forest), Refuerzo de Gradientes Extremo (eXtreme Gradient Boosting - XGBoost) y  Refuerzo de Gradientes basado en histogramas (HistogramGradient BoostingRegressor  HGRBoost).",
         styles['Footnote']))
+        story.append(Spacer(1, 10))
+
+        # Insert models evaluation table (if available) BEFORE Figura 1
+        try:
+            # Look for evaluation JSON in multiple likely locations: report_inputs, models/, workspace models/
+            candidates = [
+                os.path.join(self.report_inputs_dir, 'all_models_evaluation_results.json'),
+                os.path.join(os.getcwd(), 'models', 'all_models_evaluation_results.json'),
+                os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'models', 'all_models_evaluation_results.json')
+            ]
+            eval_json_path = None
+            for c in candidates:
+                if os.path.exists(c):
+                    eval_json_path = c
+                    break
+
+            if eval_json_path:
+                with open(eval_json_path, 'r', encoding='utf-8') as jf:
+                    eval_data = json.load(jf)
+
+                story.append(Paragraph('Evaluación de Modelos', styles['Heading2Custom']))
+                story.append(Spacer(1, 6))
+
+                # Normalize into table rows
+                table_data = []
+                if isinstance(eval_data, dict):
+                    # If contains list of models under a key, try to detect
+                    list_candidate = None
+                    for k, v in eval_data.items():
+                        if isinstance(v, list) and v and isinstance(v[0], dict):
+                            list_candidate = v
+                            break
+
+                    if list_candidate is not None:
+                        # Convert to DataFrame for sorting and formatting
+                        df = pd.DataFrame(list_candidate)
+                        all_cols = df.columns.tolist()
+
+                        # --- Sorting ---
+                        # Find actual column names for sorting using aliases
+                        sort_by_cols = []
+                        municipio_aliases = ['municipality_id', 'municipalityId', 'municipio', 'municipality', 'Municipio']
+                        modelo_aliases = ['Model_name', 'model_name', 'ModelName', 'modelName', 'Modelo']
+
+                        # Find Municipio column
+                        for alias in municipio_aliases:
+                            if alias in all_cols:
+                                sort_by_cols.append(alias)
+                                break
+                        # Find Modelo column
+                        for alias in modelo_aliases:
+                            if alias in all_cols:
+                                sort_by_cols.append(alias)
+                                break
+
+                        if sort_by_cols:
+                            df.sort_values(by=sort_by_cols, inplace=True)
+
+                        # --- Formatting and Table construction ---
+                        # Preserve original column order from the source file
+                        ordered_cols = list(list_candidate[0].keys())
+                        table_data.append(ordered_cols)
+
+                        # Identify columns to round using aliases
+                        cols_to_round = set()
+                        rounding_aliases = {
+                            'R2': ['R2_Score', 'R2', 'r2', 'R_squared', 'r_squared'],
+                            'RMSE': ['RMSE', 'rmse', 'Rmse'],
+                            'MAE': ['MAE', 'mae']
+                        }
+                        for key, aliases in rounding_aliases.items():
+                            for alias in aliases:
+                                if alias in all_cols:
+                                    cols_to_round.add(alias)
+                                    break
+
+                        # Create rows from the sorted and formatted DataFrame
+                        for _, item_series in df.iterrows():
+                            row = []
+                            for col_name in ordered_cols:
+                                val = item_series.get(col_name, '')
+                                if col_name in cols_to_round:
+                                    try:
+                                        val = f"{float(val):.3f}"
+                                    except (ValueError, TypeError):
+                                        val = str(val)
+                                else:
+                                    val = str(val)
+                                row.append(val)
+                            table_data.append(row)
+                    else:
+                        # render simple key-value pairs
+                        table_data.append(['Métrica', 'Valor'])
+                        for k, v in eval_data.items():
+                            table_data.append([str(k), str(v)])
+
+                elif isinstance(eval_data, list):
+                    if eval_data and isinstance(eval_data[0], dict):
+                        # Convert to DataFrame for sorting and formatting
+                        df = pd.DataFrame(eval_data)
+                        all_cols = df.columns.tolist()
+
+                        # --- Sorting ---
+                        # Find actual column names for sorting using aliases
+                        sort_by_cols = []
+                        municipio_aliases = ['municipality_id', 'municipalityId', 'municipio', 'municipality', 'Municipio']
+                        modelo_aliases = ['Model_name', 'model_name', 'ModelName', 'modelName', 'Modelo']
+
+                        # Find Municipio column
+                        for alias in municipio_aliases:
+                            if alias in all_cols:
+                                sort_by_cols.append(alias)
+                                break
+                        # Find Modelo column
+                        for alias in modelo_aliases:
+                            if alias in all_cols:
+                                sort_by_cols.append(alias)
+                                break
+
+                        if sort_by_cols:
+                            df.sort_values(by=sort_by_cols, inplace=True)
+
+                        # --- Formatting and Table construction ---
+                        # Preserve original column order from the source file
+                        ordered_cols = list(eval_data[0].keys())
+                        table_data.append(ordered_cols)
+
+                        # Identify columns to round using aliases
+                        cols_to_round = set()
+                        rounding_aliases = {
+                            'R2': ['R2_Score', 'R2', 'r2', 'R_squared', 'r_squared'],
+                            'RMSE': ['RMSE', 'rmse', 'Rmse'],
+                            'MAE': ['MAE', 'mae']
+                        }
+                        for key, aliases in rounding_aliases.items():
+                            for alias in aliases:
+                                if alias in all_cols:
+                                    cols_to_round.add(alias)
+                                    break
+
+                        # Create rows from the sorted and formatted DataFrame
+                        for _, item_series in df.iterrows():
+                            row = []
+                            for col_name in ordered_cols:
+                                val = item_series.get(col_name, '')
+                                if col_name in cols_to_round:
+                                    try:
+                                        val = f"{float(val):.3f}"
+                                    except (ValueError, TypeError):
+                                        val = str(val)
+                                else:
+                                    val = str(val)
+                                row.append(val)
+                            table_data.append(row)
+                    else:
+                        table_data = [[str(x)] for x in eval_data]
+
+                else:
+                    table_data = [[str(eval_data)]]
+
+                # Create ReportLab table
+                if table_data:
+                    # Calculate column widths to fit page
+                    available_width = doc.width
+                    num_cols = len(table_data[0]) if table_data else 0
+                    col_widths = None
+
+                    if num_cols > 0:
+                        col_max_lens = [0] * num_cols
+                        for row in table_data:
+                            for i, cell in enumerate(row):
+                                if i < num_cols:
+                                    col_max_lens[i] = max(col_max_lens[i], len(str(cell)))
+                        total_len = sum(col_max_lens)
+                        if total_len > 0:
+                            col_widths = [(l / total_len) * available_width for l in col_max_lens]
+
+                    tbl = Table(table_data, colWidths=col_widths, hAlign='LEFT', repeatRows=1)
+                    tbl.setStyle(TableStyle([
+                        ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+                        ('BACKGROUND', (0,0), (-1,0), colors.lightgrey),
+                        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+                        ('LEFTPADDING', (0,0), (-1,-1), 4),
+                        ('RIGHTPADDING', (0,0), (-1,-1), 4),
+                    ]))
+                    story.append(tbl)
+                    story.append(Spacer(1, 12))
+        except Exception as e:
+            logger.warning(f"No se pudo cargar la tabla de evaluación de modelos: {e}")
+
+        story.append(Paragraph("<b>R<sup>2</sup>_Score (Coeficiente de Determinación)</b>: Representa la proporción de la varianza en la LST que es predecible a partir de las variables independientes (como NDVI, Albedo, etc.). En términos más simples, muestra qué tan bien el modelo explica la variabilidad de la LST. Un valor más cercano a 1 indica que el modelo explica una gran parte de la varianza de la LST y, por lo tanto, es un buen ajuste a los datos. ",styles['Footnote']))
+        story.append(Paragraph("<b>RMSE (Root Mean Squared Error - Raíz del Error Cuadrático Medio)</b>: Mide la magnitud promedio de los errores del modelo. La raíz cuadrada se aplica para que la unidad del error sea la misma que la unidad de la variable predicha (grados Celsius). Un valor de RMSE más bajo indica un mejor rendimiento del modelo.",styles['Footnote']))
+        story.append(Paragraph("<b>MAE (Mean Absolute Error - Error Absoluto Medio)</b>: Mide la magnitud promedio de los errores de un conjunto de predicciones. Calcula el promedio de las diferencias absolutas entre las predicciones y los valores reales. Un valor de MAE más bajo indica un mejor rendimiento del modelo.",styles['Footnote']))
         story.append(PageBreak())
 
         # Add LST Twin Map
@@ -1110,8 +1422,8 @@ class ResultProcessor:
             ]))
             story.append(Spacer(1, 12))
             current_global_fig_num += 1
-
-        story.append(PageBreak())
+        
+        # NOTE: La figura de diferencia se añadirá tras el mapa de intervención
 
         # Add LST Intervention Map
         img_intervention_lst = get_image_for_reportlab(self.paths["map_intervention"], max_pdf_img_width)
@@ -1131,7 +1443,7 @@ class ResultProcessor:
         img_class_twin_lst = get_image_for_reportlab(lst_class_base_map_path, max_pdf_img_width)
         if img_class_twin_lst:
             story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de TST - Escenario Base ({municipality_name})</b>", styles['Normal']),
+                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario Base ({municipality_name})</b>", styles['Normal']),
                 Spacer(1, 6),
                 img_class_twin_lst
             ]))
@@ -1145,9 +1457,21 @@ class ResultProcessor:
         img_class_intervention_lst = get_image_for_reportlab(lst_class_intervention_map_path, max_pdf_img_width)
         if img_class_intervention_lst:
             story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de TST - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
+                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
                 Spacer(1, 6),
                 img_class_intervention_lst
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+
+        # Add Difference LST Map (Figura 5) - Moved here per request
+        heatmap_impact_path = self.paths.get("map_impact")
+        img_heatmap_impact = get_image_for_reportlab(heatmap_impact_path, max_pdf_img_width)
+        if img_heatmap_impact:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Diferencia LST (Intervención - Base) ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_heatmap_impact
             ]))
             story.append(Spacer(1, 12))
             current_global_fig_num += 1
@@ -1172,14 +1496,14 @@ class ResultProcessor:
         story.append(Paragraph("<b>3. Calidad del aire</b>", styles['IntroJustify']))
         story.append(Paragraph(f"  -Concentración potencial de Ozono troposférico (O\u00b3 ppb).", styles['Bullet']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph("<b>En la sección de Población y Vivienda, se presentan gráficas comparativas que evalúan el impacto de las estrategias de mitigación</b>. Al contrastar el Escenario Base con el Escenario de Intervención, se evidencia el desplazamiento de habitantes y viviendas entre áreas de alto estrés térmico ('Zona de Impacto') y zonas de confort ('Fondo Térmico Urbano'). Bajo esta premisa, la prioridad es garantizar que el grueso de la viviendas y población resida en áreas de confort térmico. Este cambio representa una disminución en la vulnerabilidad climática y un incremento en el bienestar general de la comunidad.", styles['IntroJustify']))
+        story.append(Paragraph("<b>En la sección de Población y Vivienda, se presentan gráficas comparativas que evalúan el impacto de las estrategias de mitigación</b>. Al contrastar el Escenario Base con el Escenario de Intervención, se evidencia el desplazamiento de habitantes y viviendas entre áreas de alto estrés térmico ('Zona de Impacto') y zonas de confort ('Fondo Térmico Urbano'). La estimación del impacto térmico sobre la población se realiza mediante un análisis de estadística zonal. Este geoproceso superpone las capas de información demográfica sobre el mapa de clasificación térmica (LST), permitiendo calcular y extraer métricas agregadas (suma, promedio, etc.) específicamente para los habitantes ubicados dentro de cada categoría térmica. Bajo esta premisa, la prioridad es garantizar que el grueso de la viviendas y población resida en áreas de confort térmico. Este cambio representa una disminución en la vulnerabilidad climática y un incremento en el bienestar general de la comunidad.", styles['IntroJustify']))
         story.append(Paragraph("<b>En la sección de Consumo de Energía Eléctrica, se presenta una comparativa gráfica que cuantifica el impacto de las estrategias de mitigación sobre la demanda residencial de electricidad</b>. Este análisis permite dimensionar el ahorro energético derivado de la reducción de la temperatura superficial a partir de las intervenciones propuestas. El objetivo central de esta métrica es demostrar una disminución neta en el consumo residencial total de electricidad bajo el Escenario Intervención, validando así los beneficios económicos y ambientales de las intervenciones propuestas.", styles['IntroJustify']))
         story.append(Paragraph("<b>En la sección de Calidad del Aire, se modela el impacto de las estrategias de mitigación sobre la formación potencial de ozono troposférico</b>. Dado que la temperatura actúa como catalizador en las reacciones fotoquímicas, una disminución en la concentración de este contaminante valida la efectividad ambiental de las intervenciones. En este contexto, un resultado óptimo se define por una reducción cuantificable en las partes por billón (ppb) estimadas, lo que contribuye directamente a la salud pública.", styles['IntroJustify']))
 
         story.append(Paragraph("<b>3.1 Población y vivienda </b>", styles['Heading2Custom']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"Esta sección presenta los resultados estadísticos obtenidos para el municipio de {municipality_name} a partir de la clasificación y el análisis detallado de isotermas. Este análisis integra datos socio-demográficos y de las características de la vivienda, proporcionados por el Instituto Nacional de Estadística y Geografía (INEGI<sup>13</sup>). El propósito central es proporcionar una visión general de los patrones de temperatura (isotermas) observados con el contexto de la población, facilitando una comprensión del impacto de las Islas de Calor Urbanas (ICUs) y sus efectos en los habitantes.", styles['IntroJustify']))
-        story.append(Paragraph("<sup>13</sup>  Instituto Nacional de Estadística y Geografía (INEGI), Censo de Población y Vivienda 2020. Principales resultados por AGEB y manzana urbana.",styles['Footnote']))
+        story.append(Paragraph(f"Esta sección presenta los resultados estadísticos obtenidos para el municipio de {municipality_name} a partir de la clasificación y el análisis detallado de isotermas. Este análisis integra datos socio-demográficos y de las características de la vivienda, proporcionados por el Instituto Nacional de Estadística y Geografía<sup>14</sup> (INEGI). El propósito central es proporcionar una visión general de los patrones de temperatura (isotermas) observados con el contexto de la población, facilitando una comprensión del impacto de las Islas de Calor Urbanas (ICUs) y sus efectos en los habitantes.", styles['IntroJustify']))
+        story.append(Paragraph("<sup>14</sup>  Instituto Nacional de Estadística y Geografía (INEGI), Censo de Población y Vivienda 2020. Principales resultados por manzana urbana.",styles['Footnote']))
         story.append(Spacer(1, 30))
 
          # --- Other Global Zonal Stats Charts (Social Variables) ---
@@ -1204,30 +1528,6 @@ class ResultProcessor:
                 story.append(Paragraph(f"<i>(Gráfico {band_name_display} no encontrado en {chart_path_zonal})</i>", styles['Normal']))
                 story.append(Spacer(1, 12))
 
-        story.append(Spacer(1, 120))
-        story.append(Paragraph("<sup>14</sup> Información tomada de la Plataforma Nacional de Energía Ambiente y Sociedad (PLANEAS) del Consejo Nacional de Humanidades, Ciencies y Tecnologías (CONAHCyT) Ecosistema Nacional Informático de Energía y Cambio Climático con base en Comisión Federal Electricidad (CFE) (2018). Usuarios y consumo y de electricidad por municipio (A partir de 2018). Datos abiertos. Consultado en 26 marzo 2020. Disponible en: https://datos.gob.mx/busca/dataset/usuarios-y-consumo-de-electricidad-por-municipio-a-partir-de-2018.",styles['Footnote']))
-        story.append(Paragraph("<sup>15</sup> Botzen, W.J.W.; Nees, T.; Estrada, F. Temperature Effects on Electricity and Gas Consumption: Empirical Evidence from Mexico and Projections under Future Climate Conditions. Sustainability 2021, 13, 305. https://doi.org/10.3390/su13010305",styles['Footnote']))
-
-        story.append(PageBreak())
-        total_energy_consumption_bar_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
-        img_chart = get_image_for_reportlab(total_energy_consumption_bar_chart_path, max_pdf_img_width)
-        if img_chart:
-            title_text = self.chart_titles.get(os.path.basename(total_energy_consumption_bar_chart_path), 'Consumo Residencial Total de Electricidad (Global)')
-
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_chart
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-        else:
-            story.append(Paragraph(f"<i>(Gráfico no encontrado en {total_energy_consumption_bar_chart_path})</i>", styles['Normal']))
-            story.append(Spacer(1, 12))
-
-
-
-
         # 1. Obtener la lista de resúmenes de energía del DTO
         energy_summaries = getattr(self.result, 'energy_summaries', [])
 
@@ -1241,10 +1541,12 @@ class ResultProcessor:
         # --- Global Energy Consumption Summary (Text) ---
 
         if global_energy_summary_text:
-            story.append(PageBreak())
+            story.append(Spacer(1, 12))
             story.append(Paragraph("<b>3.2 Consumo de energía eléctrica </b>", styles['Heading2Custom']))
-            story.append(Paragraph(f"El análisis de consumo residencial de electricidad Global para {municipality_name} estima el impacto potencial de las intervenciones implementadas en el consumo de energía. El cálculo toma en cuenta el consumo de electricidad anual per cápita a nivel municipal<sup>14</sup>, el umbral de temperatura confortable para el municipio de {municipality_name}, así como la tasa de consumo de energía por grado de aumento estimada para el estado de {state_name}<sup>15</sup>.", styles['IntroJustify']))
-
+            story.append(Paragraph(f"El análisis de consumo residencial de electricidad Global para {municipality_name} estima el impacto potencial de las intervenciones implementadas en el consumo de energía. El cálculo toma en cuenta el consumo de electricidad anual per cápita a nivel municipal<sup>15</sup>, el umbral de temperatura confortable para el municipio de {municipality_name}, así como la tasa de consumo de energía por grado de aumento estimada para el estado de {state_name}<sup>16</sup>.", styles['IntroJustify']))
+            story.append(Paragraph("<sup>15</sup> Información tomada de la Plataforma Nacional de Energía Ambiente y Sociedad (PLANEAS) del Consejo Nacional de Humanidades, Ciencies y Tecnologías (CONAHCyT) Ecosistema Nacional Informático de Energía y Cambio Climático con base en Comisión Federal Electricidad (CFE) (2018). Usuarios y consumo y de electricidad por municipio (A partir de 2018). Datos abiertos. Consultado en 26 marzo 2020. Disponible en: https://datos.gob.mx/busca/dataset/usuarios-y-consumo-de-electricidad-por-municipio-a-partir-de-2018.",styles['Footnote']))
+            story.append(Paragraph("<sup>16</sup> Botzen, W.J.W.; Nees, T.; Estrada, F. Temperature Effects on Electricity and Gas Consumption: Empirical Evidence from Mexico and Projections under Future Climate Conditions. Sustainability 2021, 13, 305. https://doi.org/10.3390/su13010305",styles['Footnote']))
+            story.append(Spacer(1, 10))
             for line in global_energy_summary_text.split('\n'):
                 processed_line = line.strip()
                 if not processed_line:
@@ -1265,9 +1567,25 @@ class ResultProcessor:
         else:
             story.append(Paragraph("<i>No se encontró el resumen global de consumo de energía.</i>", styles['Normal']))
 
+        story.append(Spacer(1, 12))
+        total_energy_consumption_bar_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
+        img_chart = get_image_for_reportlab(total_energy_consumption_bar_chart_path, max_pdf_img_width)
+        if img_chart:
+            title_text = self.chart_titles.get(os.path.basename(total_energy_consumption_bar_chart_path), 'Consumo Residencial Total de Electricidad (Global)')
+
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_chart
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+        else:
+            story.append(Paragraph(f"<i>(Gráfico no encontrado en {total_energy_consumption_bar_chart_path})</i>", styles['Normal']))
+        
         story.append(PageBreak())
         story.append(Paragraph("<b>3.3 Calidad del Aire </b>", styles['Heading2Custom']))
-        story.append(Paragraph(f"En esta sección se presenta el porcentaje de cambio en la concentración de ozono troposférico al comparar los resultados del escenario base y el escenario de intervención. La calidad del aire, específicamente la formación de ozono troposférico, está fuertemente condicionada por las variaciones de la Temperatura Superficial Terrestre (TST)<sup>16</sup>. La gráfica adjunta ilustra la mejora porcentual en la potencial concentración de ozono troposférico en el municipio de {municipality_name}, como resultado de la disminución o incremento de la TST. Estos hallazgos validan la correlación positiva entre la mitigación térmica y la reducción de precursores de ozono troposférico, confirmando la efectividad de las estrategias implementadas.", styles['IntroJustify']))
+        story.append(Paragraph(f"En esta sección se presenta el porcentaje de cambio en la concentración de ozono troposférico al comparar los resultados del escenario base y el escenario de intervención. La calidad del aire, específicamente la formación de ozono troposférico, está fuertemente condicionada por las variaciones de la Temperatura Superficial Terrestre (LST)<sup>17</sup>. La gráfica adjunta ilustra la mejora porcentual en la potencial concentración de ozono troposférico en el municipio de {municipality_name}, como resultado de la disminución o incremento de la LST. El modelo ocupado para este indicador cuantifica la sensibilidad del ozono a la temperatura y no puede se considerado para proporcionar una predicción exacta y determinista completa. Estos hallazgos validan la correlación positiva entre la mitigación térmica y la reducción de precursores de ozono troposférico, confirmando la efectividad de las estrategias implementadas.", styles['IntroJustify']))
         story.append(Spacer(1, 12))
         # --- Global Ozone Donut Chart ---
         ozone_donut_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
@@ -1285,15 +1603,14 @@ class ResultProcessor:
         else:
             story.append(Paragraph(f"<i>(Gráfico no encontrado en {ozone_donut_chart_path})</i>", styles['Normal']))
             story.append(Spacer(1, 12))
-        story.append(Spacer(1, 40))
-        story.append(Paragraph("<sup>16</sup> Castro, T., Peralta, O., Sánchez-Vargas, A., & Salcido, A. (2025). Evolution of Tropospheric Ozone and Surface Temperature in Mexico City from 2000 to 2021. Atmosphere, 16(12), 1379. https://doi.org/10.3390/atmos16121379.",styles['Footnote']))
+        story.append(Paragraph("<sup>17</sup> Castro, T., Peralta, O., Sánchez-Vargas, A., & Salcido, A. (2025). Evolution of Tropospheric Ozone and Surface Temperature in Mexico City from 2000 to 2021. Atmosphere, 16(12), 1379. https://doi.org/10.3390/atmos16121379.",styles['Footnote']))
 
 
         story.append(PageBreak())
 
         # --- SECTION 4: PER-POLYGON DEEP DIVE ANALYSIS ---
         story.append(Paragraph("4. Análisis Detallado por Polígono de Intervención", styles['Heading1']))
-        story.append(Paragraph("Esta sección ofrece un estudio a detalle para cada polígono de intervención, replicando el marco metodológico utilizado en el análisis global. Los resultados se muestran en dos secciones. La primera sección presenta la cartografía de Temperatura Superficial Terrestre (TST) estimada, junto con su clasificación térmica para el escenario Base y escenario Intervención (alternativo) siguiendo la misma lógica y metodología que en la sección global (2. Análisis Geográfico Global de Escenarios de TST).", styles['IntroJustify']))
+        story.append(Paragraph("Esta sección ofrece un estudio a detalle para cada polígono de intervención, replicando el marco metodológico utilizado en el análisis global. Los resultados se muestran en dos secciones. La primera sección presenta la cartografía de Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el escenario Base y escenario Intervención (alternativo) siguiendo la misma lógica y metodología que en la sección global (2. Análisis Geográfico Global de Escenarios de LST).", styles['IntroJustify']))
         story.append(Spacer(1, 6))
         story.append(Paragraph("De igual forma, en la segunda parte se realiza un desglose detallado de indicadores clave de rendimiento para las dimensiones de <i>Población y Vivienda</i>, <i>Consumo de Energía</i> y <i>Calidad del Aire</i> estimados para cada polígono de intervención definido.", styles['IntroJustify']))
 
@@ -1302,9 +1619,9 @@ class ResultProcessor:
             per_polygon_chart_types_ordered = [
                 {'chart_type': 'lst_twin_polygon', 'title_prefix': "LST Escenario Base"},
                 {'chart_type': 'lst_intervention_polygon', 'title_prefix': "LST Escenario Intervención"},
-                {'chart_type': 'lst_classification_twin_polygon', 'title_prefix': "Clasificación TST Escenario Base"},
-                {'chart_type': 'lst_classification_intervention_polygon', 'title_prefix': "Clasificación TST Escenario Intervención"},
-                # 'zonal_stats', 'energy_bar', 'ozone_donut' will be handled dynamically
+                {'chart_type': 'lst_classification_twin_polygon', 'title_prefix': "Clasificación LST Escenario Base"},
+                {'chart_type': 'lst_classification_intervention_polygon', 'title_prefix': "Clasificación LST Escenario Intervención"},
+                {'chart_type': 'heatmap_impact', 'title_prefix': "Diferencia LST (Intervención - Base)"},
             ]
 
             # Iterate through each polygon
@@ -1319,27 +1636,98 @@ class ResultProcessor:
                 charts_for_current_polygon = [c for c in self.generated_per_polygon_chart_details if c['polygon_id'] == polygon_id_str]
 
                 # --- Add Per-Polygon Maps (LST and LST Classification) ---
+                # Collect per-polygon map flowables and place them in a 2-column table (reduced size)
+                per_polygon_cells = []
+                # Calculate width dynamically for 2 columns (two maps per row)
+                try:
+                    usable_width = doc.width - 12  # small horizontal padding
+                    per_polygon_img_width = (usable_width / 2) - 6  # account for cell padding
+                except Exception:
+                    per_polygon_img_width = (6 * inch) / 2
+
+                # Calculate max height per image so two rows fit on a page
+                try:
+                    per_polygon_img_max_height = (doc.height / 2) - 24  # subtract small vertical padding
+                except Exception:
+                    per_polygon_img_max_height = 4 * inch
+
+                # Reduce map dimensions by 25% (scale factor 0.75)
+                SCALE_REDUCTION = 1
+                per_polygon_img_width = per_polygon_img_width * SCALE_REDUCTION
+                per_polygon_img_max_height = per_polygon_img_max_height * SCALE_REDUCTION
+
                 for chart_spec in per_polygon_chart_types_ordered:
                     chart_type_to_find = chart_spec['chart_type']
                     found_chart = next((c for c in charts_for_current_polygon if c['chart_type'] == chart_type_to_find), None)
 
                     if found_chart and found_chart['path']:
-                        img_chart = get_image_for_reportlab(found_chart['path'], max_pdf_img_width)
+                        # Special case: render per-polygon difference heatmap as full-page figure
+                        if chart_type_to_find == 'heatmap_impact':
+                            full_img_max_width = doc.width - (1 * inch)
+                            full_img_max_height = doc.height - (1 * inch)
+                            img_full = get_image_for_reportlab(found_chart['path'], full_img_max_width, full_img_max_height)
+                            caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
+                            if img_full:
+                                story.append(Spacer(1, 12))
+                                story.append(caption)
+                                story.append(Spacer(1, 6))
+                                story.append(img_full)
+                                story.append(PageBreak())
+                                current_global_fig_num += 1
+                                # Skip adding this chart to the 2x2 grid
+                                continue
+                            else:
+                                # Fallback to note missing image
+                                story.append(Paragraph(f"<i>(Gráfico {found_chart['title']} no encontrado para el polígono {polygon_id_str})</i>", styles['Normal']))
+                                story.append(Spacer(1, 12))
+                                current_global_fig_num += 1
+                                continue
+
+                        # Default behavior: Load image constrained by width and max height to avoid huge cells
+                        img_chart = get_image_for_reportlab(found_chart['path'], per_polygon_img_width, per_polygon_img_max_height)
+                        caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
                         if img_chart:
-                            story.append(KeepTogether([
-                                Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal']),
-                                Spacer(1, 6),
-                                img_chart
-                            ]))
-                            story.append(Spacer(1, 12))
-                            current_global_fig_num += 1
+                            # Use an inner table to keep caption and image together but allow ReportLab to paginate rows
+                            inner = [[caption], [img_chart]]
                         else:
-                            story.append(Paragraph(f"<i>(Gráfico {found_chart['title']} no encontrado para el polígono {polygon_id_str})</i>", styles['Normal']))
-                            story.append(Spacer(1, 12))
+                            inner = [[caption], [Paragraph(f"<i>(Gráfico {found_chart['title']} no encontrado para el polígono {polygon_id_str})</i>", styles['Normal'])]]
+
+                        inner_table = Table(inner, colWidths=[per_polygon_img_width])
+                        inner_table.setStyle(TableStyle([
+                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                            ('LEFTPADDING', (0,0), (-1,-1), 0),
+                            ('RIGHTPADDING', (0,0), (-1,-1), 0),
+                            ('TOPPADDING', (0,0), (-1,-1), 0),
+                            ('BOTTOMPADDING', (0,0), (-1,-1), 0),
+                        ]))
+                        per_polygon_cells.append(inner_table)
+                        current_global_fig_num += 1
                     else:
-                        display_title_base = chart_spec['title_prefix'] if 'title_prefix' in chart_spec else chart_type_to_find
-                        story.append(Paragraph(f"<i>(Variable: {display_title_base} no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
+                        display_title_base = chart_spec.get('title_prefix', chart_type_to_find)
+                        per_polygon_cells.append(Paragraph(f"<i>(Variable: {display_title_base} no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
+
+                # Arrange cells into 2x2 grid per page (2 columns x 2 rows)
+                if per_polygon_cells:
+                    col_widths = [ (doc.width / 2) - 6, (doc.width / 2) - 6 ]
+                    # iterate groups of 4 cells
+                    for i in range(0, len(per_polygon_cells), 4):
+                        c0 = per_polygon_cells[i]
+                        c1 = per_polygon_cells[i+1] if i+1 < len(per_polygon_cells) else ''
+                        c2 = per_polygon_cells[i+2] if i+2 < len(per_polygon_cells) else ''
+                        c3 = per_polygon_cells[i+3] if i+3 < len(per_polygon_cells) else ''
+
+                        maps_table = Table([[c0, c1], [c2, c3]], colWidths=col_widths)
+                        maps_table.setStyle(TableStyle([
+                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                            ('LEFTPADDING', (0,0), (-1,-1), 6),
+                            ('RIGHTPADDING', (0,0), (-1,-1), 6),
+                            ('TOPPADDING', (0,0), (-1,-1), 6),
+                            ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+                        ]))
+                        story.append(maps_table)
                         story.append(Spacer(1, 12))
+                        # Force a page break so each 2x2 block occupies one page
+                        story.append(PageBreak())
 
                 # --- Add Per-Polygon Zonal Stats Charts (Social Variables) in ORDER ---
                 for band_name_display in self.social_variable_chart_order_display_names:
@@ -1363,7 +1751,7 @@ class ResultProcessor:
                             story.append(Paragraph(f"<i>(Gráfico {band_name_display} no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
                             story.append(Spacer(1, 12))
                     else:
-                        story.append(Paragraph(f"<i>(Variable: Porcentaje de {band_name_display} por Zona TST no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
+                        story.append(Paragraph(f"<i>(Variable: Porcentaje de {band_name_display} por Zona LST no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
                         story.append(Spacer(1, 12))
 
                 # Add Per-Polygon Energy Consumption Summary (text) from energy_summaries

@@ -1,0 +1,242 @@
+[
+  {
+    "Municipio":"Toluca",
+    "Clave":"15106",
+    "Modelo":"Random Forest",
+    "R2_Score":0.9445536045,
+    "RMSE":1.2379676046,
+    "MAE":0.8726969831
+  },
+  {
+    "Municipio":"Toluca",
+    "Clave":"15106",
+    "Modelo":"XGBoost",
+    "R2_Score":0.9266952276,
+    "RMSE":1.4234388366,
+    "MAE":1.0431289673
+  },
+  {
+    "Municipio":"Toluca",
+    "Clave":"15106",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.9429272627,
+    "RMSE":1.2559922868,
+    "MAE":0.899190536
+  },
+  {
+    "Municipio":"Zacatelco",
+    "Clave":"29044",
+    "Modelo":"Random Forest",
+    "R2_Score":0.7910505505,
+    "RMSE":0.606708498,
+    "MAE":0.4631006804
+  },
+  {
+    "Municipio":"Zacatelco",
+    "Clave":"29044",
+    "Modelo":"XGBoost",
+    "R2_Score":0.8293530941,
+    "RMSE":0.548287937,
+    "MAE":0.4223549366
+  },
+  {
+    "Municipio":"Zacatelco",
+    "Clave":"29044",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.8173511814,
+    "RMSE":0.5672413686,
+    "MAE":0.4343438461
+  },
+  {
+    "Municipio":"Cuautlancingo",
+    "Clave":"21041",
+    "Modelo":"Random Forest",
+    "R2_Score":0.8789876323,
+    "RMSE":1.0040184327,
+    "MAE":0.6748927401
+  },
+  {
+    "Municipio":"Cuautlancingo",
+    "Clave":"21041",
+    "Modelo":"XGBoost",
+    "R2_Score":0.9127401114,
+    "RMSE":0.8525781437,
+    "MAE":0.6107507944
+  },
+  {
+    "Municipio":"Cuautlancingo",
+    "Clave":"21041",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.9006205916,
+    "RMSE":0.9098609173,
+    "MAE":0.6254086041
+  },
+  {
+    "Municipio":"Quer\u00e9taro",
+    "Clave":"22014",
+    "Modelo":"Random Forest",
+    "R2_Score":0.7893848915,
+    "RMSE":1.4973549831,
+    "MAE":1.0997433866
+  },
+  {
+    "Municipio":"Quer\u00e9taro",
+    "Clave":"22014",
+    "Modelo":"XGBoost",
+    "R2_Score":0.7446007729,
+    "RMSE":1.6488828374,
+    "MAE":1.2496851683
+  },
+  {
+    "Municipio":"Quer\u00e9taro",
+    "Clave":"22014",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.8034963069,
+    "RMSE":1.4463232566,
+    "MAE":1.084321664
+  },
+  {
+    "Municipio":"Jiutepec",
+    "Clave":"17011",
+    "Modelo":"Random Forest",
+    "R2_Score":0.9209297973,
+    "RMSE":0.8674145425,
+    "MAE":0.6430456011
+  },
+  {
+    "Municipio":"Jiutepec",
+    "Clave":"17011",
+    "Modelo":"XGBoost",
+    "R2_Score":0.9346836209,
+    "RMSE":0.7883721533,
+    "MAE":0.6006106138
+  },
+  {
+    "Municipio":"Jiutepec",
+    "Clave":"17011",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.9392799161,
+    "RMSE":0.7601275167,
+    "MAE":0.5753679066
+  },
+  {
+    "Municipio":"Tl\u00e1huac",
+    "Clave":"09011",
+    "Modelo":"Random Forest",
+    "R2_Score":0.863531916,
+    "RMSE":1.0974893949,
+    "MAE":0.8056662111
+  },
+  {
+    "Municipio":"Tl\u00e1huac",
+    "Clave":"09011",
+    "Modelo":"XGBoost",
+    "R2_Score":0.8747116923,
+    "RMSE":1.0515744644,
+    "MAE":0.8032583594
+  },
+  {
+    "Municipio":"Tl\u00e1huac",
+    "Clave":"09011",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.8892308466,
+    "RMSE":0.9887675464,
+    "MAE":0.7394313332
+  },
+  {
+    "Municipio":"Nezahualc\u00f3yotl",
+    "Clave":"15058",
+    "Modelo":"Random Forest",
+    "R2_Score":0.7902917404,
+    "RMSE":0.9560601675,
+    "MAE":0.6812969358
+  },
+  {
+    "Municipio":"Nezahualc\u00f3yotl",
+    "Clave":"15058",
+    "Modelo":"XGBoost",
+    "R2_Score":0.7981135845,
+    "RMSE":0.9380607835,
+    "MAE":0.7043842077
+  },
+  {
+    "Municipio":"Nezahualc\u00f3yotl",
+    "Clave":"15058",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.808168018,
+    "RMSE":0.9144036762,
+    "MAE":0.6650634818
+  },
+  {
+    "Municipio":"Pachuca de Soto",
+    "Clave":"13048",
+    "Modelo":"Random Forest",
+    "R2_Score":0.9234399392,
+    "RMSE":1.1328001084,
+    "MAE":0.8332760016
+  },
+  {
+    "Municipio":"Pachuca de Soto",
+    "Clave":"13048",
+    "Modelo":"XGBoost",
+    "R2_Score":0.9239404798,
+    "RMSE":1.1290908187,
+    "MAE":0.8598378897
+  },
+  {
+    "Municipio":"Pachuca de Soto",
+    "Clave":"13048",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.9403797807,
+    "RMSE":0.9996522126,
+    "MAE":0.7423524276
+  },
+  {
+    "Municipio":"Gustavo A. Madero",
+    "Clave":"09005",
+    "Modelo":"Random Forest",
+    "R2_Score":0.9181094822,
+    "RMSE":1.1598713946,
+    "MAE":0.8501536852
+  },
+  {
+    "Municipio":"Gustavo A. Madero",
+    "Clave":"09005",
+    "Modelo":"XGBoost",
+    "R2_Score":0.9356354475,
+    "RMSE":1.0282917363,
+    "MAE":0.7781563401
+  },
+  {
+    "Municipio":"Gustavo A. Madero",
+    "Clave":"09005",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.9386373851,
+    "RMSE":1.0040259977,
+    "MAE":0.7453220617
+  },
+  {
+    "Municipio":"Iztapalapa",
+    "Clave":"09007",
+    "Modelo":"Random Forest",
+    "R2_Score":0.7975942056,
+    "RMSE":1.2030217582,
+    "MAE":0.8907995953
+  },
+  {
+    "Municipio":"Iztapalapa",
+    "Clave":"09007",
+    "Modelo":"XGBoost",
+    "R2_Score":0.8337641954,
+    "RMSE":1.0902454907,
+    "MAE":0.827634573
+  },
+  {
+    "Municipio":"Iztapalapa",
+    "Clave":"09007",
+    "Modelo":"Hist Gradient Boosting",
+    "R2_Score":0.8629315624,
+    "RMSE":0.9899898519,
+    "MAE":0.7358215398
+  }
+]
