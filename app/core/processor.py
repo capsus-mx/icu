@@ -660,12 +660,12 @@ class ResultProcessor:
         total_sum_twin = self.result.kpis.get('total_energy_consumption_twin_MWh_year')
         total_sum_intervention = self.result.kpis.get('total_energy_consumption_intervention_MWh_year')
 
-        if total_sum_twin is not None and total_sum_intervention is not None:
+        if total_sum_twin is not None and total_sum_intervention is not None and (abs(total_sum_twin) > 1e-6 or abs(total_sum_intervention) > 1e-6):
             path = self._plot_and_save_energy_bar_chart('Global', 'global', total_sum_twin, total_sum_intervention)
             if path:
                 self.generated_per_polygon_chart_details.append({'polygon_id': 'Global', 'chart_type': 'energy_bar', 'path': path, 'title': 'Consumo Residencial Total de Electricidad Escalado por Población (Global)'})
         else:
-            logger.warning("  Total energy consumption values are missing for global, skipping bar chart.")
+            logger.warning("  Total energy consumption values are missing, zero, or NaN for global, skipping bar chart.")
 
         # Per-polygon energy consumption bar charts
         summaries = getattr(self.result, 'energy_summaries', [])
@@ -675,12 +675,12 @@ class ResultProcessor:
                 total_sum_twin_polygon = summary['actual_total_sum_twin_consumption_scaled']
                 total_sum_intervention_polygon = summary['actual_total_sum_intervention_consumption_scaled']
 
-                if not np.isnan(total_sum_twin_polygon) and not np.isnan(total_sum_intervention_polygon):
+                if not np.isnan(total_sum_twin_polygon) and not np.isnan(total_sum_intervention_polygon) and (abs(total_sum_twin_polygon) > 1e-6 or abs(total_sum_intervention_polygon) > 1e-6):
                     path = self._plot_and_save_energy_bar_chart(f'Polígono ID {polygon_id_str}', f'Polígono_ID_{polygon_id_str}', total_sum_twin_polygon, total_sum_intervention_polygon)
                     if path:
                         self.generated_per_polygon_chart_details.append({'polygon_id': polygon_id_str, 'chart_type': 'energy_bar', 'path': path, 'title': f'Consumo Residencial Total de Electricidad - Polígono ID {polygon_id_str}'})
                 else:
-                    logger.warning(f"  Energy consumption values are NaN for Polígono ID {polygon_id_str}, skipping bar chart.")
+                    logger.warning(f"  Energy consumption values are NaN, zero, or missing for Polígono ID {polygon_id_str}, skipping bar chart.")
 
         logger.info("   Energy Consumption charts generated.")
 
@@ -739,20 +739,25 @@ class ResultProcessor:
             logger.info("     Generating Global Zonal Statistics Plots...")
             # Iterate through the predefined order of social variable charts
             for band_name_display in self.social_variable_chart_order_display_names:
-                # Sanitize the display name to match the filename convention
                 safe_source_band_name = self._sanitize_band_name(band_name_display)
                 chart_filename = f"zonal_stats_percentage_Global_{safe_source_band_name}.png"
                 chart_path_zonal = os.path.join(self.report_inputs_dir, chart_filename)
 
                 plot_data = self.zonal_stats_df[
                     (self.zonal_stats_df['polygon_id'] == 'Global') &
-                    (self.zonal_stats_df['source_band'] == band_name_display) # Use the original display name for filtering
+                    (self.zonal_stats_df['source_band'] == band_name_display)
                 ].copy()
 
-                if plot_data.empty:
-                    logger.warning(f"       No data found for Global, Source Band {band_name_display}. Skipping plot.")
+                # MEJORA DE VALIDACIÓN: Si no hay datos, borramos cualquier archivo viejo y saltamos
+                if plot_data.empty or (plot_data['sum'].fillna(0).abs() < 1e-9).all():
+                    if os.path.exists(chart_path_zonal):
+                        os.remove(chart_path_zonal) # Elimina basura de ejecuciones previas
+                    logger.warning(f"Omitiendo gráfica vacía: {band_name_display}")
                     continue
 
+                # Solo si pasa el filtro anterior, se ejecuta el código de plt.figure() y plt.savefig()
+                fig, ax = plt.subplots(figsize=(10, 6))
+                
                 pivot_df_perc_sum = plot_data.pivot_table(
                     index='LST Zone',
                     columns='Scenario',
@@ -763,6 +768,11 @@ class ResultProcessor:
                     if col not in pivot_df_perc_sum.columns:
                         pivot_df_perc_sum[col] = np.nan
                 pivot_df_perc_sum = pivot_df_perc_sum[plot_column_order]
+
+                # Final check on pivoted data to ensure it's not all-NaN or all-zero before plotting
+                if pivot_df_perc_sum.isnull().all().all() or (pivot_df_perc_sum.fillna(0).abs() < 1e-9).all().all():
+                    logger.warning(f"       Pivoted data for Global, Source Band '{band_name_display}' is empty or all zero. Skipping plot.")
+                    continue
 
                 fig, ax = plt.subplots(figsize=(10, 6))
                 plot = pivot_df_perc_sum.plot(kind='bar', ax=ax, color=[custom_scenario_colors[col] for col in pivot_df_perc_sum.columns])
@@ -780,7 +790,7 @@ class ResultProcessor:
                                           patch.get_height()), ha='center', va='bottom', fontsize=9, color='black', weight='bold')
                 plt.tight_layout()
                 output_zonal_stats_chart_filename = os.path.join(self.report_inputs_dir, chart_filename) # Use chart_filename
-                plt.savefig(output_zonal_stats_chart_filename, dpi=300, bbox_inches='tight')
+                plt.savefig(chart_path_zonal, dpi=300, bbox_inches='tight')
                 plt.close(fig)
                 logger.info(f"       Plot saved: {output_zonal_stats_chart_filename}")
 
@@ -795,8 +805,9 @@ class ResultProcessor:
                         (self.zonal_stats_df['source_band'] == band_name_display)
                     ].copy()
 
-                    if plot_data.empty:
-                        logger.warning(f"       No data found for Polygon ID {polygon_id}, Source Band {band_name_display}. Skipping plot.")
+                    # Check if the underlying sum data is empty or all zero before attempting to plot percentages.
+                    if plot_data.empty or (plot_data['sum'].fillna(0).abs() < 1e-9).all():
+                        logger.warning(f"       Sum data for Polygon {polygon_id}, Source Band '{band_name_display}' is empty or all zero. Skipping plot.")
                         continue
 
                     pivot_df_perc_sum = plot_data.pivot_table(
@@ -809,6 +820,11 @@ class ResultProcessor:
                         if col not in pivot_df_perc_sum.columns:
                             pivot_df_perc_sum[col] = np.nan
                     pivot_df_perc_sum = pivot_df_perc_sum[plot_column_order]
+
+                    # Final check on pivoted data to ensure it's not all-NaN or all-zero before plotting
+                    if pivot_df_perc_sum.isnull().all().all() or (pivot_df_perc_sum.fillna(0).abs() < 1e-9).all().all():
+                        logger.warning(f"       Pivoted data for Polygon {polygon_id}, Source Band '{band_name_display}' is empty or all zero. Skipping plot.")
+                        continue
 
                     fig, ax = plt.subplots(figsize=(10, 6))
                     plot = pivot_df_perc_sum.plot(kind='bar', ax=ax, color=[custom_scenario_colors[col] for col in pivot_df_perc_sum.columns])
@@ -1039,22 +1055,22 @@ class ResultProcessor:
 
         # 2. Build excecutive summary narrative
         story.append(Paragraph("Resumen Ejecutivo", styles['Heading1']))
-        story.append(Spacer(1, 12))
+        #story.append(Spacer(1, 12))
         story.append(Paragraph("<b>Estimación de los posibles impactos de las acciones de prevención, adaptación y/o mitigación (a través de la Herramienta de evaluación de proyectos de mitigación de las ICU)</b>", styles['IntroJustify']))
-        story.append(Spacer(1, 12))
+        #story.append(Spacer(1, 12))
         
         story.append(Paragraph("El Reto del Calor Urbano", styles['Heading2Custom']))
         story.append(Paragraph("En la actualidad, el asfalto, el concreto y la falta de áreas verdes en nuestras ciudades absorben y retienen el calor del sol, creando lo que se conoce como <b>Islas de Calor Urbana (ICU)</b>. Este fenómeno provoca que ciertas zonas de la ciudad experimenten temperaturas mucho más altas que sus alrededores, afectando nuestra salud, aumentando el gasto en electricidad y empeorando la calidad del aire que respiramos.", styles['IntroJustify']))
         story.append(Spacer(1, 6))
         story.append(Paragraph(f"Para enfrentar este desafío en el municipio de <b>{municipality_name}</b>, se utilizó tecnología avanzada de simulación (un 'gemelo digital') para probar distintas soluciones antes de construirlas en la vida real. El objetivo es responder a una pregunta clave: <i>¿Qué pasaría si transformamos nuestros espacios urbanos con infraestructura más fresca y natural?</i>", styles['IntroJustify']))
-        story.append(Spacer(1, 12))
+        #story.append(Spacer(1, 12))
 
         story.append(Paragraph("Las Acciones Evaluadas", styles['Heading2Custom']))
         story.append(Paragraph("En este análisis, simulamos la implementación de medidas estratégicas en zonas específicas de la ciudad. Estas acciones incluyeron:", styles['IntroJustify']))
         story.append(Paragraph("<b>Arborización y vegetación:</b> Integración de nuevas áreas verdes con follaje escaso y moderado.", styles['Bullet']))
         story.append(Paragraph("<b>Techos fríos:</b> Aplicación de recubrimientos reflectantes en las azoteas de las construcciones para rebotar la luz solar.", styles['Bullet']))
         story.append(Paragraph("<b>Pavimentos frescos:</b> Sustitución de superficies viales tradicionales por materiales que absorben menos calor.", styles['Bullet']))
-        story.append(Spacer(1, 12))
+        #story.append(Spacer(1, 12))
 
         story.append(Paragraph("Impactos y Beneficios Esperados", styles['Heading2Custom']))
         story.append(Paragraph("Al comparar las condiciones actuales de la ciudad ('Escenario Base') contra nuestra ciudad mejorada ('Escenario de Intervención'), los resultados demuestran que estas acciones generan beneficios inmediatos y profundos en tres áreas fundamentales para nuestra calidad de vida:", styles['IntroJustify']))
@@ -1079,7 +1095,72 @@ class ResultProcessor:
         story.append(Paragraph("El calor extremo funciona como un 'motor' que acelera la creación de contaminación, especialmente del ozono, un gas que irrita las vías respiratorias.", styles['IntroJustify']))
         story.append(Paragraph(f"<b>Menos contaminación:</b> Al bajar la temperatura de la ciudad, la simulación proyecta una <b>reducción del {ozone_str} en la formación de ozono troposférico</b>.", styles['Bullet']))
         story.append(Paragraph("<b>Mejor salud pública:</b> Respirar aire más limpio se traduce en menos enfermedades respiratorias y cardiovasculares para la población.", styles['Bullet']))
+        
+        # --- RESUMEN GRÁFICO (GRID TIPO FACET_WRAP) ---
         story.append(Spacer(1, 12))
+        story.append(Paragraph("Resumen Visual de Impactos Globales", styles['Heading2Custom']))
+        story.append(Spacer(1, 10))
+
+        # --- 1. Grid de 2 celdas para Ahorro y Ozono ---
+        # Ancho de columna para el grid de 2 celdas
+        grid_col_width = doc.width / 2.0
+        
+        # Recopilamos las imágenes, ajustando su tamaño
+        energy_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
+        energy_chart_img = get_image_for_reportlab(energy_chart_path, grid_col_width - 10)
+        ozone_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
+        ozone_chart_img = get_image_for_reportlab(ozone_chart_path, grid_col_width - 10)
+        
+        # Solo armamos el grid si las imágenes existen
+        if energy_chart_img and ozone_chart_img:
+            # Reducir el tamaño de la imagen de ozono para que coincida visualmente
+            if ozone_chart_img:
+                ozone_chart_img.drawHeight *= 0.75
+                ozone_chart_img.drawWidth *= 0.75
+
+            # Contenido para cada celda
+            ahorro_content = [
+                Paragraph("<b>Ahorro de Energía</b>", styles['Centro']),
+                Spacer(1, 4),
+                energy_chart_img
+            ]
+            
+            reduccion_content = [
+                Paragraph("<b>Reducción Ozono</b>", styles['Centro']),
+                Spacer(1, 4),
+                ozone_chart_img
+            ]
+
+            # Estructura de la tabla 1x2
+            data = [[ahorro_content, reduccion_content]]
+            
+            grid_table = Table(data, colWidths=[grid_col_width, grid_col_width])
+            grid_table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+                ('LEFTPADDING', (0,0), (-1,-1), 5),
+                ('RIGHTPADDING', (0,0), (-1,-1), 5),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 5),
+                ('TOPPADDING', (0,0), (-1,-1), 5),
+            ]))
+            
+            story.append(KeepTogether([grid_table]))
+            story.append(Spacer(1, 12))
+            story.append(Spacer(1, 12))
+
+        # --- 2. Imagen de Enfriamiento LST (ancho completo) ---
+        # El ancho máximo de la imagen será el ancho del documento menos un pequeño margen
+        max_img_width = doc.width - 20 
+        impact_map_img = get_image_for_reportlab(self.paths.get("map_impact"), max_img_width)
+        
+        if impact_map_img:
+            enfriamiento_content = KeepTogether([
+                Paragraph("<b>Enfriamiento LST</b>", styles['Centro']),
+                Spacer(1, 4),
+                impact_map_img
+            ])
+            story.append(enfriamiento_content)
+            #story.append(PageBreak()) 
 
         story.append(Paragraph("Conclusión", styles['Heading2Custom']))
         story.append(Paragraph(f"Los datos revelan que combatir las Islas de Calor no es solo un tema de confort, sino una inversión directa en salud pública, economía familiar y sostenibilidad ambiental. Implementar infraestructura verde, techos y pavimentos fríos en {municipality_name} es una estrategia altamente efectiva para proteger a la ciudadanía y construir una ciudad más resiliente ante el cambio climático.", styles['IntroJustify']))
@@ -1103,13 +1184,13 @@ class ResultProcessor:
         # --- SECTION 2: GLOBAL GEOGRAPHIC ANALYSIS OF LST SCENARIOS ---
         story.append(Paragraph("2. Análisis Geográfico Global de Escenarios de LST", styles['Heading1']))
         story.append(Spacer(1, 12))
-        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiple variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
+        story.append(Paragraph(f"A continuación se presenta la cartografía de la Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el <b>escenario Base y escenario Intervención</b> (alternativo). La modelación de estas capas se realiza a partir de múltiples variables predictoras <sup>1</sup> <sup>2</sup> <sup>3</sup>, las cuales se detallan posteriormente. Metodológicamente, este proceso conllevó la ejecución de flujos de trabajo en Google Earth Engine (GEE) para la adquisición, procesamiento y cálculo de los siguientes insumos geoespaciales.", styles['IntroJustify']))
         story.append(Paragraph(f"<b>1) Temperatura de la Superficie Terrestre (LST)</b>: Representación digital de la temperatura de la superficie terrestre en grados celsius. Esta capa se calcula como la mediana de las imágenes de Landsat 8 dentro del período de análisis<sup>4</sup>. Específicamente, después de filtrar las imágenes por límites espaciales, fechas y remover nubosidad, se obtiene un compuesto mediano de todas las imágenes conseguidas en el período de análisis.", styles['Bullet']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>2) Albedo</b>: Reflectividad superficial, calculada de manera similar a la LST. Esta capa de Albedo se calcula como la mediana de los valores de Albedo para cada píxel dentro de tu período de análisis<sup>5</sup>. ", styles['Bullet']))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"<b>3) Índice de Vegetación de Diferencia Normalizada (NDVI):</b> Evalúa la cobertura y calidad de la cobertura vegetal. Para cada imagen individual de Landsat 8, se calculó el NDVI utilizando la diferencia normalizada de las bandas infrarrojo cercano (SR_B5) y rojo (SR_B4)<sup>6</sup>. Después de calcular el NDVI para cada imagen en el período de análisis, se tomó la mediana de estos valores para cada píxel. Esto significa que el ráster final de NDVI que se exporta representa el valor mediano de NDVI observado en el período especificado.", styles['Bullet']))
-        story.append(Spacer(1, 10))
+        story.append(Spacer(1, 20))
         story.append(Paragraph(
         "<sup>1</sup> Toscan, P. C., Seong, K., Jiao, J., Ribeiro, C. A. L. R., Carvalho, F. A. C., Oliveira, M. L. S., & Pereira, E. B. (2025). Impact of nature-based solutions (NBS) on urban surface temperatures and land cover changes using remote sensing and machine learning. Remote Sensing Applications: Society and Environment, 39, 101721. https://doi.org/10.1016/j.rsase.2025.1016/j.rsase.2025.101721",
         styles['Footnote']))
@@ -1276,12 +1357,428 @@ class ResultProcessor:
             story.append(Paragraph("<i>No fue posible listar las intervenciones modeladas (error de decodificación).</i>", styles['Normal']))
 
         story.append(Spacer(1, 10))
-        story.append(Paragraph(f"<b>La estimación del impacto térmico se realizó mediante modelos de aprendizaje automático (machine learning) calibrados específicamente para cada demarcación.</b> Una vez definidos los polígonos y las estrategias a implementar, el algoritmo procesa estas variables de entrada y simula la modificación de las propiedades físicas de las superficies (albedo, NDVI, MNDWI, etc.). Este enfoque analítico permite proyectar la variación de la LST contrastando dos escenarios: el escenario base o gemelo (sin intervención) y el escenario proyectado (con intervención). Aunque se evaluaron diversos algoritmos de aprendizaje automático<sup>13</sup> , para la estimación de la LST se seleccionó un modelo de regresión de gradiente basado en histogramas (Histogram-based Gradient Boosting Regressor - Hist Gradient Boosting). Este algoritmo proyecta los cambios en la temperatura superficial a partir de variables clave (como albedo, NDVI, MNDWI, entre otras), habiendo demostrado consistentemente una mayor precisión y robustez analítica frente a las demás alternativas evaluadas.", styles['IntroJustify']))
+        story.append(Paragraph(f"<b>La estimación del impacto térmico se realizó mediante modelos de aprendizaje automático (machine learning) calibrados específicamente para cada demarcación.</b> Una vez definidos los polígonos y las estrategias a implementar, el algoritmo procesa estas variables de entrada y simula la modificación de las propiedades físicas de las superficies (albedo, NDVI, MNDWI, etc.). Este enfoque analítico permite proyectar la variación de la LST contrastando dos escenarios: el escenario base o gemelo (sin intervención) y el escenario proyectado (con intervención). Aunque se evaluaron diversos algoritmos de aprendizaje automático<sup>13</sup>, para la estimación de la LST se seleccionó un modelo de regresión de gradiente basado en histogramas (Histogram-based Gradient Boosting Regressor - Hist Gradient Boosting). Este algoritmo proyecta los cambios en la temperatura superficial a partir de variables clave (como albedo, NDVI, MNDWI, entre otras), habiendo demostrado consistentemente una mayor precisión y robustez analítica frente a las demás alternativas evaluadas.", styles['IntroJustify']))
         
+        story.append(Spacer(1, 350))
         story.append(Paragraph(
-        "<sup>13</sup> La herramienta evaluó la implementación de los siguientes modelos de aprendizaje automático: Árboles Aleatorios (Random Forest), Refuerzo de Gradientes Extremo (eXtreme Gradient Boosting - XGBoost) y  Refuerzo de Gradientes basado en histogramas (HistogramGradient BoostingRegressor  HGRBoost).",
+        "<sup>13</sup> La herramienta evaluó la implementación de los siguientes modelos de aprendizaje automático: Árboles Aleatorios (Random Forest), Refuerzo de Gradientes Extremo (eXtreme Gradient Boosting - XGBoost) y  Refuerzo de Gradientes basado en histogramas (HistogramGradient BoostingRegressor  HGRBoost). Para mayor información sobre la evaluación de modelos, ver 5. Anexos.",
         styles['Footnote']))
-        story.append(Spacer(1, 10))
+        story.append(PageBreak())
+
+        # Add LST Twin Map
+        img_twin_lst = get_image_for_reportlab(self.paths["map_base"], max_pdf_img_width)
+        if img_twin_lst:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Temperatura de la superficie terrestre - Escenario Base ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_twin_lst
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+        
+        # NOTE: La figura de diferencia se añadirá tras el mapa de intervención
+
+        # Add LST Intervention Map
+        img_intervention_lst = get_image_for_reportlab(self.paths["map_intervention"], max_pdf_img_width)
+        if img_intervention_lst:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Temperatura de la superficie terrestre - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_intervention_lst
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+
+        story.append(PageBreak()) # Force new page
+
+        # Add LST Classification Twin Map
+        lst_class_base_map_path = os.path.join(self.report_inputs_dir, "lst_classification_twin_map.png")
+        img_class_twin_lst = get_image_for_reportlab(lst_class_base_map_path, max_pdf_img_width)
+        if img_class_twin_lst:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario Base ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_class_twin_lst
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+
+        story.append(PageBreak()) # Force new page
+
+        # Add LST Classification Intervention Map
+        lst_class_intervention_map_path = os.path.join(self.report_inputs_dir, "lst_classification_intervention_map.png")
+        img_class_intervention_lst = get_image_for_reportlab(lst_class_intervention_map_path, max_pdf_img_width)
+        if img_class_intervention_lst:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_class_intervention_lst
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+
+        # Add Difference LST Map (Figura 5) - Moved here per request
+        heatmap_impact_path = self.paths.get("map_impact")
+        img_heatmap_impact = get_image_for_reportlab(heatmap_impact_path, max_pdf_img_width)
+        if img_heatmap_impact:
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: Diferencia LST (Intervención - Base) ({municipality_name})</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_heatmap_impact
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+
+        story.append(PageBreak())
+
+        # --- SECTION 3: GLOBAL METRICS AND CHARTS ---
+        story.append(Paragraph("3. Métricas Globales", styles['Heading1']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph(f"En esta sección se realiza un desglose detallado de indicadores clave de rendimiento generados a partir del análisis global en todo el municipio de {municipality_name}. A continuación, se detallan las variables específicas agrupadas por dimensión:", styles['IntroJustify']))
+        story.append(Paragraph("<b>1. Población y vivienda </b>", styles['IntroJustify']))
+        story.append(Paragraph(f"  -Primera Infancia: Población de 0 a 5 años.", styles['Bullet']))
+        story.append(Paragraph(f"  -Adultos Mayores: Población de 65 años y más.", styles['Bullet']))
+        story.append(Paragraph(f"  -Discapacidad: Población con alguna limitación física o mental.", styles['Bullet']))
+        story.append(Paragraph(f"  -Rezago Habitacional: Viviendas vulnerables (carencia de agua, electricidad o en situación de hacinamiento).", styles['Bullet']))
+        story.append(Paragraph(f"  -Acceso a la Salud: Población sin afiliación a servicios médicos.", styles['Bullet']))
+        story.append(Paragraph(f"  -Perspectiva de Género: Hogares con jefatura femenina. Mujeres en edad productiva (15 a 60 años).", styles['Bullet']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph("<b>2. Consumo de energía eléctrica </b>", styles['IntroJustify']))
+        story.append(Paragraph(f"  -Estimación del consumo total residencial de electricidad (kWh).", styles['Bullet']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph("<b>3. Calidad del aire</b>", styles['IntroJustify']))
+        story.append(Paragraph(f"  -Concentración potencial de Ozono troposférico (O\u00b3 ppb).", styles['Bullet']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph("<b>En la sección de Población y Vivienda, se presentan gráficas comparativas que evalúan el impacto de las estrategias de mitigación</b>. Al contrastar el Escenario Base con el Escenario de Intervención, se evidencia el desplazamiento de habitantes y viviendas entre áreas de alto estrés térmico ('Zona de Impacto') y zonas de confort ('Fondo Térmico Urbano'). La estimación del impacto térmico sobre la población se realiza mediante un análisis de estadística zonal. Este geoproceso superpone las capas de información demográfica sobre el mapa de clasificación térmica (LST), permitiendo calcular y extraer métricas agregadas (suma, promedio, etc.) específicamente para los habitantes ubicados dentro de cada categoría térmica. Bajo esta premisa, la prioridad es garantizar que el grueso de la viviendas y población resida en áreas de confort térmico. Este cambio representa una disminución en la vulnerabilidad climática y un incremento en el bienestar general de la comunidad.", styles['IntroJustify']))
+        story.append(Paragraph("<b>En la sección de Consumo de Energía Eléctrica, se presenta una comparativa gráfica que cuantifica el impacto de las estrategias de mitigación sobre la demanda residencial de electricidad</b>. Este análisis permite dimensionar el ahorro energético derivado de la reducción de la temperatura superficial a partir de las intervenciones propuestas. El objetivo central de esta métrica es demostrar una disminución neta en el consumo residencial total de electricidad bajo el Escenario Intervención, validando así los beneficios económicos y ambientales de las intervenciones propuestas.", styles['IntroJustify']))
+        story.append(Paragraph("<b>En la sección de Calidad del Aire, se modela el impacto de las estrategias de mitigación sobre la formación potencial de ozono troposférico</b>. Dado que la temperatura actúa como catalizador en las reacciones fotoquímicas, una disminución en la concentración de este contaminante valida la efectividad ambiental de las intervenciones. En este contexto, un resultado óptimo se define por una reducción cuantificable en las partes por billón (ppb) estimadas, lo que contribuye directamente a la salud pública.", styles['IntroJustify']))
+
+        story.append(Paragraph("<b>3.1 Población y vivienda </b>", styles['Heading2Custom']))
+        story.append(Spacer(1, 12))
+        story.append(Paragraph(f"Esta sección presenta los resultados estadísticos obtenidos para el municipio de {municipality_name} a partir de la clasificación y el análisis detallado de isotermas. Este análisis integra datos socio-demográficos y de las características de la vivienda, proporcionados por el Instituto Nacional de Estadística y Geografía<sup>14</sup> (INEGI). El propósito central es proporcionar una visión general de los patrones de temperatura (isotermas) observados con el contexto de la población, facilitando una comprensión del impacto de las Islas de Calor Urbanas (ICUs) y sus efectos en los habitantes.", styles['IntroJustify']))
+        story.append(Paragraph("<sup>14</sup>  Instituto Nacional de Estadística y Geografía (INEGI), Censo de Población y Vivienda 2020. Principales resultados por manzana urbana.",styles['Footnote']))
+        story.append(Spacer(1, 30))
+
+         # --- Other Global Zonal Stats Charts (Social Variables) ---
+        for band_name_display in self.social_variable_chart_order_display_names:
+            safe_source_band_name = self._sanitize_band_name(band_name_display)
+            chart_filename = f"zonal_stats_percentage_Global_{safe_source_band_name}.png"
+            chart_path_zonal = os.path.join(self.report_inputs_dir, chart_filename)
+
+            img_chart = get_image_for_reportlab(chart_path_zonal, max_pdf_img_width)
+            
+            if img_chart:
+                title_text = self.chart_titles.get(chart_filename, f"{band_name_display} por Zona LST (Global)")
+
+                story.append(KeepTogether([
+                    Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
+                    Spacer(1, 6),
+                    img_chart
+                ]))
+                story.append(Spacer(1, 12))
+                current_global_fig_num += 1
+            else:
+                # Si la gráfica no existe, se inserta la leyenda de error
+                story.append(Paragraph(f"No se encontró información para variable {band_name_display}", styles['Normal']))
+                story.append(Spacer(1, 12))
+
+        # 1. Obtener la lista de resúmenes de energía del DTO
+        energy_summaries = getattr(self.result, 'energy_summaries', [])
+
+        # 2. Extraer el texto del resumen global
+        global_energy_summary_text = None
+        if isinstance(energy_summaries, list):
+            global_summary = next((s for s in energy_summaries if s.get('polygon_identifier') == 'Global'), None)
+            if global_summary:
+                global_energy_summary_text = global_summary.get('summary_text')
+
+        # --- Global Energy Consumption Summary (Text) ---
+
+        if global_energy_summary_text:
+            story.append(Spacer(1, 12))
+            story.append(Paragraph("<b>3.2 Consumo de energía eléctrica </b>", styles['Heading2Custom']))
+            story.append(Paragraph(f"El análisis de consumo residencial de electricidad Global para {municipality_name} estima el impacto potencial de las intervenciones implementadas en el consumo de energía. El cálculo toma en cuenta el consumo de electricidad anual per cápita a nivel municipal<sup>15</sup>, el umbral de temperatura confortable para el municipio de {municipality_name}, así como la tasa de consumo de energía por grado de aumento estimada para el estado de {state_name}<sup>16</sup>.", styles['IntroJustify']))
+            story.append(Paragraph("<sup>15</sup> Información tomada de la Plataforma Nacional de Energía Ambiente y Sociedad (PLANEAS) del Consejo Nacional de Humanidades, Ciencies y Tecnologías (CONAHCyT) Ecosistema Nacional Informático de Energía y Cambio Climático con base en Comisión Federal Electricidad (CFE) (2018). Usuarios y consumo y de electricidad por municipio (A partir de 2018). Datos abiertos. Consultado en 26 marzo 2020. Disponible en: https://datos.gob.mx/busca/dataset/usuarios-y-consumo-de-electricidad-por-municipio-a-partir-de-2018.",styles['Footnote']))
+            story.append(Paragraph("<sup>16</sup> Botzen, W.J.W.; Nees, T.; Estrada, F. Temperature Effects on Electricity and Gas Consumption: Empirical Evidence from Mexico and Projections under Future Climate Conditions. Sustainability 2021, 13, 305. https://doi.org/10.3390/su13010305",styles['Footnote']))
+            story.append(Spacer(1, 10))
+            for line in global_energy_summary_text.split('\n'):
+                processed_line = line.strip()
+                if not processed_line:
+                    continue
+
+                is_bolded_ansi = processed_line.startswith('\x1b[1m') and processed_line.endswith('\x1b[0m')
+                if is_bolded_ansi:
+                    processed_line = processed_line.replace('\x1b[1m', '').replace('\x1b[0m', '').strip()
+
+                if processed_line.startswith('---') and processed_line.endswith('---'):
+                    processed_line = processed_line.strip(' -')
+
+                if is_bolded_ansi:
+                    processed_line = f"<b>{processed_line}</b>"
+
+                story.append(Paragraph(processed_line, styles['CodeStyle']))
+            story.append(Spacer(1,12))
+        else:
+            story.append(Paragraph("<i>No se encontró el resumen global de consumo de energía.</i>", styles['Normal']))
+
+        story.append(Spacer(1, 12))
+        total_energy_consumption_bar_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
+        img_chart = get_image_for_reportlab(total_energy_consumption_bar_chart_path, max_pdf_img_width)
+        if img_chart:
+            title_text = self.chart_titles.get(os.path.basename(total_energy_consumption_bar_chart_path), 'Consumo Residencial Total de Electricidad (Global)')
+
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_chart
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+        else:
+            story.append(Paragraph(f"No se encontró información para variable Consumo Residencial Total de Electricidad", styles['Normal']))
+        
+        story.append(PageBreak())
+        story.append(Paragraph("<b>3.3 Calidad del Aire </b>", styles['Heading2Custom']))
+        story.append(Paragraph(f"En esta sección se presenta el porcentaje de cambio en la concentración de ozono troposférico al comparar los resultados del escenario base y el escenario de intervención. La calidad del aire, específicamente la formación de ozono troposférico, está fuertemente condicionada por las variaciones de la Temperatura Superficial Terrestre (LST)<sup>17</sup>. La gráfica adjunta ilustra la mejora porcentual en la potencial concentración de ozono troposférico en el municipio de {municipality_name}, como resultado de la disminución o incremento de la LST. El modelo ocupado para este indicador cuantifica la sensibilidad del ozono a la temperatura y no puede se considerado para proporcionar una predicción exacta y determinista completa. Estos hallazgos validan la correlación positiva entre la mitigación térmica y la reducción de precursores de ozono troposférico, confirmando la efectividad de las estrategias implementadas.", styles['IntroJustify']))
+        story.append(Spacer(1, 12))
+        # --- Global Ozone Donut Chart ---
+        ozone_donut_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
+        img_chart = get_image_for_reportlab(ozone_donut_chart_path, max_pdf_img_width * 0.8) # Donut charts usually fit better if slightly smaller
+        if img_chart:
+            title_text = self.chart_titles.get(os.path.basename(ozone_donut_chart_path), 'Porcentaje de cambio en la concentración de ozono (O3) Global')
+
+            story.append(KeepTogether([
+                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
+                Spacer(1, 6),
+                img_chart
+            ]))
+            story.append(Spacer(1, 12))
+            current_global_fig_num += 1
+        else:
+            story.append(Paragraph(f"No se encontró información para variable Porcentaje de cambio en la concentración de ozono (O3)", styles['Normal']))
+            story.append(Spacer(1, 12))
+        story.append(Paragraph("<sup>17</sup> Castro, T., Peralta, O., Sánchez-Vargas, A., & Salcido, A. (2025). Evolution of Tropospheric Ozone and Surface Temperature in Mexico City from 2000 to 2021. Atmosphere, 16(12), 1379. https://doi.org/10.3390/atmos16121379.",styles['Footnote']))
+
+
+        story.append(PageBreak())
+
+        # --- SECTION 4: PER-POLYGON DEEP DIVE ANALYSIS ---
+        story.append(Paragraph("4. Análisis Detallado por Polígono de Intervención", styles['Heading1']))
+        story.append(Paragraph("Esta sección ofrece un estudio a detalle para cada polígono de intervención, replicando el marco metodológico utilizado en el análisis global. Los resultados se muestran en dos secciones. La primera sección presenta la cartografía de Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el escenario Base y escenario Intervención (alternativo) siguiendo la misma lógica y metodología que en la sección global (2. Análisis Geográfico Global de Escenarios de LST).", styles['IntroJustify']))
+        story.append(Spacer(1, 6))
+        story.append(Paragraph("De igual forma, en la segunda parte se realiza un desglose detallado de indicadores clave de rendimiento para las dimensiones de <i>Población y Vivienda</i>, <i>Consumo de Energía</i> y <i>Calidad del Aire</i> estimados para cada polígono de intervención definido.", styles['IntroJustify']))
+
+        if not self.gdf_interventions.empty:
+            # Define the order of chart types for per-polygon display
+            per_polygon_chart_types_ordered = [
+                {'chart_type': 'lst_twin_polygon', 'title_prefix': "LST Escenario Base"},
+                {'chart_type': 'lst_intervention_polygon', 'title_prefix': "LST Escenario Intervención"},
+                {'chart_type': 'lst_classification_twin_polygon', 'title_prefix': "Clasificación LST Escenario Base"},
+                {'chart_type': 'lst_classification_intervention_polygon', 'title_prefix': "Clasificación LST Escenario Intervención"},
+                {'chart_type': 'heatmap_impact', 'title_prefix': "Diferencia LST (Intervención - Base)"},
+            ]
+
+            # Iterate through each polygon
+            for index, feature in self.gdf_interventions.iterrows():
+                polygon_id = feature['id'] if 'id' in feature and not pd.isna(feature['id']) else f"Unnamed_Polygon_{index}"
+                polygon_id_str = str(int(polygon_id)) if isinstance(polygon_id, (int, float)) else str(polygon_id)
+
+                story.append(Paragraph(f"4.{index+1} Polígono ID: {polygon_id_str}", styles['Heading2Custom']))
+                story.append(Spacer(1, 6))
+
+                # Filter all generated charts for the current polygon_id
+                charts_for_current_polygon = [c for c in self.generated_per_polygon_chart_details if c['polygon_id'] == polygon_id_str]
+
+                # --- Add Per-Polygon Maps (LST and LST Classification) ---
+                # Collect per-polygon map flowables and place them in a 2-column table (reduced size)
+                per_polygon_cells = []
+                # Calculate width dynamically for 2 columns (two maps per row)
+                try:
+                    usable_width = doc.width - 12  # small horizontal padding
+                    per_polygon_img_width = (usable_width / 2) - 6  # account for cell padding
+                except Exception:
+                    per_polygon_img_width = (6 * inch) / 2
+
+                # Calculate max height per image so two rows fit on a page
+                try:
+                    per_polygon_img_max_height = (doc.height / 2) - 24  # subtract small vertical padding
+                except Exception:
+                    per_polygon_img_max_height = 4 * inch
+
+                # Reduce map dimensions by 25% (scale factor 0.75)
+                SCALE_REDUCTION = 1
+                per_polygon_img_width = per_polygon_img_width * SCALE_REDUCTION
+                per_polygon_img_max_height = per_polygon_img_max_height * SCALE_REDUCTION
+
+                for chart_spec in per_polygon_chart_types_ordered:
+                    chart_type_to_find = chart_spec['chart_type']
+                    found_chart = next((c for c in charts_for_current_polygon if c['chart_type'] == chart_type_to_find), None)
+
+                    if found_chart and found_chart['path']:
+                        # Special case: render per-polygon difference heatmap as full-page figure
+                        if chart_type_to_find == 'heatmap_impact':
+                            full_img_max_width = doc.width - (1 * inch)
+                            full_img_max_height = doc.height - (1 * inch)
+                            img_full = get_image_for_reportlab(found_chart['path'], full_img_max_width, full_img_max_height)
+                            caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
+                            if img_full:
+                                story.append(Spacer(1, 12))
+                                story.append(caption)
+                                story.append(Spacer(1, 6))
+                                story.append(img_full)
+                                story.append(PageBreak())
+                                current_global_fig_num += 1
+                                # Skip adding this chart to the 2x2 grid
+                                continue
+                            else:
+                                # Fallback to note missing image
+                                story.append(Paragraph(f"No se encontró información para variable {found_chart['title']}", styles['Normal']))
+                                story.append(Spacer(1, 12))
+                                current_global_fig_num += 1
+                                continue
+
+                        # Default behavior: Load image constrained by width and max height to avoid huge cells
+                        img_chart = get_image_for_reportlab(found_chart['path'], per_polygon_img_width, per_polygon_img_max_height)
+                        caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
+                        if img_chart:
+                            # Use an inner table to keep caption and image together but allow ReportLab to paginate rows
+                            inner = [[caption], [img_chart]]
+                        else:
+                            inner = [[caption], [Paragraph(f"No se encontró información para variable {found_chart['title']}", styles['Normal'])]]
+
+                        inner_table = Table(inner, colWidths=[per_polygon_img_width])
+                        inner_table.setStyle(TableStyle([
+                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                            ('LEFTPADDING', (0,0), (-1,-1), 0),
+                            ('RIGHTPADDING', (0,0), (-1,-1), 0),
+                            ('TOPPADDING', (0,0), (-1,-1), 0),
+                            ('BOTTOMPADDING', (0,0), (-1,-1), 0),
+                        ]))
+                        per_polygon_cells.append(inner_table)
+                        current_global_fig_num += 1
+                    else:
+                        display_title_base = chart_spec.get('title_prefix', chart_type_to_find)
+                        per_polygon_cells.append(Paragraph(f"No se encontró información para variable {display_title_base}", styles['Normal']))
+
+                # Arrange cells into 2x2 grid per page (2 columns x 2 rows)
+                if per_polygon_cells:
+                    col_widths = [ (doc.width / 2) - 6, (doc.width / 2) - 6 ]
+                    # iterate groups of 4 cells
+                    for i in range(0, len(per_polygon_cells), 4):
+                        c0 = per_polygon_cells[i]
+                        c1 = per_polygon_cells[i+1] if i+1 < len(per_polygon_cells) else ''
+                        c2 = per_polygon_cells[i+2] if i+2 < len(per_polygon_cells) else ''
+                        c3 = per_polygon_cells[i+3] if i+3 < len(per_polygon_cells) else ''
+
+                        maps_table = Table([[c0, c1], [c2, c3]], colWidths=col_widths)
+                        maps_table.setStyle(TableStyle([
+                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                            ('LEFTPADDING', (0,0), (-1,-1), 6),
+                            ('RIGHTPADDING', (0,0), (-1,-1), 6),
+                            ('TOPPADDING', (0,0), (-1,-1), 6),
+                            ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+                        ]))
+                        story.append(maps_table)
+                        story.append(Spacer(1, 12))
+                        # Force a page break so each 2x2 block occupies one page
+                        story.append(PageBreak())
+
+                # --- Add Per-Polygon Zonal Stats Charts (Social Variables) in ORDER ---
+                for band_name_display in self.social_variable_chart_order_display_names:
+                    # Find the specific zonal stats chart for this polygon and source band
+                    found_chart = next((c for c in charts_for_current_polygon if c['chart_type'] == 'zonal_stats' and c['source_band'] == band_name_display), None)
+                    if found_chart and found_chart['path']:
+                        img_chart = get_image_for_reportlab(found_chart['path'], max_pdf_img_width)
+                        if img_chart:
+                            # Get the global title and remove " (Global)" for per-polygon context
+                            global_title = self.chart_titles.get(f'zonal_stats_percentage_Global_{self._sanitize_band_name(band_name_display)}.png', band_name_display)
+                            per_polygon_title = global_title.replace(' (Global)', '')
+
+                            story.append(KeepTogether([
+                                Paragraph(f"<b>Figura {current_global_fig_num}: {per_polygon_title} - Polígono ID {polygon_id_str}</b>", styles['Normal']),
+                                Spacer(1, 6),
+                                img_chart
+                            ]))
+                            story.append(Spacer(1, 12))
+                            current_global_fig_num += 1
+                        else:
+                            story.append(Paragraph(f"No se encontró información para variable {band_name_display}", styles['Normal']))
+                            story.append(Spacer(1, 12))
+                    else:
+                        story.append(Paragraph(f"No se encontró información para variable Porcentaje de {band_name_display} por Zona LST", styles['Normal']))
+                        story.append(Spacer(1, 12))
+
+                # Add Per-Polygon Energy Consumption Summary (text) from energy_summaries
+                polygon_energy_summary_text = None
+                polygon_summary = next((s for s in getattr(self.result, 'energy_summaries', []) if s.get('polygon_identifier') == f'Polígono ID {polygon_id_str}'), None)
+                if polygon_summary:
+                    polygon_energy_summary_text = polygon_summary.get('summary_text')
+
+                # 2. Renderizado en el PDF (Lógica de Story)
+                if polygon_energy_summary_text:
+                    story.append(Paragraph(f"<b>Resumen de Resultados del Análisis de Energía para el Polígono {polygon_id_str}</b>", styles['Normal']))
+                    story.append(Spacer(1, 12))
+                    for line in polygon_energy_summary_text.split('\n'):
+                        processed_line = line.strip()
+                        if not processed_line:
+                            continue
+                        # This logic is to handle the text formatting from the engine's summary
+                        is_bolded_ansi = processed_line.startswith('\x1b[1m') and processed_line.endswith('\x1b[0m')
+                        if is_bolded_ansi:
+                            processed_line = processed_line.replace('\x1b[1m', '').replace('\x1b[0m', '').strip()
+                        if processed_line.startswith('---') and processed_line.endswith('---'):
+                            processed_line = processed_line.strip(' -')
+                        if is_bolded_ansi:
+                            processed_line = f"<b>{processed_line}</b>"
+                        story.append(Paragraph(processed_line, styles['CodeStyle']))
+                    story.append(Spacer(1, 12))
+                else:
+                    # Mensaje de fallback si el polígono no tiene datos asociados
+                    story.append(Paragraph(f"<i>No se encontraron datos de impacto energético específicos para el Polígono ID {polygon_id_str}.</i>", styles['Normal']))
+                    story.append(Spacer(1, 12))
+
+                # Add Per-Polygon Total Energy Consumption Bar Chart
+                energy_bar_chart_filename = f'total_energy_consumption_bar_chart_Polígono_ID_{polygon_id_str}.png'
+                chart_path_energy = os.path.join(self.report_inputs_dir, energy_bar_chart_filename)
+                img_chart = get_image_for_reportlab(chart_path_energy, max_pdf_img_width)
+                if img_chart:
+                    story.append(KeepTogether([
+                        Paragraph(f"<b>Figura {current_global_fig_num}: Consumo Residencial Total de Electricidad - Polígono ID {polygon_id_str}</b>", styles['Normal']),
+                        Spacer(1, 6),
+                        img_chart
+                    ]))
+                    story.append(Spacer(1, 12))
+                    current_global_fig_num += 1
+                else:
+                    story.append(Paragraph(f"No se encontró información para variable Consumo Residencial Total de Electricidad", styles['Normal']))
+                    story.append(Spacer(1, 12))
+
+                # Add Per-Polygon Ozone Donut Chart
+                ozone_donut_chart_filename = f'ozone_improvement_donut_chart_polygon_{polygon_id_str}.png'
+                chart_path_ozone = os.path.join(self.report_inputs_dir, ozone_donut_chart_filename)
+                img_chart = get_image_for_reportlab(chart_path_ozone, max_pdf_img_width * 0.8)
+                if img_chart:
+                    story.append(KeepTogether([
+                        Paragraph(f"<b>Figura {current_global_fig_num}: Porcentaje de cambio en la concentración de ozono (O3) - Polígono ID {polygon_id_str}</b>", styles['Normal']),
+                        Spacer(1, 6),
+                        img_chart
+                    ]))
+                    story.append(Spacer(1, 12))
+                    current_global_fig_num += 1
+                else:
+                    story.append(Paragraph(f"No se encontró información para variable Porcentaje de cambio en la concentración de ozono (O3)", styles['Normal']))
+                    story.append(Spacer(1, 12))
+
+                story.append(PageBreak()) # New page for next polygon or next section
+
+            logger.info("   All per-polygon charts added to story.")
+
+        else:
+            story.append(Paragraph("<i>No se encontraron polígonos de intervención en el GeoPackage proporcionado.</i>", styles['Normal']))
+            story.append(Spacer(1, 12))
+
+        story.append(Paragraph("5. Anexo", styles['Heading1']))
+        story.append(Spacer(1, 12))
 
         # Insert models evaluation table (if available) BEFORE Figura 1
         try:
@@ -1474,418 +1971,8 @@ class ResultProcessor:
         story.append(Paragraph("<b>R<sup>2</sup>_Score (Coeficiente de Determinación)</b>: Representa la proporción de la varianza en la LST que es predecible a partir de las variables independientes (como NDVI, Albedo, etc.). En términos más simples, muestra qué tan bien el modelo explica la variabilidad de la LST. Un valor más cercano a 1 indica que el modelo explica una gran parte de la varianza de la LST y, por lo tanto, es un buen ajuste a los datos. ",styles['Footnote']))
         story.append(Paragraph("<b>RMSE (Root Mean Squared Error - Raíz del Error Cuadrático Medio)</b>: Mide la magnitud promedio de los errores del modelo. La raíz cuadrada se aplica para que la unidad del error sea la misma que la unidad de la variable predicha (grados Celsius). Un valor de RMSE más bajo indica un mejor rendimiento del modelo.",styles['Footnote']))
         story.append(Paragraph("<b>MAE (Mean Absolute Error - Error Absoluto Medio)</b>: Mide la magnitud promedio de los errores de un conjunto de predicciones. Calcula el promedio de las diferencias absolutas entre las predicciones y los valores reales. Un valor de MAE más bajo indica un mejor rendimiento del modelo.",styles['Footnote']))
-        story.append(PageBreak())
-
-        # Add LST Twin Map
-        img_twin_lst = get_image_for_reportlab(self.paths["map_base"], max_pdf_img_width)
-        if img_twin_lst:
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Temperatura de la superficie terrestre - Escenario Base ({municipality_name})</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_twin_lst
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
         
-        # NOTE: La figura de diferencia se añadirá tras el mapa de intervención
 
-        # Add LST Intervention Map
-        img_intervention_lst = get_image_for_reportlab(self.paths["map_intervention"], max_pdf_img_width)
-        if img_intervention_lst:
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Temperatura de la superficie terrestre - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_intervention_lst
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-
-        story.append(PageBreak()) # Force new page
-
-        # Add LST Classification Twin Map
-        lst_class_base_map_path = os.path.join(self.report_inputs_dir, "lst_classification_twin_map.png")
-        img_class_twin_lst = get_image_for_reportlab(lst_class_base_map_path, max_pdf_img_width)
-        if img_class_twin_lst:
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario Base ({municipality_name})</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_class_twin_lst
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-
-        story.append(PageBreak()) # Force new page
-
-        # Add LST Classification Intervention Map
-        lst_class_intervention_map_path = os.path.join(self.report_inputs_dir, "lst_classification_intervention_map.png")
-        img_class_intervention_lst = get_image_for_reportlab(lst_class_intervention_map_path, max_pdf_img_width)
-        if img_class_intervention_lst:
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Clasificación de LST - Escenario con intervención ({municipality_name})</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_class_intervention_lst
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-
-        # Add Difference LST Map (Figura 5) - Moved here per request
-        heatmap_impact_path = self.paths.get("map_impact")
-        img_heatmap_impact = get_image_for_reportlab(heatmap_impact_path, max_pdf_img_width)
-        if img_heatmap_impact:
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: Diferencia LST (Intervención - Base) ({municipality_name})</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_heatmap_impact
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-
-        story.append(PageBreak())
-
-        # --- SECTION 3: GLOBAL METRICS AND CHARTS ---
-        story.append(Paragraph("3. Métricas Globales", styles['Heading1']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph(f"En esta sección se realiza un desglose detallado de indicadores clave de rendimiento generados a partir del análisis global en todo el municipio de {municipality_name}. A continuación, se detallan las variables específicas agrupadas por dimensión:", styles['IntroJustify']))
-        story.append(Paragraph("<b>1. Población y vivienda </b>", styles['IntroJustify']))
-        story.append(Paragraph(f"  -Primera Infancia: Población de 0 a 5 años.", styles['Bullet']))
-        story.append(Paragraph(f"  -Adultos Mayores: Población de 65 años y más.", styles['Bullet']))
-        story.append(Paragraph(f"  -Discapacidad: Población con alguna limitación física o mental.", styles['Bullet']))
-        story.append(Paragraph(f"  -Rezago Habitacional: Viviendas vulnerables (carencia de agua, electricidad o en situación de hacinamiento).", styles['Bullet']))
-        story.append(Paragraph(f"  -Acceso a la Salud: Población sin afiliación a servicios médicos.", styles['Bullet']))
-        story.append(Paragraph(f"  -Perspectiva de Género: Hogares con jefatura femenina. Mujeres en edad productiva (15 a 60 años).", styles['Bullet']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph("<b>2. Consumo de energía eléctrica </b>", styles['IntroJustify']))
-        story.append(Paragraph(f"  -Estimación del consumo total residencial de electricidad (kWh).", styles['Bullet']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph("<b>3. Calidad del aire</b>", styles['IntroJustify']))
-        story.append(Paragraph(f"  -Concentración potencial de Ozono troposférico (O\u00b3 ppb).", styles['Bullet']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph("<b>En la sección de Población y Vivienda, se presentan gráficas comparativas que evalúan el impacto de las estrategias de mitigación</b>. Al contrastar el Escenario Base con el Escenario de Intervención, se evidencia el desplazamiento de habitantes y viviendas entre áreas de alto estrés térmico ('Zona de Impacto') y zonas de confort ('Fondo Térmico Urbano'). La estimación del impacto térmico sobre la población se realiza mediante un análisis de estadística zonal. Este geoproceso superpone las capas de información demográfica sobre el mapa de clasificación térmica (LST), permitiendo calcular y extraer métricas agregadas (suma, promedio, etc.) específicamente para los habitantes ubicados dentro de cada categoría térmica. Bajo esta premisa, la prioridad es garantizar que el grueso de la viviendas y población resida en áreas de confort térmico. Este cambio representa una disminución en la vulnerabilidad climática y un incremento en el bienestar general de la comunidad.", styles['IntroJustify']))
-        story.append(Paragraph("<b>En la sección de Consumo de Energía Eléctrica, se presenta una comparativa gráfica que cuantifica el impacto de las estrategias de mitigación sobre la demanda residencial de electricidad</b>. Este análisis permite dimensionar el ahorro energético derivado de la reducción de la temperatura superficial a partir de las intervenciones propuestas. El objetivo central de esta métrica es demostrar una disminución neta en el consumo residencial total de electricidad bajo el Escenario Intervención, validando así los beneficios económicos y ambientales de las intervenciones propuestas.", styles['IntroJustify']))
-        story.append(Paragraph("<b>En la sección de Calidad del Aire, se modela el impacto de las estrategias de mitigación sobre la formación potencial de ozono troposférico</b>. Dado que la temperatura actúa como catalizador en las reacciones fotoquímicas, una disminución en la concentración de este contaminante valida la efectividad ambiental de las intervenciones. En este contexto, un resultado óptimo se define por una reducción cuantificable en las partes por billón (ppb) estimadas, lo que contribuye directamente a la salud pública.", styles['IntroJustify']))
-
-        story.append(Paragraph("<b>3.1 Población y vivienda </b>", styles['Heading2Custom']))
-        story.append(Spacer(1, 12))
-        story.append(Paragraph(f"Esta sección presenta los resultados estadísticos obtenidos para el municipio de {municipality_name} a partir de la clasificación y el análisis detallado de isotermas. Este análisis integra datos socio-demográficos y de las características de la vivienda, proporcionados por el Instituto Nacional de Estadística y Geografía<sup>14</sup> (INEGI). El propósito central es proporcionar una visión general de los patrones de temperatura (isotermas) observados con el contexto de la población, facilitando una comprensión del impacto de las Islas de Calor Urbanas (ICUs) y sus efectos en los habitantes.", styles['IntroJustify']))
-        story.append(Paragraph("<sup>14</sup>  Instituto Nacional de Estadística y Geografía (INEGI), Censo de Población y Vivienda 2020. Principales resultados por manzana urbana.",styles['Footnote']))
-        story.append(Spacer(1, 30))
-
-         # --- Other Global Zonal Stats Charts (Social Variables) ---
-        # Dynamically generate and add global zonal stats charts based on the predefined order
-        for band_name_display in self.social_variable_chart_order_display_names:
-            safe_source_band_name = self._sanitize_band_name(band_name_display)
-            chart_filename = f"zonal_stats_percentage_Global_{safe_source_band_name}.png"
-            chart_path_zonal = os.path.join(self.report_inputs_dir, chart_filename)
-
-            img_chart = get_image_for_reportlab(chart_path_zonal, max_pdf_img_width)
-            if img_chart:
-                title_text = self.chart_titles.get(chart_filename, chart_filename.replace('_', ' ').replace('.png', ''))
-
-                story.append(KeepTogether([
-                    Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
-                    Spacer(1, 6),
-                    img_chart
-                ]))
-                story.append(Spacer(1, 12))
-                current_global_fig_num += 1
-            else:
-                story.append(Paragraph(f"<i>(Gráfico {band_name_display} no encontrado en {chart_path_zonal})</i>", styles['Normal']))
-                story.append(Spacer(1, 12))
-
-        # 1. Obtener la lista de resúmenes de energía del DTO
-        energy_summaries = getattr(self.result, 'energy_summaries', [])
-
-        # 2. Extraer el texto del resumen global
-        global_energy_summary_text = None
-        if isinstance(energy_summaries, list):
-            global_summary = next((s for s in energy_summaries if s.get('polygon_identifier') == 'Global'), None)
-            if global_summary:
-                global_energy_summary_text = global_summary.get('summary_text')
-
-        # --- Global Energy Consumption Summary (Text) ---
-
-        if global_energy_summary_text:
-            story.append(Spacer(1, 12))
-            story.append(Paragraph("<b>3.2 Consumo de energía eléctrica </b>", styles['Heading2Custom']))
-            story.append(Paragraph(f"El análisis de consumo residencial de electricidad Global para {municipality_name} estima el impacto potencial de las intervenciones implementadas en el consumo de energía. El cálculo toma en cuenta el consumo de electricidad anual per cápita a nivel municipal<sup>15</sup>, el umbral de temperatura confortable para el municipio de {municipality_name}, así como la tasa de consumo de energía por grado de aumento estimada para el estado de {state_name}<sup>16</sup>.", styles['IntroJustify']))
-            story.append(Paragraph("<sup>15</sup> Información tomada de la Plataforma Nacional de Energía Ambiente y Sociedad (PLANEAS) del Consejo Nacional de Humanidades, Ciencies y Tecnologías (CONAHCyT) Ecosistema Nacional Informático de Energía y Cambio Climático con base en Comisión Federal Electricidad (CFE) (2018). Usuarios y consumo y de electricidad por municipio (A partir de 2018). Datos abiertos. Consultado en 26 marzo 2020. Disponible en: https://datos.gob.mx/busca/dataset/usuarios-y-consumo-de-electricidad-por-municipio-a-partir-de-2018.",styles['Footnote']))
-            story.append(Paragraph("<sup>16</sup> Botzen, W.J.W.; Nees, T.; Estrada, F. Temperature Effects on Electricity and Gas Consumption: Empirical Evidence from Mexico and Projections under Future Climate Conditions. Sustainability 2021, 13, 305. https://doi.org/10.3390/su13010305",styles['Footnote']))
-            story.append(Spacer(1, 10))
-            for line in global_energy_summary_text.split('\n'):
-                processed_line = line.strip()
-                if not processed_line:
-                    continue
-
-                is_bolded_ansi = processed_line.startswith('\x1b[1m') and processed_line.endswith('\x1b[0m')
-                if is_bolded_ansi:
-                    processed_line = processed_line.replace('\x1b[1m', '').replace('\x1b[0m', '').strip()
-
-                if processed_line.startswith('---') and processed_line.endswith('---'):
-                    processed_line = processed_line.strip(' -')
-
-                if is_bolded_ansi:
-                    processed_line = f"<b>{processed_line}</b>"
-
-                story.append(Paragraph(processed_line, styles['CodeStyle']))
-            story.append(Spacer(1,12))
-        else:
-            story.append(Paragraph("<i>No se encontró el resumen global de consumo de energía.</i>", styles['Normal']))
-
-        story.append(Spacer(1, 12))
-        total_energy_consumption_bar_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
-        img_chart = get_image_for_reportlab(total_energy_consumption_bar_chart_path, max_pdf_img_width)
-        if img_chart:
-            title_text = self.chart_titles.get(os.path.basename(total_energy_consumption_bar_chart_path), 'Consumo Residencial Total de Electricidad (Global)')
-
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_chart
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-        else:
-            story.append(Paragraph(f"<i>(Gráfico no encontrado en {total_energy_consumption_bar_chart_path})</i>", styles['Normal']))
-        
-        story.append(PageBreak())
-        story.append(Paragraph("<b>3.3 Calidad del Aire </b>", styles['Heading2Custom']))
-        story.append(Paragraph(f"En esta sección se presenta el porcentaje de cambio en la concentración de ozono troposférico al comparar los resultados del escenario base y el escenario de intervención. La calidad del aire, específicamente la formación de ozono troposférico, está fuertemente condicionada por las variaciones de la Temperatura Superficial Terrestre (LST)<sup>17</sup>. La gráfica adjunta ilustra la mejora porcentual en la potencial concentración de ozono troposférico en el municipio de {municipality_name}, como resultado de la disminución o incremento de la LST. El modelo ocupado para este indicador cuantifica la sensibilidad del ozono a la temperatura y no puede se considerado para proporcionar una predicción exacta y determinista completa. Estos hallazgos validan la correlación positiva entre la mitigación térmica y la reducción de precursores de ozono troposférico, confirmando la efectividad de las estrategias implementadas.", styles['IntroJustify']))
-        story.append(Spacer(1, 12))
-        # --- Global Ozone Donut Chart ---
-        ozone_donut_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
-        img_chart = get_image_for_reportlab(ozone_donut_chart_path, max_pdf_img_width * 0.8) # Donut charts usually fit better if slightly smaller
-        if img_chart:
-            title_text = self.chart_titles.get(os.path.basename(ozone_donut_chart_path), 'Porcentaje de cambio en la concentración de ozono (O3) Global')
-
-            story.append(KeepTogether([
-                Paragraph(f"<b>Figura {current_global_fig_num}: {title_text}</b>", styles['Normal']),
-                Spacer(1, 6),
-                img_chart
-            ]))
-            story.append(Spacer(1, 12))
-            current_global_fig_num += 1
-        else:
-            story.append(Paragraph(f"<i>(Gráfico no encontrado en {ozone_donut_chart_path})</i>", styles['Normal']))
-            story.append(Spacer(1, 12))
-        story.append(Paragraph("<sup>17</sup> Castro, T., Peralta, O., Sánchez-Vargas, A., & Salcido, A. (2025). Evolution of Tropospheric Ozone and Surface Temperature in Mexico City from 2000 to 2021. Atmosphere, 16(12), 1379. https://doi.org/10.3390/atmos16121379.",styles['Footnote']))
-
-
-        story.append(PageBreak())
-
-        # --- SECTION 4: PER-POLYGON DEEP DIVE ANALYSIS ---
-        story.append(Paragraph("4. Análisis Detallado por Polígono de Intervención", styles['Heading1']))
-        story.append(Paragraph("Esta sección ofrece un estudio a detalle para cada polígono de intervención, replicando el marco metodológico utilizado en el análisis global. Los resultados se muestran en dos secciones. La primera sección presenta la cartografía de Temperatura Superficial Terrestre (LST) estimada, junto con su clasificación térmica para el escenario Base y escenario Intervención (alternativo) siguiendo la misma lógica y metodología que en la sección global (2. Análisis Geográfico Global de Escenarios de LST).", styles['IntroJustify']))
-        story.append(Spacer(1, 6))
-        story.append(Paragraph("De igual forma, en la segunda parte se realiza un desglose detallado de indicadores clave de rendimiento para las dimensiones de <i>Población y Vivienda</i>, <i>Consumo de Energía</i> y <i>Calidad del Aire</i> estimados para cada polígono de intervención definido.", styles['IntroJustify']))
-
-        if not self.gdf_interventions.empty:
-            # Define the order of chart types for per-polygon display
-            per_polygon_chart_types_ordered = [
-                {'chart_type': 'lst_twin_polygon', 'title_prefix': "LST Escenario Base"},
-                {'chart_type': 'lst_intervention_polygon', 'title_prefix': "LST Escenario Intervención"},
-                {'chart_type': 'lst_classification_twin_polygon', 'title_prefix': "Clasificación LST Escenario Base"},
-                {'chart_type': 'lst_classification_intervention_polygon', 'title_prefix': "Clasificación LST Escenario Intervención"},
-                {'chart_type': 'heatmap_impact', 'title_prefix': "Diferencia LST (Intervención - Base)"},
-            ]
-
-            # Iterate through each polygon
-            for index, feature in self.gdf_interventions.iterrows():
-                polygon_id = feature['id'] if 'id' in feature and not pd.isna(feature['id']) else f"Unnamed_Polygon_{index}"
-                polygon_id_str = str(int(polygon_id)) if isinstance(polygon_id, (int, float)) else str(polygon_id)
-
-                story.append(Paragraph(f"4.{index+1} Polígono ID: {polygon_id_str}", styles['Heading2Custom']))
-                story.append(Spacer(1, 6))
-
-                # Filter all generated charts for the current polygon_id
-                charts_for_current_polygon = [c for c in self.generated_per_polygon_chart_details if c['polygon_id'] == polygon_id_str]
-
-                # --- Add Per-Polygon Maps (LST and LST Classification) ---
-                # Collect per-polygon map flowables and place them in a 2-column table (reduced size)
-                per_polygon_cells = []
-                # Calculate width dynamically for 2 columns (two maps per row)
-                try:
-                    usable_width = doc.width - 12  # small horizontal padding
-                    per_polygon_img_width = (usable_width / 2) - 6  # account for cell padding
-                except Exception:
-                    per_polygon_img_width = (6 * inch) / 2
-
-                # Calculate max height per image so two rows fit on a page
-                try:
-                    per_polygon_img_max_height = (doc.height / 2) - 24  # subtract small vertical padding
-                except Exception:
-                    per_polygon_img_max_height = 4 * inch
-
-                # Reduce map dimensions by 25% (scale factor 0.75)
-                SCALE_REDUCTION = 1
-                per_polygon_img_width = per_polygon_img_width * SCALE_REDUCTION
-                per_polygon_img_max_height = per_polygon_img_max_height * SCALE_REDUCTION
-
-                for chart_spec in per_polygon_chart_types_ordered:
-                    chart_type_to_find = chart_spec['chart_type']
-                    found_chart = next((c for c in charts_for_current_polygon if c['chart_type'] == chart_type_to_find), None)
-
-                    if found_chart and found_chart['path']:
-                        # Special case: render per-polygon difference heatmap as full-page figure
-                        if chart_type_to_find == 'heatmap_impact':
-                            full_img_max_width = doc.width - (1 * inch)
-                            full_img_max_height = doc.height - (1 * inch)
-                            img_full = get_image_for_reportlab(found_chart['path'], full_img_max_width, full_img_max_height)
-                            caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
-                            if img_full:
-                                story.append(Spacer(1, 12))
-                                story.append(caption)
-                                story.append(Spacer(1, 6))
-                                story.append(img_full)
-                                story.append(PageBreak())
-                                current_global_fig_num += 1
-                                # Skip adding this chart to the 2x2 grid
-                                continue
-                            else:
-                                # Fallback to note missing image
-                                story.append(Paragraph(f"<i>(Gráfico {found_chart['title']} no encontrado para el polígono {polygon_id_str})</i>", styles['Normal']))
-                                story.append(Spacer(1, 12))
-                                current_global_fig_num += 1
-                                continue
-
-                        # Default behavior: Load image constrained by width and max height to avoid huge cells
-                        img_chart = get_image_for_reportlab(found_chart['path'], per_polygon_img_width, per_polygon_img_max_height)
-                        caption = Paragraph(f"<b>Figura {current_global_fig_num}: {found_chart['title']} - Polígono ID {polygon_id_str}</b>", styles['Normal'])
-                        if img_chart:
-                            # Use an inner table to keep caption and image together but allow ReportLab to paginate rows
-                            inner = [[caption], [img_chart]]
-                        else:
-                            inner = [[caption], [Paragraph(f"<i>(Gráfico {found_chart['title']} no encontrado para el polígono {polygon_id_str})</i>", styles['Normal'])]]
-
-                        inner_table = Table(inner, colWidths=[per_polygon_img_width])
-                        inner_table.setStyle(TableStyle([
-                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                            ('LEFTPADDING', (0,0), (-1,-1), 0),
-                            ('RIGHTPADDING', (0,0), (-1,-1), 0),
-                            ('TOPPADDING', (0,0), (-1,-1), 0),
-                            ('BOTTOMPADDING', (0,0), (-1,-1), 0),
-                        ]))
-                        per_polygon_cells.append(inner_table)
-                        current_global_fig_num += 1
-                    else:
-                        display_title_base = chart_spec.get('title_prefix', chart_type_to_find)
-                        per_polygon_cells.append(Paragraph(f"<i>(Variable: {display_title_base} no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
-
-                # Arrange cells into 2x2 grid per page (2 columns x 2 rows)
-                if per_polygon_cells:
-                    col_widths = [ (doc.width / 2) - 6, (doc.width / 2) - 6 ]
-                    # iterate groups of 4 cells
-                    for i in range(0, len(per_polygon_cells), 4):
-                        c0 = per_polygon_cells[i]
-                        c1 = per_polygon_cells[i+1] if i+1 < len(per_polygon_cells) else ''
-                        c2 = per_polygon_cells[i+2] if i+2 < len(per_polygon_cells) else ''
-                        c3 = per_polygon_cells[i+3] if i+3 < len(per_polygon_cells) else ''
-
-                        maps_table = Table([[c0, c1], [c2, c3]], colWidths=col_widths)
-                        maps_table.setStyle(TableStyle([
-                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                            ('LEFTPADDING', (0,0), (-1,-1), 6),
-                            ('RIGHTPADDING', (0,0), (-1,-1), 6),
-                            ('TOPPADDING', (0,0), (-1,-1), 6),
-                            ('BOTTOMPADDING', (0,0), (-1,-1), 6),
-                        ]))
-                        story.append(maps_table)
-                        story.append(Spacer(1, 12))
-                        # Force a page break so each 2x2 block occupies one page
-                        story.append(PageBreak())
-
-                # --- Add Per-Polygon Zonal Stats Charts (Social Variables) in ORDER ---
-                for band_name_display in self.social_variable_chart_order_display_names:
-                    # Find the specific zonal stats chart for this polygon and source band
-                    found_chart = next((c for c in charts_for_current_polygon if c['chart_type'] == 'zonal_stats' and c['source_band'] == band_name_display), None)
-                    if found_chart and found_chart['path']:
-                        img_chart = get_image_for_reportlab(found_chart['path'], max_pdf_img_width)
-                        if img_chart:
-                            # Get the global title and remove " (Global)" for per-polygon context
-                            global_title = self.chart_titles.get(f'zonal_stats_percentage_Global_{self._sanitize_band_name(band_name_display)}.png', band_name_display)
-                            per_polygon_title = global_title.replace(' (Global)', '')
-
-                            story.append(KeepTogether([
-                                Paragraph(f"<b>Figura {current_global_fig_num}: {per_polygon_title} - Polígono ID {polygon_id_str}</b>", styles['Normal']),
-                                Spacer(1, 6),
-                                img_chart
-                            ]))
-                            story.append(Spacer(1, 12))
-                            current_global_fig_num += 1
-                        else:
-                            story.append(Paragraph(f"<i>(Gráfico {band_name_display} no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
-                            story.append(Spacer(1, 12))
-                    else:
-                        story.append(Paragraph(f"<i>(Variable: Porcentaje de {band_name_display} por Zona LST no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
-                        story.append(Spacer(1, 12))
-
-                # Add Per-Polygon Energy Consumption Summary (text) from energy_summaries
-                polygon_energy_summary_text = None
-                polygon_summary = next((s for s in getattr(self.result, 'energy_summaries', []) if s.get('polygon_identifier') == f'Polígono ID {polygon_id_str}'), None)
-                if polygon_summary:
-                    polygon_energy_summary_text = polygon_summary.get('summary_text')
-
-                # 2. Renderizado en el PDF (Lógica de Story)
-                if polygon_energy_summary_text:
-                    story.append(Paragraph(f"<b>Resumen de Resultados del Análisis de Energía para el Polígono {polygon_id_str}</b>", styles['Normal']))
-                    story.append(Spacer(1, 12))
-                    for line in polygon_energy_summary_text.split('\n'):
-                        processed_line = line.strip()
-                        if not processed_line:
-                            continue
-                        # This logic is to handle the text formatting from the engine's summary
-                        is_bolded_ansi = processed_line.startswith('\x1b[1m') and processed_line.endswith('\x1b[0m')
-                        if is_bolded_ansi:
-                            processed_line = processed_line.replace('\x1b[1m', '').replace('\x1b[0m', '').strip()
-                        if processed_line.startswith('---') and processed_line.endswith('---'):
-                            processed_line = processed_line.strip(' -')
-                        if is_bolded_ansi:
-                            processed_line = f"<b>{processed_line}</b>"
-                        story.append(Paragraph(processed_line, styles['CodeStyle']))
-                    story.append(Spacer(1, 12))
-                else:
-                    # Mensaje de fallback si el polígono no tiene datos asociados
-                    story.append(Paragraph(f"<i>No se encontraron datos de impacto energético específicos para el Polígono ID {polygon_id_str}.</i>", styles['Normal']))
-                    story.append(Spacer(1, 12))
-
-                # Add Per-Polygon Total Energy Consumption Bar Chart
-                energy_bar_chart_filename = f'total_energy_consumption_bar_chart_Polígono_ID_{polygon_id_str}.png'
-                chart_path_energy = os.path.join(self.report_inputs_dir, energy_bar_chart_filename)
-                img_chart = get_image_for_reportlab(chart_path_energy, max_pdf_img_width)
-                if img_chart:
-                    story.append(KeepTogether([
-                        Paragraph(f"<b>Figura {current_global_fig_num}: Consumo Residencial Total de Electricidad - Polígono ID {polygon_id_str}</b>", styles['Normal']),
-                        Spacer(1, 6),
-                        img_chart
-                    ]))
-                    story.append(Spacer(1, 12))
-                    current_global_fig_num += 1
-                else:
-                    story.append(Paragraph(f"<i>(Consumo Residencial Total de Electricidad no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
-                    story.append(Spacer(1, 12))
-
-                # Add Per-Polygon Ozone Donut Chart
-                ozone_donut_chart_filename = f'ozone_improvement_donut_chart_polygon_{polygon_id_str}.png'
-                chart_path_ozone = os.path.join(self.report_inputs_dir, ozone_donut_chart_filename)
-                img_chart = get_image_for_reportlab(chart_path_ozone, max_pdf_img_width * 0.8)
-                if img_chart:
-                    story.append(KeepTogether([
-                        Paragraph(f"<b>Figura {current_global_fig_num}: Porcentaje de cambio en la concentración de ozono (O3) - Polígono ID {polygon_id_str}</b>", styles['Normal']),
-                        Spacer(1, 6),
-                        img_chart
-                    ]))
-                    story.append(Spacer(1, 12))
-                    current_global_fig_num += 1
-                else:
-                    story.append(Paragraph(f"<i>(Porcentaje de cambio en la concentración de ozono (O3) no encontrada para el polígono {polygon_id_str})</i>", styles['Normal']))
-                    story.append(Spacer(1, 12))
-
-                story.append(PageBreak()) # New page for next polygon or next section
-
-            logger.info("   All per-polygon charts added to story.")
-
-        else:
-            story.append(Paragraph("<i>No se encontraron polígonos de intervención en el GeoPackage proporcionado.</i>", styles['Normal']))
-            story.append(Spacer(1, 12))
 
         try:
             doc.build(story, onFirstPage=header_footer, onLaterPages=header_footer)
