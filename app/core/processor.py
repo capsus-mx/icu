@@ -1515,7 +1515,7 @@ class ResultProcessor:
         # --- Global Energy Consumption Summary (Text) ---
 
         if global_energy_summary_text:
-            story.append(Spacer(1, 12))
+            story.append(PageBreak())
             story.append(Paragraph("<b>3.2 Consumo de energía eléctrica </b>", styles['Heading2Custom']))
             story.append(Paragraph(f"El análisis de consumo residencial de electricidad Global para {municipality_name} estima el impacto potencial de las intervenciones implementadas en el consumo de energía. El cálculo toma en cuenta el consumo de electricidad anual per cápita a nivel municipal<sup>15</sup>, el umbral de temperatura confortable para el municipio de {municipality_name}, así como la tasa de consumo de energía por grado de aumento estimada para el estado de {state_name}<sup>16</sup>.", styles['IntroJustify']))
             story.append(Paragraph("<sup>15</sup> Información tomada de la Plataforma Nacional de Energía Ambiente y Sociedad (PLANEAS) del Consejo Nacional de Humanidades, Ciencies y Tecnologías (CONAHCyT) Ecosistema Nacional Informático de Energía y Cambio Climático con base en Comisión Federal Electricidad (CFE) (2018). Usuarios y consumo y de electricidad por municipio (A partir de 2018). Datos abiertos. Consultado en 26 marzo 2020. Disponible en: https://datos.gob.mx/busca/dataset/usuarios-y-consumo-de-electricidad-por-municipio-a-partir-de-2018.",styles['Footnote']))

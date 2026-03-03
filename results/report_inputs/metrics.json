@@ -1,14 +1,14 @@
 {
-    "avg_temp_base": 34.21747589111328,
-    "avg_temp_intervention": 34.21330261230469,
-    "max_cooling": -5.7193145751953125,
-    "avg_lst_change": -0.004172435961663723,
-    "total_ozone_twin_ppb": 133639.859375,
-    "total_ozone_intervention_ppb": 130336.3984375,
-    "ozone_reduction_ppb": 3303.4609375,
-    "ozone_percentage_improvement": 2.4719129105264415,
-    "total_energy_consumption_twin_MWh_year": 258.576416015625,
-    "total_energy_consumption_intervention_MWh_year": 244.40228271484375,
-    "energy_savings_MWh": 14.17413330078125,
-    "total_population_global": 272.2586669921875
+    "avg_temp_base": 35.210609436035156,
+    "avg_temp_intervention": 35.0644416809082,
+    "max_cooling": -8.382011413574219,
+    "avg_lst_change": -0.14616945385932922,
+    "total_ozone_twin_ppb": 719092.25,
+    "total_ozone_intervention_ppb": 581703.75,
+    "ozone_reduction_ppb": 137388.5,
+    "ozone_percentage_improvement": 19.105824044133424,
+    "total_energy_consumption_twin_MWh_year": 97551.859375,
+    "total_energy_consumption_intervention_MWh_year": 90393.359375,
+    "energy_savings_MWh": 7158.5,
+    "total_population_global": 107028.46875
 }

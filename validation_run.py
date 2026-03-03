@@ -26,7 +26,7 @@ def run_comparison():
     
 
     # 1. CONFIGURACIÓN (Ajusta esto según tu prueba original)
-    MUNICIPIO_CLAVE = "09005" # Toluca
+    MUNICIPIO_CLAVE = "09007" # IZTAPALAPA, CDMX
     SAMPLING_FACTOR = 6       # Usa 6 para igualar al prototipo (o 1 para máxima precisión)
 
     # Rutas de datos (asumiendo que ya ejecutaste el setup de carpetas)
