@@ -1359,8 +1359,7 @@ class ResultProcessor:
 
         story.append(Spacer(1, 10))
         story.append(Paragraph(f"<b>La estimación del impacto térmico se realizó mediante modelos de aprendizaje automático (machine learning) calibrados específicamente para cada demarcación.</b> Una vez definidos los polígonos y las estrategias a implementar, el algoritmo procesa estas variables de entrada y simula la modificación de las propiedades físicas de las superficies (albedo, NDVI, MNDWI, etc.). Este enfoque analítico permite proyectar la variación de la LST contrastando dos escenarios: el escenario base o gemelo (sin intervención) y el escenario proyectado (con intervención). Aunque se evaluaron diversos algoritmos de aprendizaje automático<sup>13</sup>, para la estimación de la LST se seleccionó un modelo de regresión de gradiente basado en histogramas (Histogram-based Gradient Boosting Regressor - Hist Gradient Boosting). Este algoritmo proyecta los cambios en la temperatura superficial a partir de variables clave (como albedo, NDVI, MNDWI, entre otras), habiendo demostrado consistentemente una mayor precisión y robustez analítica frente a las demás alternativas evaluadas.", styles['IntroJustify']))
-        
-        story.append(Spacer(1, 350))
+        story.append(Spacer(1, 10))
         story.append(Paragraph(
         "<sup>13</sup> La herramienta evaluó la implementación de los siguientes modelos de aprendizaje automático: Árboles Aleatorios (Random Forest), Refuerzo de Gradientes Extremo (eXtreme Gradient Boosting - XGBoost) y  Refuerzo de Gradientes basado en histogramas (HistogramGradient BoostingRegressor  HGRBoost). Para mayor información sobre la evaluación de modelos, ver 5. Anexos.",
         styles['Footnote']))
