@@ -1,433 +1,523 @@
 polygon_id,zone_layer,source_band,zone_id,count,mean,sum,min,max,Scenario,percentage_of_sum,LST Zone
-Global,lst_classification_twin_map.tif,Población total,3,143,0.20751433,29.67455,0.0,1.0566245,Base,0.5600194334983826,Zona de impacto
-Global,lst_classification_twin_map.tif,Población total,4,35863,0.14692493,5269.1685,0.0,6.6676025,Base,99.43998718261719,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población total,2,36,0.0050108507,0.18039063,0.0033941136,0.008412995,Intervención,0.0034043402411043644,Zona de transición
-Global,lst_classification_intervention_map.tif,Población total,3,3728,0.2877925,1072.8905,0.0,5.000702,Intervención,20.247638702392578,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población total,4,32242,0.1310642,4225.772,0.0,6.6676025,Intervención,79.74895477294922,Zona núcleo
-Global,lst_classification_twin_map.tif,Población infantil,3,143,0.051407944,7.351336,0.0,0.2617853,Base,0.9103429317474365,Zona de impacto
-Global,lst_classification_twin_map.tif,Población infantil,4,35863,0.02231223,800.1835,0.0,0.7500902,Base,99.08966064453125,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población infantil,2,36,0.0009279165,0.033404995,0.00062852696,0.0015579308,Intervención,0.004136662930250168,Zona de transición
-Global,lst_classification_intervention_map.tif,Población infantil,3,3728,0.04078799,152.05763,0.0,0.7500902,Intervención,18.82985496520996,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población infantil,4,32242,0.020328881,655.4438,0.0,0.50006014,Intervención,81.16600799560547,Zona núcleo
-Global,lst_classification_twin_map.tif,Población adolescente,3,143,0.1461948,20.905857,0.0,0.74436694,Base,0.5895272493362427,Zona de impacto
-Global,lst_classification_twin_map.tif,Población adolescente,4,35863,0.098299116,3525.3013,0.0,4.6673126,Base,99.41047668457031,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población adolescente,2,36,0.00389732,0.14030352,0.002639861,0.006543428,Intervención,0.003956438973546028,Zona de transición
-Global,lst_classification_intervention_map.tif,Población adolescente,3,3728,0.18671712,696.0814,0.0,3.5004847,Intervención,19.6289005279541,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población adolescente,4,32242,0.08839357,2849.9854,0.0,4.6673126,Intervención,80.36714935302734,Zona núcleo
-Global,lst_classification_twin_map.tif,Población de 3ra edad,3,143,0.00990659,1.4166424,0.0,0.050462034,Base,0.16298218071460724,Zona de impacto
-Global,lst_classification_twin_map.tif,Población de 3ra edad,4,35863,0.0241972,867.7842,0.0,1.8001236,Base,99.83702087402344,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población de 3ra edad,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Población de 3ra edad,3,3728,0.055230692,205.90002,0.0,1.8001236,Intervención,23.68842887878418,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población de 3ra edad,4,32242,0.02057257,663.3008,0.0,1.8001236,Intervención,76.31156921386719,Zona núcleo
-Global,lst_classification_twin_map.tif,Población femenina,3,143,0.0724831,10.365084,0.0,0.36903164,Base,0.5550159811973572,Zona de impacto
-Global,lst_classification_twin_map.tif,Población femenina,4,35863,0.051784955,1857.1638,0.0,2.6670525,Base,99.44498443603516,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población femenina,2,36,0.002227054,0.08017395,0.0015085015,0.0037391253,Intervención,0.004293049685657024,Zona de transición
-Global,lst_classification_intervention_map.tif,Población femenina,3,3728,0.09917626,369.7291,0.0,2.0002894,Intervención,19.79776954650879,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población femenina,4,32242,0.046452444,1497.7197,0.0,2.6670525,Intervención,80.19793701171875,Zona núcleo
-Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,143,0.00928679,1.328011,0.0,0.04730491,Base,0.19270582497119904,Zona de impacto
-Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,35863,0.019178849,687.81104,0.0,1.6000001,Base,99.80729675292969,Zona núcleo
-Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,3728,0.041890364,156.16728,0.0,1.6000001,Intervención,22.66121482849121,Zona de impacto
-Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,32242,0.016530355,532.97174,0.0,1.6000001,Intervención,77.33878326416016,Zona núcleo
-Global,lst_classification_twin_map.tif,Total de hogares,3,143,0.051408686,7.351442,0.0,0.26178905,Base,0.44869333505630493,Zona de impacto
-Global,lst_classification_twin_map.tif,Total de hogares,4,35863,0.045480292,1631.0597,0.0,2.4003232,Base,99.55130767822266,Zona núcleo
-Global,lst_classification_intervention_map.tif,Total de hogares,2,36,0.0009279299,0.033405475,0.000628536,0.0015579533,Intervención,0.0020388944540172815,Zona de transición
-Global,lst_classification_intervention_map.tif,Total de hogares,3,3728,0.090730645,338.24384,0.0,2.4003232,Intervención,20.644622802734375,Zona de impacto
-Global,lst_classification_intervention_map.tif,Total de hogares,4,32242,0.040324237,1300.134,0.0,2.4003232,Intervención,79.35334014892578,Zona núcleo
-Global,lst_classification_twin_map.tif,Población con discapacidad,3,143,0.005572076,0.7968069,0.0,0.028382953,Base,0.4516805112361908,Zona de impacto
-Global,lst_classification_twin_map.tif,Población con discapacidad,4,35863,0.0048967623,175.6126,0.0,1.3333338,Base,99.5483169555664,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población con discapacidad,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Población con discapacidad,3,3728,0.012233816,45.607666,0.0,1.0000004,Intervención,25.85330581665039,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población con discapacidad,4,32242,0.004056874,130.80174,0.0,1.3333338,Intervención,74.14669036865234,Zona núcleo
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,143,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,35863,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,3728,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,32242,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-Global,lst_classification_twin_map.tif,Vivienda totales,3,143,0.05140911,7.351503,0.0,0.26179123,Base,0.4451802372932434,Zona de impacto
-Global,lst_classification_twin_map.tif,Vivienda totales,4,35863,0.04584119,1644.0027,0.0,2.4003432,Base,99.55481719970703,Zona núcleo
-Global,lst_classification_intervention_map.tif,Vivienda totales,2,36,0.0009279375,0.03340575,0.00062854117,0.0015579661,Intervención,0.0020229308865964413,Zona de transición
-Global,lst_classification_intervention_map.tif,Vivienda totales,3,3728,0.09134849,340.54718,0.0,2.4003432,Intervención,20.622299194335938,Zona de impacto
-Global,lst_classification_intervention_map.tif,Vivienda totales,4,32242,0.040654223,1310.7734,0.0,2.4003432,Intervención,79.37567901611328,Zona núcleo
-Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,143,0.05140894,7.351478,0.0,0.26179036,Base,0.4653770327568054,Zona de impacto
-Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,35863,0.0438427,1572.3307,0.0,2.0002792,Base,99.53462219238281,Zona núcleo
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,36,0.0009279344,0.03340564,0.00062853907,0.0015579609,Intervención,0.002114706439897418,Zona de transición
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,3728,0.08672311,323.30377,0.0,2.0002792,Intervención,20.46638298034668,Zona de impacto
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,32242,0.038966097,1256.3448,0.0,2.0002792,Intervención,79.53150177001953,Zona núcleo
-Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,143,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,35863,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,3728,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,32242,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,143,0.010525027,1.5050789,0.0,0.053612217,Base,1.69682776927948,Zona de impacto
-Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,35863,0.0024313214,87.19448,0.0,0.072446294,Base,98.30316925048828,Zona núcleo
-Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,3728,0.0031484265,11.737334,0.0,0.06593793,Intervención,13.232686042785645,Zona de impacto
-Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,32242,0.0023870177,76.96223,0.0,0.072446294,Intervención,86.76731872558594,Zona núcleo
-Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,143,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,35863,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,3728,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,32242,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,143,0.051408857,7.3514667,0.0,0.26178995,Base,0.4505782723426819,Zona de impacto
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,35863,0.045289326,1624.211,0.0,2.4003313,Base,99.54942321777344,Zona núcleo
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,36,0.00092793297,0.033405587,0.0006285381,0.0015579584,Intervención,0.00204745982773602,Zona de transición
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,3728,0.090704724,338.14722,0.0,2.4003313,Intervención,20.725358963012695,Zona de impacto
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,32242,0.040114816,1293.382,0.0,2.4003313,Intervención,79.27259063720703,Zona núcleo
-Global,lst_classification_twin_map.tif,Población con educación básica incompleta,3,143,0.035921756,5.1368113,0.0,0.18293226,Base,1.2016865015029907,Zona de impacto
-Global,lst_classification_twin_map.tif,Población con educación básica incompleta,4,35863,0.011776205,422.33005,0.0,1.212058,Base,98.7983169555664,Zona núcleo
-Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,36,0.00055674376,0.020042775,0.00037711195,0.0009347481,Intervención,0.004688732326030731,Zona de transición
-Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,3728,0.02608249,97.23552,0.0,0.45701474,Intervención,22.746915817260742,Zona de impacto
-Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,32242,0.01024165,330.21127,0.0,1.212058,Intervención,77.24839782714844,Zona núcleo
-Global,lst_classification_twin_map.tif,Hogares con jefas de familia,3,143,0.009287757,1.3281492,0.0,0.047309827,Base,0.25209522247314453,Zona de impacto
-Global,lst_classification_twin_map.tif,Hogares con jefas de familia,4,35863,0.014653434,525.5161,0.0,1.0001041,Base,99.74790954589844,Zona núcleo
-Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,3728,0.0311212,116.01984,0.0,1.0001041,Intervención,22.021657943725586,Zona de impacto
-Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,32242,0.012741902,410.8244,0.0,0.8000832,Intervención,77.97834014892578,Zona núcleo
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,143,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,35863,0.00019108821,6.8529963,0.0,0.25000003,Base,100.0,Zona núcleo
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,36,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de transición
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,3728,2.6220483e-05,0.09774996,0.0,0.02057778,Intervención,1.4263827800750732,Zona de impacto
-Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,32242,0.00020951698,6.755246,0.0,0.25000003,Intervención,98.57361602783203,Zona núcleo
-1,lst_classification_twin_map.tif,Población total,4,2586,1.1399155,2947.8213,0.0,6.6676025,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población total,3,564,1.0801163,609.1856,0.0,5.000702,Intervención,20.66562271118164,Zona de impacto
-1,lst_classification_intervention_map.tif,Población total,4,2022,1.1565953,2338.6357,0.0,6.6676025,Intervención,79.33438110351562,Zona núcleo
-1,lst_classification_twin_map.tif,Población infantil,4,2586,0.14188302,366.9095,0.0,0.7500902,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población infantil,3,564,0.12432691,70.12038,0.0,0.7500902,Intervención,19.111083984375,Zona de impacto
-1,lst_classification_intervention_map.tif,Población infantil,4,2022,0.14677997,296.7891,0.0,0.50006014,Intervención,80.888916015625,Zona núcleo
-1,lst_classification_twin_map.tif,Población adolescente,4,2586,0.75556564,1953.8928,0.0,4.6673126,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población adolescente,3,564,0.67894155,382.92303,0.0,3.5004847,Intervención,19.59795570373535,Zona de impacto
-1,lst_classification_intervention_map.tif,Población adolescente,4,2022,0.7769386,1570.9698,0.0,4.6673126,Intervención,80.40204620361328,Zona núcleo
-1,lst_classification_twin_map.tif,Población de 3ra edad,4,2586,0.22968313,593.9606,0.0,1.8001236,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población de 3ra edad,3,564,0.25022665,141.12782,0.0,1.8001236,Intervención,23.760469436645508,Zona de impacto
-1,lst_classification_intervention_map.tif,Población de 3ra edad,4,2022,0.2239529,452.83276,0.0,1.8001236,Intervención,76.23953247070312,Zona núcleo
-1,lst_classification_twin_map.tif,Población femenina,4,2586,0.4006034,1035.9604,0.0,2.6670525,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población femenina,3,564,0.35931608,202.65427,0.0,2.0002894,Intervención,19.561967849731445,Zona de impacto
-1,lst_classification_intervention_map.tif,Población femenina,4,2022,0.41211975,833.30615,0.0,2.6670525,Intervención,80.43802642822266,Zona núcleo
-1,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,2586,0.17703393,457.80975,0.0,1.6000001,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,564,0.18306245,103.24722,0.0,1.6000001,Intervención,22.55242919921875,Zona de impacto
-1,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,2022,0.1753524,354.56253,0.0,1.6000001,Intervención,77.44757080078125,Zona núcleo
-1,lst_classification_twin_map.tif,Total de hogares,4,2586,0.3680983,951.90216,0.0,2.4003232,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Total de hogares,3,564,0.36278033,204.60811,0.0,2.4003232,Intervención,21.494657516479492,Zona de impacto
-1,lst_classification_intervention_map.tif,Total de hogares,4,2022,0.36958164,747.29407,0.0,2.4003232,Intervención,78.50534057617188,Zona núcleo
-1,lst_classification_twin_map.tif,Población con discapacidad,4,2586,0.040755816,105.39454,0.0,1.3333338,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población con discapacidad,3,564,0.057514075,32.43794,0.0,1.0000004,Intervención,30.777624130249023,Zona de impacto
-1,lst_classification_intervention_map.tif,Población con discapacidad,4,2022,0.036081407,72.956604,0.0,1.3333338,Intervención,69.22237396240234,Zona núcleo
-1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,2586,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,564,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,2022,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-1,lst_classification_twin_map.tif,Vivienda totales,4,2586,0.36887482,953.9103,0.0,2.4003432,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Vivienda totales,3,564,0.36455664,205.60994,0.0,2.4003432,Intervención,21.554431915283203,Zona de impacto
-1,lst_classification_intervention_map.tif,Vivienda totales,4,2022,0.3700793,748.30035,0.0,2.4003432,Intervención,78.44557189941406,Zona núcleo
-1,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,2586,0.35844955,926.95056,0.0,2.0002792,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,564,0.3503456,197.59492,0.0,2.0002792,Intervención,21.316661834716797,Zona de impacto
-1,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,2022,0.36071002,729.35565,0.0,2.0002792,Intervención,78.68334197998047,Zona núcleo
-1,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,2586,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-1,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,564,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-1,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,2022,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-1,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,2586,0.007190548,18.594757,0.0,0.05743334,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,564,0.0029245864,1.6494668,0.0,0.045818523,Intervención,8.870600700378418,Zona de impacto
-1,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,2022,0.00838046,16.94529,0.0,0.05743334,Intervención,91.12939453125,Zona núcleo
-1,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,2586,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-1,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,564,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-1,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,2022,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-1,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,2586,0.36692825,948.87646,0.0,2.4003313,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,564,0.3626898,204.55704,0.0,2.4003313,Intervención,21.557815551757812,Zona de impacto
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,2022,0.3681105,744.31946,0.0,2.4003313,Intervención,78.44218444824219,Zona núcleo
-1,lst_classification_twin_map.tif,Población con educación básica incompleta,4,2586,0.07085913,183.2417,0.0,1.212058,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,564,0.0890325,50.214333,0.0,0.45701474,Intervención,27.40333366394043,Zona de impacto
-1,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,2022,0.06579,133.02737,0.0,1.212058,Intervención,72.59667205810547,Zona núcleo
-1,lst_classification_twin_map.tif,Hogares con jefas de familia,4,2586,0.11587155,299.64383,0.0,1.0001041,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,564,0.11415762,64.384895,0.0,1.0001041,Intervención,21.48714256286621,Zona de impacto
-1,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,2022,0.11634962,235.25894,0.0,0.8000832,Intervención,78.51286315917969,Zona núcleo
-1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,2586,0.0011711,3.0284646,0.0,0.25000003,Base,100.0,Zona núcleo
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,564,9.177558e-05,0.05176143,0.0,0.02057778,Intervención,1.7091641426086426,Zona de impacto
-1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,2022,0.0014721579,2.9767032,0.0,0.25000003,Intervención,98.29084014892578,Zona núcleo
-2,lst_classification_twin_map.tif,Población total,4,259,1.3135688,340.21432,0.0,2.5973706,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población total,3,82,1.5303019,125.48476,0.0,2.5973706,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población total,4,177,1.2131613,214.72957,0.0,2.5973706,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Población infantil,4,259,0.24196832,62.669796,0.0,0.4784534,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población infantil,3,82,0.28189203,23.115147,0.0,0.4784534,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población infantil,4,177,0.2234726,39.55465,0.0,0.4784534,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Población adolescente,4,259,0.88339245,228.79865,0.0,1.7467664,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población adolescente,3,82,1.0291483,84.39017,0.0,1.7467664,Intervención,36.884033203125,Zona de impacto
-2,lst_classification_intervention_map.tif,Población adolescente,4,177,0.8158671,144.40848,0.0,1.7467664,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Población de 3ra edad,4,259,0.18818787,48.740658,0.0,0.3721112,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población de 3ra edad,3,82,0.21923804,17.97752,0.0,0.3721112,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población de 3ra edad,4,177,0.17380305,30.76314,0.0,0.3721112,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Población femenina,4,259,0.5185162,134.29568,0.0,1.0252823,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población femenina,3,82,0.60406905,49.533665,0.0,1.0252823,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población femenina,4,177,0.47888154,84.76203,0.0,1.0252823,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,259,0.17665407,45.753403,0.0,0.34930494,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,82,0.20580117,16.875696,0.0,0.34930494,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,177,0.16315085,28.8777,0.0,0.34930494,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Total de hogares,4,259,0.38408223,99.477295,0.0,0.75946075,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Total de hogares,3,82,0.4474541,36.691235,0.0,0.75946075,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Total de hogares,4,177,0.3547235,62.786064,0.0,0.75946075,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Población con discapacidad,4,259,0.08064643,20.887426,0.0,0.15946534,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población con discapacidad,3,82,0.093952745,7.704125,0.0,0.15946534,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población con discapacidad,4,177,0.074481934,13.183302,0.0,0.15946534,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,259,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,82,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,177,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-2,lst_classification_twin_map.tif,Vivienda totales,4,259,0.38408542,99.47813,0.0,0.75946707,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Vivienda totales,3,82,0.44745785,36.691544,0.0,0.75946707,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Vivienda totales,4,177,0.35472646,62.786583,0.0,0.75946707,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,259,0.32263064,83.56134,0.0,0.6379501,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,82,0.37586328,30.82079,0.0,0.6379501,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,177,0.2979692,52.740547,0.0,0.6379501,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,259,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,82,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,177,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-2,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,259,0.030722436,7.957111,0.0,0.06074867,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,82,0.0357915,2.9349031,0.0,0.06074867,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,177,0.028374055,5.0222077,0.0,0.06074867,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,259,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,82,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,177,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-2,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,259,0.3840835,99.47763,0.0,0.7594633,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,82,0.4474556,36.69136,0.0,0.7594633,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,177,0.35472468,62.78627,0.0,0.7594633,Intervención,63.115966796875,Zona núcleo
-2,lst_classification_twin_map.tif,Población con educación básica incompleta,4,259,0.10754028,27.852932,0.0,0.21264358,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,82,0.12528394,10.273283,0.0,0.21264358,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,177,0.09932004,17.579647,0.0,0.21264358,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Hogares con jefas de familia,4,259,0.168991,43.76867,0.0,0.3341525,Base,100.0,Zona núcleo
-2,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,82,0.19687378,16.14365,0.0,0.3341525,Intervención,36.884029388427734,Zona de impacto
-2,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,177,0.15607357,27.625023,0.0,0.3341525,Intervención,63.115970611572266,Zona núcleo
-2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,259,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,82,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,177,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Población total,3,11,0.0010430188,0.011473207,0.0010430188,0.0010430188,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Población total,4,847,0.0048922463,4.1437325,0.0,0.009533467,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Población total,2,36,0.0050108507,0.18039063,0.0033941136,0.008412995,Intervención,4.341316223144531,Zona de transición
-3,lst_classification_intervention_map.tif,Población total,3,407,0.0054653585,2.224401,0.0,0.009533467,Intervención,53.532875061035156,Zona de impacto
-3,lst_classification_intervention_map.tif,Población total,4,415,0.004217866,1.7504144,0.0,0.009533467,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Población infantil,3,11,0.00019314773,0.002124625,0.00019314773,0.00019314773,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Población infantil,4,847,0.00090595335,0.7673425,0.0,0.0017654212,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Población infantil,2,36,0.0009279165,0.033404995,0.00062852696,0.0015579308,Intervención,4.341315269470215,Zona de transición
-3,lst_classification_intervention_map.tif,Población infantil,3,407,0.0010120831,0.41191784,0.0,0.0017654212,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Población infantil,4,415,0.0007810706,0.3241443,0.0,0.0017654212,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Población adolescente,3,11,0.0008112352,0.008923587,0.0008112352,0.0008112352,Base,0.27611640095710754,Zona de impacto
-3,lst_classification_twin_map.tif,Población adolescente,4,847,0.0038050734,3.2228973,0.0,0.0074149044,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Población adolescente,2,36,0.00389732,0.14030352,0.002639861,0.006543428,Intervención,4.341314792633057,Zona de transición
-3,lst_classification_intervention_map.tif,Población adolescente,3,407,0.004250827,1.7300866,0.0,0.0074149044,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Población adolescente,4,415,0.0032805563,1.3614309,0.0,0.0074149044,Intervención,42.12581253051758,Zona núcleo
-3,lst_classification_twin_map.tif,Población de 3ra edad,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Población de 3ra edad,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Población de 3ra edad,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Población de 3ra edad,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Población de 3ra edad,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Población femenina,3,11,0.00046356584,0.0050992244,0.00046356587,0.00046356587,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Población femenina,4,847,0.0021743411,1.8416669,0.0,0.0042371145,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Población femenina,2,36,0.002227054,0.08017395,0.0015085015,0.0037391253,Intervención,4.341315746307373,Zona de transición
-3,lst_classification_intervention_map.tif,Población femenina,3,407,0.0024290585,0.98862684,0.0,0.0042371145,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Población femenina,4,415,0.0018746152,0.7779653,0.0,0.0042371145,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Total de hogares,3,11,0.0001931505,0.0021246555,0.00019315051,0.00019315051,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Total de hogares,4,847,0.0009059663,0.7673535,0.0,0.0017654465,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Total de hogares,2,36,0.0009279299,0.033405475,0.000628536,0.0015579533,Intervención,4.341315746307373,Zona de transición
-3,lst_classification_intervention_map.tif,Total de hogares,3,407,0.0010120976,0.4119237,0.0,0.0017654465,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Total de hogares,4,415,0.0007810817,0.3241489,0.0,0.0017654465,Intervención,42.12581253051758,Zona núcleo
-3,lst_classification_twin_map.tif,Población con discapacidad,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Población con discapacidad,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Población con discapacidad,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Población con discapacidad,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Población con discapacidad,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Vivienda totales,3,11,0.00019315211,0.0021246732,0.00019315211,0.00019315211,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Vivienda totales,4,847,0.0009059738,0.7673598,0.0,0.0017654612,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Vivienda totales,2,36,0.0009279375,0.03340575,0.00062854117,0.0015579661,Intervención,4.341316223144531,Zona de transición
-3,lst_classification_intervention_map.tif,Vivienda totales,3,407,0.001012106,0.4119271,0.0,0.0017654612,Intervención,53.532875061035156,Zona de impacto
-3,lst_classification_intervention_map.tif,Vivienda totales,4,415,0.00078108814,0.32415158,0.0,0.0017654612,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,11,0.00019315146,0.002124666,0.00019315146,0.00019315146,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,847,0.00090597075,0.76735723,0.0,0.0017654552,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,36,0.0009279344,0.03340564,0.00062853907,0.0015579609,Intervención,4.341315746307373,Zona de transición
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,407,0.0010121026,0.41192573,0.0,0.0017654552,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,415,0.0007810856,0.3241505,0.0,0.0017654552,Intervención,42.12581253051758,Zona núcleo
-3,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,11,0.00019315117,0.0021246627,0.00019315115,0.00019315115,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,847,0.00090596935,0.76735604,0.0,0.0017654524,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,36,0.00092793297,0.033405587,0.0006285381,0.0015579584,Intervención,4.341315746307373,Zona de transición
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,407,0.001012101,0.4119251,0.0,0.0017654524,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,415,0.0007810844,0.32415003,0.0,0.0017654524,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Población con educación básica incompleta,3,11,0.00011588736,0.0012747609,0.00011588735,0.00011588735,Base,0.27611643075942993,Zona de impacto
-3,lst_classification_twin_map.tif,Población con educación básica incompleta,4,847,0.00054356596,0.46040037,0.0,0.001059241,Base,99.72388458251953,Zona núcleo
-3,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,36,0.00055674376,0.020042775,0.00037711195,0.0009347481,Intervención,4.341315746307373,Zona de transición
-3,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,407,0.0006072431,0.24714795,0.0,0.001059241,Intervención,53.532867431640625,Zona de impacto
-3,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,415,0.00046863712,0.19448441,0.0,0.001059241,Intervención,42.125816345214844,Zona núcleo
-3,lst_classification_twin_map.tif,Hogares con jefas de familia,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Hogares con jefas de familia,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,11,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,847,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,36,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,407,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,415,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-4,lst_classification_twin_map.tif,Población total,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población total,4,4838,0.17969261,869.35284,0.0,1.9804771,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población total,3,1043,0.16624103,173.3894,0.0,0.82249725,Intervención,19.944652557373047,Zona de impacto
-4,lst_classification_intervention_map.tif,Población total,4,3819,0.18223709,695.96344,0.0,1.9804771,Intervención,80.05535125732422,Zona núcleo
-4,lst_classification_twin_map.tif,Población infantil,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población infantil,4,4838,0.024442064,118.2507,0.0,0.43473014,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población infantil,3,1043,0.018682748,19.486107,0.0,0.099694625,Intervención,16.4786376953125,Zona de impacto
-4,lst_classification_intervention_map.tif,Población infantil,4,3819,0.025861379,98.7646,0.0,0.43473014,Intervención,83.5213623046875,Zona núcleo
-4,lst_classification_twin_map.tif,Población adolescente,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población adolescente,4,4838,0.11675218,564.84705,0.0,1.2792846,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población adolescente,3,1043,0.1092741,113.972885,0.0,0.5483305,Intervención,20.177654266357422,Zona de impacto
-4,lst_classification_intervention_map.tif,Población adolescente,4,3819,0.11806079,450.87415,0.0,1.2792846,Intervención,79.82234191894531,Zona núcleo
-4,lst_classification_twin_map.tif,Población de 3ra edad,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población de 3ra edad,4,4838,0.03376205,163.34079,0.0,0.41001824,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población de 3ra edad,3,1043,0.03616886,37.72412,0.0,0.20481221,Intervención,23.09534454345703,Zona de impacto
-4,lst_classification_intervention_map.tif,Población de 3ra edad,4,3819,0.03289256,125.616684,0.0,0.41001824,Intervención,76.90465545654297,Zona núcleo
-4,lst_classification_twin_map.tif,Población femenina,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población femenina,4,4838,0.06290552,304.3369,0.0,0.68702745,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población femenina,3,1043,0.05660145,59.035313,0.0,0.2907831,Intervención,19.398014068603516,Zona de impacto
-4,lst_classification_intervention_map.tif,Población femenina,4,3819,0.06423188,245.30156,0.0,0.68702745,Intervención,80.60198211669922,Zona núcleo
-4,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,4838,0.026539775,128.39943,0.0,0.2656365,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,1043,0.025793623,26.902748,0.0,0.14178334,Intervención,20.952392578125,Zona de impacto
-4,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,3819,0.026576767,101.49667,0.0,0.2656365,Intervención,79.04761505126953,Zona núcleo
-4,lst_classification_twin_map.tif,Total de hogares,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Total de hogares,4,4838,0.05628969,272.32953,0.0,0.5959273,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Total de hogares,3,1043,0.052988105,55.266594,0.0,0.28247216,Intervención,20.294015884399414,Zona de impacto
-4,lst_classification_intervention_map.tif,Total de hogares,4,3819,0.056837633,217.06293,0.0,0.5959273,Intervención,79.70598602294922,Zona núcleo
-4,lst_classification_twin_map.tif,Población con discapacidad,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población con discapacidad,4,4838,0.0049607293,24.000008,0.0,0.0838345,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población con discapacidad,3,1043,0.0018815112,1.9624162,0.0,0.06446574,Intervención,8.176732063293457,Zona de impacto
-4,lst_classification_intervention_map.tif,Población con discapacidad,4,3819,0.0057705133,22.03759,0.0,0.0838345,Intervención,91.8232650756836,Zona núcleo
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,24,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,4838,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,1043,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,3819,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-4,lst_classification_twin_map.tif,Vivienda totales,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Vivienda totales,4,4838,0.057731085,279.30298,0.0,0.59593225,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Vivienda totales,3,1043,0.053764023,56.075874,0.0,0.2824745,Intervención,20.077075958251953,Zona de impacto
-4,lst_classification_intervention_map.tif,Vivienda totales,4,3819,0.058451727,223.22714,0.0,0.59593225,Intervención,79.92292785644531,Zona núcleo
-4,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,4838,0.05280418,255.46661,0.0,0.5554992,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,1043,0.051016256,53.209953,0.0,0.2658575,Intervención,20.828535079956055,Zona de impacto
-4,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,3819,0.05296063,202.25665,0.0,0.5554992,Intervención,79.17146301269531,Zona núcleo
-4,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,24,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-4,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,4838,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-4,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,1043,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-4,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,3819,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-4,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,4838,0.00184584,8.930174,0.0,0.072446294,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,1043,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de impacto
-4,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,3819,0.002338354,8.930174,0.0,0.072446294,Intervención,100.0,Zona núcleo
-4,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,24,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-4,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,4838,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-4,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,1043,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-4,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,3819,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,4838,0.056106895,271.44516,0.0,0.57965046,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,1043,0.052988283,55.26678,0.0,0.28247312,Intervención,20.36020278930664,Zona de impacto
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,3819,0.056606013,216.17836,0.0,0.57965046,Intervención,79.63980102539062,Zona núcleo
-4,lst_classification_twin_map.tif,Población con educación básica incompleta,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Población con educación básica incompleta,4,4838,0.012490864,60.430798,0.0,0.23836482,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,1043,0.010352615,10.797778,0.0,0.11028796,Intervención,17.868005752563477,Zona de impacto
-4,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,3819,0.012996338,49.633015,0.0,0.23836482,Intervención,82.13199615478516,Zona núcleo
-4,lst_classification_twin_map.tif,Hogares con jefas de familia,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Hogares con jefas de familia,4,4838,0.025739713,124.52873,0.0,0.23544921,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,1043,0.025654277,26.75741,0.0,0.14123176,Intervención,21.486934661865234,Zona de impacto
-4,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,3819,0.025601292,97.77133,0.0,0.23544921,Intervención,78.51306915283203,Zona núcleo
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,24,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-4,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,4838,0.00018295659,0.885144,0.0,0.059584707,Base,100.0,Zona núcleo
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,1043,0.0,0.0,0.0,0.0,Intervención,0.0,Zona de impacto
-4,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,3819,0.00023177377,0.885144,0.0,0.059584707,Intervención,100.0,Zona núcleo
-5,lst_classification_twin_map.tif,Población total,3,108,0.2746581,29.663076,0.0,1.0566245,Base,2.608203649520874,Zona de impacto
-5,lst_classification_twin_map.tif,Población total,4,27333,0.040523764,1107.636,0.0,2.0461328,Base,97.39179992675781,Zona núcleo
-5,lst_classification_intervention_map.tif,Población total,3,1632,0.09963623,162.60632,0.0,1.0309826,Intervención,14.297586441040039,Zona de impacto
-5,lst_classification_intervention_map.tif,Población total,4,25809,0.03776562,974.6928,0.0,2.0461328,Intervención,85.70242309570312,Zona núcleo
-5,lst_classification_twin_map.tif,Población infantil,3,108,0.06804825,7.3492117,0.0,0.2617853,Base,2.8382418155670166,Zona de impacto
-5,lst_classification_twin_map.tif,Población infantil,4,27333,0.0092044845,251.58617,0.0,0.37201664,Base,97.1617660522461,Zona núcleo
-5,lst_classification_intervention_map.tif,Población infantil,3,1632,0.023850534,38.924072,0.0,0.25543237,Intervención,15.032349586486816,Zona de impacto
-5,lst_classification_intervention_map.tif,Población infantil,4,25809,0.008524597,220.01132,0.0,0.37201664,Intervención,84.9676513671875,Zona núcleo
-5,lst_classification_twin_map.tif,Población adolescente,3,108,0.19349013,20.896935,0.0,0.74436694,Base,2.6271023750305176,Zona de impacto
-5,lst_classification_twin_map.tif,Población adolescente,4,27333,0.028337162,774.5397,0.0,1.4880936,Base,97.3729019165039,Zona núcleo
-5,lst_classification_intervention_map.tif,Población adolescente,3,1632,0.06928018,113.06525,0.0,0.7263028,Intervención,14.214235305786133,Zona de impacto
-5,lst_classification_intervention_map.tif,Población adolescente,4,25809,0.026439283,682.37146,0.0,1.4880936,Intervención,85.7857666015625,Zona núcleo
-5,lst_classification_twin_map.tif,Población de 3ra edad,3,108,0.013117059,1.4166424,0.0,0.050462034,Base,2.2429871559143066,Zona de impacto
-5,lst_classification_twin_map.tif,Población de 3ra edad,4,27333,0.002258885,61.742104,0.0,0.19277357,Base,97.75701904296875,Zona núcleo
-5,lst_classification_intervention_map.tif,Población de 3ra edad,3,1632,0.005557938,9.070555,0.0,0.04923743,Intervención,14.361518859863281,Zona de impacto
-5,lst_classification_intervention_map.tif,Población de 3ra edad,4,25809,0.0020957105,54.088192,0.0,0.19277357,Intervención,85.63848876953125,Zona núcleo
-5,lst_classification_twin_map.tif,Población femenina,3,108,0.09592579,10.359985,0.0,0.36903164,Base,2.64900803565979,Zona de impacto
-5,lst_classification_twin_map.tif,Población femenina,4,27333,0.01392929,380.72928,0.0,0.74405146,Base,97.35099029541016,Zona núcleo
-5,lst_classification_intervention_map.tif,Población femenina,3,1632,0.035243396,57.51722,0.0,0.36007607,Intervención,14.706929206848145,Zona de impacto
-5,lst_classification_intervention_map.tif,Población femenina,4,25809,0.01292464,333.57205,0.0,0.74405146,Intervención,85.29307556152344,Zona núcleo
-5,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,108,0.0122964,1.3280112,0.0,0.04730491,Base,2.32265305519104,Zona de impacto
-5,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,27333,0.0020432612,55.84846,0.0,0.16431433,Base,97.67735290527344,Zona núcleo
-5,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,1632,0.005601484,9.141622,0.0,0.046156924,Intervención,15.988431930541992,Zona de impacto
-5,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,25809,0.0018611667,48.03485,0.0,0.16431433,Intervención,84.01156616210938,Zona núcleo
-5,lst_classification_twin_map.tif,Total de hogares,3,108,0.06804924,7.3493176,0.0,0.26178905,Base,2.3410487174987793,Zona de impacto
-5,lst_classification_twin_map.tif,Total de hogares,4,27333,0.011216603,306.5834,0.0,0.6573458,Base,97.6589584350586,Zona núcleo
-5,lst_classification_intervention_map.tif,Total de hogares,3,1632,0.025285525,41.265976,0.0,0.25543603,Intervención,13.144845962524414,Zona de impacto
-5,lst_classification_intervention_map.tif,Total de hogares,4,25809,0.010564793,272.66675,0.0,0.6573458,Intervención,86.85514831542969,Zona núcleo
-5,lst_classification_twin_map.tif,Población con discapacidad,3,108,0.0073778415,0.7968069,0.0,0.028382953,Base,3.0496957302093506,Zona de impacto
-5,lst_classification_twin_map.tif,Población con discapacidad,4,27333,0.00092674117,25.330616,0.0,0.08215719,Base,96.95030212402344,Zona núcleo
-5,lst_classification_intervention_map.tif,Población con discapacidad,3,1632,0.0021465584,3.5031834,0.0,0.027694162,Intervención,13.40807056427002,Zona de impacto
-5,lst_classification_intervention_map.tif,Población con discapacidad,4,25809,0.0008766028,22.62424,0.0,0.08215719,Intervención,86.59192657470703,Zona núcleo
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,108,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,27333,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,1632,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,25809,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-5,lst_classification_twin_map.tif,Vivienda totales,3,108,0.068049796,7.349378,0.0,0.26179123,Base,2.3119020462036133,Zona de impacto
-5,lst_classification_twin_map.tif,Vivienda totales,4,27333,0.0113614965,310.5438,0.0,0.6573512,Base,97.68810272216797,Zona núcleo
-5,lst_classification_intervention_map.tif,Vivienda totales,3,1632,0.025586952,41.757904,0.0,0.25543815,Intervención,13.135828018188477,Zona de impacto
-5,lst_classification_intervention_map.tif,Vivienda totales,4,25809,0.010699186,276.13528,0.0,0.6573512,Intervención,86.86417388916016,Zona núcleo
-5,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,108,0.06804957,7.349354,0.0,0.26179036,Base,2.3485305309295654,Zona de impacto
-5,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,27333,0.011180067,305.58478,0.0,0.657349,Base,97.6514663696289,Zona núcleo
-5,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,1632,0.025285648,41.26618,0.0,0.25543728,Intervención,13.186858177185059,Zona de impacto
-5,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,25809,0.010526093,271.66794,0.0,0.657349,Intervención,86.81314086914062,Zona núcleo
-5,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,108,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-5,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,27333,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-5,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,1632,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-5,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,25809,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-5,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,108,0.013935915,1.5050788,0.0,0.053612217,Base,2.8281643390655518,Zona de impacto
-5,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,27333,0.0018919415,51.712437,0.0,0.0674661,Base,97.17183685302734,Zona núcleo
-5,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,1632,0.0043829437,7.152964,0.0,0.06593793,Intervención,13.440995216369629,Zona de impacto
-5,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,25809,0.0017848251,46.064552,0.0,0.0674661,Intervención,86.55900573730469,Zona núcleo
-5,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,108,0.0,0.0,0.0,0.0,Base,,Zona de impacto
-5,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,27333,0.0,0.0,0.0,0.0,Base,,Zona núcleo
-5,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,1632,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
-5,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,25809,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,108,0.06804946,7.349342,0.0,0.26178995,Base,2.363178253173828,Zona de impacto
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,27333,0.011109085,303.64462,0.0,0.6573479,Base,97.63682556152344,Zona núcleo
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,1632,0.025257424,41.220116,0.0,0.25543687,Intervención,13.254314422607422,Zona de impacto
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,25809,0.010452704,269.77383,0.0,0.6573479,Intervención,86.74568176269531,Zona núcleo
-5,lst_classification_twin_map.tif,Población con educación básica incompleta,3,108,0.04755126,5.135536,0.0,0.18293226,Base,3.3030266761779785,Zona de impacto
-5,lst_classification_twin_map.tif,Población con educación básica incompleta,4,27333,0.005500464,150.34418,0.0,0.3720125,Base,96.69697570800781,Zona núcleo
-5,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,1632,0.01574937,25.702972,0.0,0.1784929,Intervención,16.531400680541992,Zona de impacto
-5,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,25809,0.0050283517,129.77673,0.0,0.3720125,Intervención,83.46859741210938,Zona núcleo
-5,lst_classification_twin_map.tif,Hogares con jefas de familia,3,108,0.012297678,1.3281492,0.0,0.047309827,Base,2.2548069953918457,Zona de impacto
-5,lst_classification_twin_map.tif,Hogares con jefas de familia,4,27333,0.002106423,57.574863,0.0,0.096390195,Base,97.74520111083984,Zona núcleo
-5,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,1632,0.005351641,8.733878,0.0,0.046161722,Intervención,14.827555656433105,Zona de impacto
-5,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,25809,0.0019438622,50.16914,0.0,0.096390195,Intervención,85.17244720458984,Zona núcleo
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,108,0.0,0.0,0.0,0.0,Base,0.0,Zona de impacto
-5,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,27333,0.00010753988,2.9393876,0.0,0.008840158,Base,100.0,Zona núcleo
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,1632,2.8179249e-05,0.045988534,0.0,0.0007894727,Intervención,1.5645617246627808,Zona de impacto
-5,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,25809,0.000112108144,2.893399,0.0,0.008840158,Intervención,98.43544006347656,Zona núcleo
+Global,lst_classification_twin_map.tif,Población total,1,17979,6.277685e-05,1.1286651,0.0,0.0022085467,Base,0.4145561754703522,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población total,2,1774,0.031982675,56.737263,0.0,1.2466096,Base,20.83946990966797,Zona de transición
+Global,lst_classification_twin_map.tif,Población total,3,2893,0.05274957,152.6045,0.0,1.2466096,Base,56.05129623413086,Zona de impacto
+Global,lst_classification_twin_map.tif,Población total,4,268,0.23055308,61.788223,0.0,1.2466096,Base,22.69467544555664,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población total,1,20423,0.0037353248,76.28654,0.0,1.2466096,Intervención,28.019874572753906,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población total,2,1355,0.051892072,70.31376,0.0,1.2466096,Intervención,25.826087951660156,Zona de transición
+Global,lst_classification_intervention_map.tif,Población total,3,1103,0.113924176,125.65836,0.0,1.2466096,Intervención,46.15403747558594,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población total,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población infantil,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población infantil,2,1774,0.0070509748,12.50843,0.0,0.28060776,Base,20.836383819580078,Zona de transición
+Global,lst_classification_twin_map.tif,Población infantil,3,2893,0.011630135,33.64598,0.0,0.28060776,Base,56.04705047607422,Zona de impacto
+Global,lst_classification_twin_map.tif,Población infantil,4,268,0.05178082,13.87726,0.0,0.28060776,Base,23.116565704345703,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población infantil,1,20423,0.0008009111,16.357008,0.0,0.28060776,Intervención,27.247297286987305,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población infantil,2,1355,0.011516141,15.604371,0.0,0.28060776,Intervención,25.99356460571289,Zona de transición
+Global,lst_classification_intervention_map.tif,Población infantil,3,1103,0.025449038,28.070288,0.0,0.28060776,Intervención,46.759132385253906,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población infantil,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población adolescente,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población adolescente,2,1774,0.022489076,39.895622,0.0,0.8832031,Base,20.946895599365234,Zona de transición
+Global,lst_classification_twin_map.tif,Población adolescente,3,2893,0.036946755,106.88696,0.0,0.8832031,Base,56.12019348144531,Zona de impacto
+Global,lst_classification_twin_map.tif,Población adolescente,4,268,0.16297834,43.678192,0.0,0.8832031,Base,22.932905197143555,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población adolescente,1,20423,0.0025446313,51.969006,0.0,0.8832031,Intervención,27.285934448242188,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población adolescente,2,1355,0.036658015,49.67161,0.0,0.8832031,Intervención,26.0797061920166,Zona de transición
+Global,lst_classification_intervention_map.tif,Población adolescente,3,1103,0.08052599,88.82016,0.0,0.8832031,Intervención,46.63435363769531,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población adolescente,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población de 3ra edad,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población de 3ra edad,2,1774,0.0015933751,2.8266475,0.0,0.06899863,Base,20.126476287841797,Zona de transición
+Global,lst_classification_twin_map.tif,Población de 3ra edad,3,2893,0.0026980634,7.8054976,0.0,0.06899863,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Población de 3ra edad,4,268,0.012732385,3.4122791,0.0,0.06899863,Base,24.296327590942383,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población de 3ra edad,1,20423,0.0001856667,3.7918708,0.0,0.06899863,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población de 3ra edad,2,1355,0.0026368503,3.5729322,0.0,0.06899863,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Población de 3ra edad,3,1103,0.006055867,6.679621,0.0,0.06899863,Intervención,47.56066131591797,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población de 3ra edad,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población femenina,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población femenina,2,1774,0.0019120094,3.3919048,0.0,0.0827966,Base,20.126468658447266,Zona de transición
+Global,lst_classification_twin_map.tif,Población femenina,3,2893,0.0032376084,9.366401,0.0,0.0827966,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Población femenina,4,268,0.015278539,4.0946484,0.0,0.0827966,Base,24.296321868896484,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población femenina,1,20423,0.00022279531,4.5501485,0.0,0.0827966,Intervención,26.999114990234375,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población femenina,2,1355,0.0031641538,4.2874284,0.0,0.0827966,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Población femenina,3,1103,0.0072668865,8.015376,0.0,0.0827966,Intervención,47.56066131591797,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población femenina,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,2,1774,0.0026554698,4.7108035,0.0,0.114990994,Base,20.126474380493164,Zona de transición
+Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,2893,0.0044965097,13.008403,0.0,0.114990994,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,268,0.0212194,5.6867995,0.0,0.114990994,Base,24.29632568359375,Zona núcleo
+Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,1,20423,0.0003094264,6.319415,0.0,0.114990994,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,1355,0.0043944935,5.954539,0.0,0.114990994,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,1103,0.010092522,11.132051,0.0,0.114990994,Intervención,47.56066131591797,Zona de impacto
+Global,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Total de hogares,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Total de hogares,2,1774,0.008497833,15.075156,0.0,0.3679855,Base,20.12647247314453,Zona de transición
+Global,lst_classification_twin_map.tif,Total de hogares,3,2893,0.01438939,41.628506,0.0,0.3679855,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Total de hogares,4,268,0.06790472,18.198465,0.0,0.3679855,Base,24.29632568359375,Zona núcleo
+Global,lst_classification_intervention_map.tif,Total de hogares,1,20423,0.000990203,20.222916,0.0,0.3679855,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Total de hogares,2,1355,0.014062926,19.055265,0.0,0.3679855,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Total de hogares,3,1103,0.032297324,35.623947,0.0,0.3679855,Intervención,47.5606575012207,Zona de impacto
+Global,lst_classification_intervention_map.tif,Total de hogares,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población con discapacidad,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población con discapacidad,2,1774,0.001699611,3.0151098,0.0,0.07359901,Base,20.126474380493164,Zona de transición
+Global,lst_classification_twin_map.tif,Población con discapacidad,3,2893,0.0028779528,8.325917,0.0,0.07359901,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Población con discapacidad,4,268,0.013581297,3.6397877,0.0,0.07359901,Base,24.296327590942383,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población con discapacidad,1,20423,0.00019804575,4.044688,0.0,0.07359901,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población con discapacidad,2,1355,0.0028126587,3.8111525,0.0,0.07359901,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Población con discapacidad,3,1103,0.0064596324,7.1249747,0.0,0.07359901,Intervención,47.5606575012207,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población con discapacidad,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,1,17979,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,2,1774,0.0,0.0,0.0,0.0,Base,,Zona de transición
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,2893,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,268,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,1,20423,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,1355,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,1103,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+Global,lst_classification_twin_map.tif,Vivienda totales,1,17979,2.510963e-05,0.45144603,0.0,0.0008833796,Base,0.5728241801261902,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Vivienda totales,2,1774,0.009090677,16.126862,0.0,0.36798656,Base,20.462814331054688,Zona de transición
+Global,lst_classification_twin_map.tif,Vivienda totales,3,2893,0.015201712,43.978554,0.0,0.36798656,Base,55.8028564453125,Zona de impacto
+Global,lst_classification_twin_map.tif,Vivienda totales,4,268,0.06811089,18.25372,0.0,0.36798656,Base,23.161510467529297,Zona núcleo
+Global,lst_classification_intervention_map.tif,Vivienda totales,1,20423,0.0010875474,22.210981,0.0,0.36798656,Intervención,28.182741165161133,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Vivienda totales,2,1355,0.014812689,20.071194,0.0,0.36798656,Intervención,25.467639923095703,Zona de transición
+Global,lst_classification_intervention_map.tif,Vivienda totales,3,1103,0.03311732,36.528404,0.0,0.36798656,Intervención,46.3496208190918,Zona de impacto
+Global,lst_classification_intervention_map.tif,Vivienda totales,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,2,1774,0.008497853,15.0751915,0.0,0.36798635,Base,20.126468658447266,Zona de transición
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,2893,0.0143894255,41.62861,0.0,0.36798635,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,268,0.06790488,18.19851,0.0,0.36798635,Base,24.296323776245117,Zona núcleo
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,1,20423,0.0009902053,20.222963,0.0,0.36798635,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,1355,0.014062961,19.055311,0.0,0.36798635,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,1103,0.0322974,35.62403,0.0,0.36798635,Intervención,47.5606575012207,Zona de impacto
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,1,17979,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,2,1774,0.0,0.0,0.0,0.0,Base,,Zona de transición
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,2893,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+Global,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,268,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,1,20423,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,1355,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,1103,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+Global,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,2,1774,0.002549563,4.522925,0.0,0.11040487,Base,20.126474380493164,Zona de transición
+Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,2893,0.004317178,12.489595,0.0,0.11040487,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,268,0.020373117,5.4599953,0.0,0.11040487,Base,24.29632568359375,Zona núcleo
+Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,1,20423,0.00029708567,6.067381,0.0,0.11040487,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,1355,0.0042192303,5.717057,0.0,0.11040487,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,1103,0.009690006,10.688077,0.0,0.11040487,Intervención,47.56066131591797,Zona de impacto
+Global,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,1,17979,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,2,1774,0.0,0.0,0.0,0.0,Base,,Zona de transición
+Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,2893,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+Global,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,268,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,1,20423,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,1355,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,1103,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+Global,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,2,1774,0.00849784,15.075168,0.0,0.36798579,Base,20.1264705657959,Zona de transición
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,2893,0.014389402,41.62854,0.0,0.36798579,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,268,0.06790477,18.198479,0.0,0.36798579,Base,24.296323776245117,Zona núcleo
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,1,20423,0.0009902037,20.22293,0.0,0.36798579,Intervención,26.999122619628906,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,1355,0.014062936,19.055279,0.0,0.36798579,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,1103,0.032297347,35.623974,0.0,0.36798579,Intervención,47.56066131591797,Zona de impacto
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Población con educación básica incompleta,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Población con educación básica incompleta,2,1774,0.005098916,9.045477,0.0,0.22080067,Base,20.12647247314453,Zona de transición
+Global,lst_classification_twin_map.tif,Población con educación básica incompleta,3,2893,0.008634,24.978163,0.0,0.22080067,Base,55.577205657958984,Zona de impacto
+Global,lst_classification_twin_map.tif,Población con educación básica incompleta,4,268,0.040744554,10.91954,0.0,0.22080067,Base,24.296323776245117,Zona núcleo
+Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,1,20423,0.0005941469,12.134262,0.0,0.22080067,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,1355,0.008438114,11.433644,0.0,0.22080067,Intervención,25.440221786499023,Zona de transición
+Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,1103,0.019379215,21.375275,0.0,0.22080067,Intervención,47.560665130615234,Zona de impacto
+Global,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Hogares con jefas de familia,1,17979,0.0,0.0,0.0,0.0,Base,0.0,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Hogares con jefas de familia,2,1774,0.0035052844,6.2183747,0.0,0.1517909,Base,20.12647247314453,Zona de transición
+Global,lst_classification_twin_map.tif,Hogares con jefas de familia,3,2893,0.0059355022,17.171408,0.0,0.1517909,Base,55.57720184326172,Zona de impacto
+Global,lst_classification_twin_map.tif,Hogares con jefas de familia,4,268,0.028010124,7.5067134,0.0,0.1517909,Base,24.29632568359375,Zona núcleo
+Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,1,20423,0.00040845035,8.341782,0.0,0.1517909,Intervención,26.99911880493164,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,1355,0.0058008386,7.860136,0.0,0.1517909,Intervención,25.44021987915039,Zona de transición
+Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,1103,0.013322373,14.694577,0.0,0.1517909,Intervención,47.5606575012207,Zona de impacto
+Global,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,33,0.0,0.0,0.0,0.0,Intervención,0.0,Zona núcleo
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,1,17979,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,2,1774,0.0,0.0,0.0,0.0,Base,,Zona de transición
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,2893,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+Global,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,268,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,1,20423,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,1355,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,1103,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+Global,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+3,lst_classification_twin_map.tif,Población total,2,159,0.35091856,55.79605,0.0,1.2466096,Base,20.870363235473633,Zona de transición
+3,lst_classification_twin_map.tif,Población total,3,327,0.4584085,149.89958,0.0,1.2466096,Base,56.06953430175781,Zona de impacto
+3,lst_classification_twin_map.tif,Población total,4,67,0.9201524,61.65021,0.6894707,1.2466096,Base,23.060096740722656,Zona núcleo
+3,lst_classification_intervention_map.tif,Población total,1,172,0.42369932,72.87628,0.03632403,1.2466096,Intervención,27.259180068969727,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población total,2,174,0.39979035,69.56352,0.0,1.2466096,Intervención,26.02005386352539,Zona de transición
+3,lst_classification_intervention_map.tif,Población total,3,207,0.6034108,124.90604,0.0,1.2466096,Intervención,46.72077178955078,Zona de impacto
+3,lst_classification_twin_map.tif,Población infantil,2,159,0.07866937,12.50843,0.0,0.28060776,Base,20.836383819580078,Zona de transición
+3,lst_classification_twin_map.tif,Población infantil,3,327,0.102892905,33.64598,0.0,0.28060776,Base,56.04705047607422,Zona de impacto
+3,lst_classification_twin_map.tif,Población infantil,4,67,0.20712328,13.87726,0.15519759,0.28060776,Base,23.116565704345703,Zona núcleo
+3,lst_classification_intervention_map.tif,Población infantil,1,172,0.0950989,16.35701,0.0077838753,0.28060776,Intervención,27.24730110168457,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población infantil,2,174,0.08968029,15.604371,0.0,0.28060776,Intervención,25.99356460571289,Zona de transición
+3,lst_classification_intervention_map.tif,Población infantil,3,207,0.13560526,28.07029,0.0,0.28060776,Intervención,46.75913619995117,Zona de impacto
+3,lst_classification_twin_map.tif,Población adolescente,2,159,0.2509159,39.89563,0.0,0.8832031,Base,20.946901321411133,Zona de transición
+3,lst_classification_twin_map.tif,Población adolescente,3,327,0.32687145,106.88696,0.0,0.8832031,Base,56.12019348144531,Zona de impacto
+3,lst_classification_twin_map.tif,Población adolescente,4,67,0.6519132,43.678185,0.488479,0.8832031,Base,22.93290138244629,Zona núcleo
+3,lst_classification_intervention_map.tif,Población adolescente,1,172,0.30214536,51.969,0.028540188,0.8832031,Intervención,27.285934448242188,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población adolescente,2,174,0.28546906,49.671616,0.0,0.8832031,Intervención,26.079708099365234,Zona de transición
+3,lst_classification_intervention_map.tif,Población adolescente,3,207,0.4290829,88.82016,0.0,0.8832031,Intervención,46.63435363769531,Zona de impacto
+3,lst_classification_twin_map.tif,Población de 3ra edad,2,159,0.017777655,2.8266473,0.0,0.06899863,Base,20.126474380493164,Zona de transición
+3,lst_classification_twin_map.tif,Población de 3ra edad,3,327,0.023870025,7.805498,0.0,0.06899863,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Población de 3ra edad,4,67,0.050929535,3.412279,0.03816153,0.06899863,Base,24.29632568359375,Zona núcleo
+3,lst_classification_intervention_map.tif,Población de 3ra edad,1,172,0.022045761,3.7918708,0.0,0.06899863,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población de 3ra edad,2,174,0.020534093,3.5729322,0.0,0.06899863,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Población de 3ra edad,3,207,0.032268703,6.679621,0.0,0.06899863,Intervención,47.56066131591797,Zona de impacto
+3,lst_classification_twin_map.tif,Población femenina,2,159,0.021332737,3.391905,0.0,0.0827966,Base,20.126474380493164,Zona de transición
+3,lst_classification_twin_map.tif,Población femenina,3,327,0.028643424,9.3664,0.0,0.0827966,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Población femenina,4,67,0.061114155,4.0946484,0.04579287,0.0827966,Base,24.29632568359375,Zona núcleo
+3,lst_classification_intervention_map.tif,Población femenina,1,172,0.026454352,4.5501485,0.0,0.0827966,Intervención,26.999114990234375,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población femenina,2,174,0.024640393,4.2874284,0.0,0.0827966,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Población femenina,3,207,0.038721625,8.015376,0.0,0.0827966,Intervención,47.56066131591797,Zona de impacto
+3,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,2,159,0.029627692,4.710803,0.0,0.114990994,Base,20.1264705657959,Zona de transición
+3,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,327,0.03978105,13.008403,0.0,0.114990994,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,67,0.08487761,5.6868,0.063598834,0.114990994,Base,24.296327590942383,Zona núcleo
+3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,1,172,0.036740784,6.319415,0.0,0.114990994,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,174,0.03422149,5.954539,0.0,0.114990994,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,207,0.053778026,11.132051,0.0,0.114990994,Intervención,47.56066131591797,Zona de impacto
+3,lst_classification_twin_map.tif,Total de hogares,2,159,0.094812304,15.075156,0.0,0.3679855,Base,20.126474380493164,Zona de transición
+3,lst_classification_twin_map.tif,Total de hogares,3,327,0.1273043,41.628506,0.0,0.3679855,Base,55.577205657958984,Zona de impacto
+3,lst_classification_twin_map.tif,Total de hogares,4,67,0.27161884,18.198462,0.20352417,0.3679855,Base,24.296321868896484,Zona núcleo
+3,lst_classification_intervention_map.tif,Total de hogares,1,172,0.117575094,20.222916,0.0,0.3679855,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Total de hogares,2,174,0.10951302,19.055265,0.0,0.3679855,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Total de hogares,3,207,0.17209636,35.623947,0.0,0.3679855,Intervención,47.5606575012207,Zona de impacto
+3,lst_classification_twin_map.tif,Población con discapacidad,2,159,0.018962955,3.0151098,0.0,0.07359901,Base,20.12647247314453,Zona de transición
+3,lst_classification_twin_map.tif,Población con discapacidad,3,327,0.025461523,8.325918,0.0,0.07359901,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Población con discapacidad,4,67,0.054325193,3.639788,0.040705897,0.07359901,Base,24.296327590942383,Zona núcleo
+3,lst_classification_intervention_map.tif,Población con discapacidad,1,172,0.023515629,4.044688,0.0,0.07359901,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población con discapacidad,2,174,0.021903176,3.8111525,0.0,0.07359901,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Población con discapacidad,3,207,0.034420166,7.1249747,0.0,0.07359901,Intervención,47.5606575012207,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,2,159,0.0,0.0,0.0,0.0,Base,,Zona de transición
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,327,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,67,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,1,172,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,174,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,207,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda totales,2,159,0.09905906,15.750391,0.0,0.36798656,Base,20.496171951293945,Zona de transición
+3,lst_classification_twin_map.tif,Vivienda totales,3,327,0.13118233,42.89662,0.0,0.36798656,Base,55.82188415527344,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda totales,4,67,0.27161968,18.198519,0.20352477,0.36798656,Base,23.681949615478516,Zona núcleo
+3,lst_classification_intervention_map.tif,Vivienda totales,1,172,0.121203125,20.846937,0.0051889173,0.36798656,Intervención,27.128366470336914,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Vivienda totales,2,174,0.11362709,19.771114,0.0,0.36798656,Intervención,25.728384017944336,Zona de transición
+3,lst_classification_intervention_map.tif,Vivienda totales,3,207,0.175012,36.227486,0.0,0.36798656,Intervención,47.143253326416016,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas,2,159,0.09481253,15.0751915,0.0,0.36798635,Base,20.126468658447266,Zona de transición
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,327,0.12730461,41.62861,0.0,0.36798635,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,67,0.27161953,18.19851,0.20352466,0.36798635,Base,24.296323776245117,Zona núcleo
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,1,172,0.11757537,20.222963,0.0,0.36798635,Intervención,26.999114990234375,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,174,0.10951328,19.055311,0.0,0.36798635,Intervención,25.440216064453125,Zona de transición
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,207,0.17209679,35.624035,0.0,0.36798635,Intervención,47.5606575012207,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,2,159,0.0,0.0,0.0,0.0,Base,,Zona de transición
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,327,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+3,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,67,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,1,172,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,174,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+3,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,207,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas con hacinamiento,2,159,0.028446069,4.522925,0.0,0.11040487,Base,20.126474380493164,Zona de transición
+3,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,327,0.03819448,12.489595,0.0,0.11040487,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,67,0.081492476,5.4599957,0.061062355,0.11040487,Base,24.296327590942383,Zona núcleo
+3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,1,172,0.03527547,6.067381,0.0,0.11040487,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,174,0.03285665,5.717057,0.0,0.11040487,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,207,0.051633216,10.688076,0.0,0.11040487,Intervención,47.5606575012207,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas con piso de tierra,2,159,0.0,0.0,0.0,0.0,Base,,Zona de transición
+3,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,327,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,67,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,1,172,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,174,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+3,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,207,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,2,159,0.09481238,15.075168,0.0,0.36798579,Base,20.12647247314453,Zona de transición
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,327,0.12730439,41.628536,0.0,0.36798579,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,67,0.27161908,18.198479,0.20352434,0.36798579,Base,24.29632568359375,Zona núcleo
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,1,172,0.117575176,20.22293,0.0,0.36798579,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,174,0.1095131,19.055279,0.0,0.36798579,Intervención,25.440216064453125,Zona de transición
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,207,0.1720965,35.623978,0.0,0.36798579,Intervención,47.56066131591797,Zona de impacto
+3,lst_classification_twin_map.tif,Población con educación básica incompleta,2,159,0.05688979,9.045477,0.0,0.22080067,Base,20.12647247314453,Zona de transición
+3,lst_classification_twin_map.tif,Población con educación básica incompleta,3,327,0.07638582,24.978163,0.0,0.22080067,Base,55.577205657958984,Zona de impacto
+3,lst_classification_twin_map.tif,Población con educación básica incompleta,4,67,0.16297822,10.91954,0.12211969,0.22080067,Base,24.296323776245117,Zona núcleo
+3,lst_classification_intervention_map.tif,Población con educación básica incompleta,1,172,0.070548035,12.134262,0.0,0.22080067,Intervención,26.99911880493164,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,174,0.0657106,11.433644,0.0,0.22080067,Intervención,25.440221786499023,Zona de transición
+3,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,207,0.10326219,21.375275,0.0,0.22080067,Intervención,47.560665130615234,Zona de impacto
+3,lst_classification_twin_map.tif,Hogares con jefas de familia,2,159,0.039109275,6.2183747,0.0,0.1517909,Base,20.12647247314453,Zona de transición
+3,lst_classification_twin_map.tif,Hogares con jefas de familia,3,327,0.05251195,17.171408,0.0,0.1517909,Base,55.57720184326172,Zona de impacto
+3,lst_classification_twin_map.tif,Hogares con jefas de familia,4,67,0.1120405,7.5067134,0.083952,0.1517909,Base,24.29632568359375,Zona núcleo
+3,lst_classification_intervention_map.tif,Hogares con jefas de familia,1,172,0.04849873,8.341782,0.0,0.1517909,Intervención,26.999122619628906,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,174,0.045173194,7.860136,0.0,0.1517909,Intervención,25.44021987915039,Zona de transición
+3,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,207,0.07098829,14.694576,0.0,0.1517909,Intervención,47.5606575012207,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,2,159,0.0,0.0,0.0,0.0,Base,,Zona de transición
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,327,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+3,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,67,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,1,172,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,174,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+3,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,207,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población total,1,2113,0.00053415296,1.1286652,3.2128992e-06,0.0022085467,Base,22.97383689880371,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población total,2,999,0.0009421603,0.94121814,0.0,0.0028267086,Base,19.158374786376953,Zona de transición
+1,lst_classification_twin_map.tif,Población total,3,2182,0.0012396586,2.704935,0.0,0.0028267086,Base,55.05860900878906,Zona de impacto
+1,lst_classification_twin_map.tif,Población total,4,165,0.00083642465,0.13801007,0.00019791459,0.0017221139,Base,2.8091776371002197,Zona núcleo
+1,lst_classification_intervention_map.tif,Población total,1,4217,0.00080869504,3.4102669,0.0,0.0028267086,Intervención,69.4155502319336,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población total,2,614,0.001221878,0.7502331,0.00030072735,0.0025234108,Intervención,15.270898818969727,Zona de transición
+1,lst_classification_intervention_map.tif,Población total,3,628,0.0011979755,0.7523286,0.0,0.0028267086,Intervención,15.313551902770996,Zona de impacto
+1,lst_classification_twin_map.tif,Población infantil,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población infantil,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población infantil,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población infantil,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población infantil,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población infantil,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población infantil,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población adolescente,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población adolescente,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población adolescente,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población adolescente,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población adolescente,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población adolescente,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población adolescente,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población de 3ra edad,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población de 3ra edad,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población de 3ra edad,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población de 3ra edad,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población de 3ra edad,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población de 3ra edad,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población de 3ra edad,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población femenina,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población femenina,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población femenina,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población femenina,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población femenina,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población femenina,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población femenina,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Total de hogares,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Total de hogares,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Total de hogares,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Total de hogares,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Total de hogares,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Total de hogares,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Total de hogares,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población con discapacidad,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población con discapacidad,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población con discapacidad,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población con discapacidad,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población con discapacidad,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población con discapacidad,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población con discapacidad,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda totales,1,2113,0.0002136517,0.45144603,1.2851026e-06,0.0008833796,Base,22.973834991455078,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Vivienda totales,2,999,0.00037684743,0.37647057,0.0,0.0011306333,Base,19.158374786376953,Zona de transición
+1,lst_classification_twin_map.tif,Vivienda totales,3,2182,0.0004958415,1.0819261,0.0,0.0011306333,Base,55.05860900878906,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda totales,4,165,0.00033455505,0.055201583,7.9162324e-05,0.000688815,Base,2.8091776371002197,Zona núcleo
+1,lst_classification_intervention_map.tif,Vivienda totales,1,4217,0.00032346367,1.3640463,0.0,0.0011306333,Intervención,69.4155502319336,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Vivienda totales,2,614,0.0004887296,0.30007997,0.00012028561,0.0010093197,Intervención,15.27090072631836,Zona de transición
+1,lst_classification_intervention_map.tif,Vivienda totales,3,628,0.00047916896,0.3009181,0.0,0.0011306333,Intervención,15.313551902770996,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas con hacinamiento,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Viviendas con hacinamiento,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Viviendas con hacinamiento,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas con piso de tierra,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Viviendas con piso de tierra,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Viviendas con piso de tierra,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Población con educación básica incompleta,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Población con educación básica incompleta,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Población con educación básica incompleta,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Población con educación básica incompleta,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Población con educación básica incompleta,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Hogares con jefas de familia,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Hogares con jefas de familia,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Hogares con jefas de familia,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Hogares con jefas de familia,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Hogares con jefas de familia,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,1,2113,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,2,999,0.0,0.0,0.0,0.0,Base,,Zona de transición
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,2182,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+1,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,165,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,1,4217,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,614,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+1,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,628,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_twin_map.tif,Población total,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población total,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población total,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población total,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población total,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población total,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población total,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población total,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población infantil,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población infantil,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población infantil,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población infantil,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población infantil,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población infantil,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población infantil,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población infantil,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población adolescente,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población adolescente,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población adolescente,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población adolescente,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población adolescente,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población adolescente,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población adolescente,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población adolescente,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población de 3ra edad,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población de 3ra edad,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población de 3ra edad,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población de 3ra edad,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población de 3ra edad,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población de 3ra edad,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población de 3ra edad,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población de 3ra edad,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población femenina,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población femenina,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población femenina,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población femenina,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población femenina,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población femenina,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población femenina,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población femenina,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Hogares con jefes de familia de 60 años y más,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Hogares con jefes de familia de 60 años y más,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Total de hogares,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Total de hogares,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Total de hogares,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Total de hogares,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Total de hogares,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Total de hogares,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Total de hogares,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Total de hogares,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población con discapacidad,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población con discapacidad,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población con discapacidad,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población con discapacidad,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población con discapacidad,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población con discapacidad,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población con discapacidad,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población con discapacidad,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin agua entubada,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin agua entubada,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Vivienda totales,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Vivienda totales,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Vivienda totales,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Vivienda totales,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Vivienda totales,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Vivienda totales,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Vivienda totales,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Vivienda totales,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Vivienda particulares habitadas sin electricidad,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Vivienda particulares habitadas sin electricidad,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Viviendas con hacinamiento,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Viviendas con hacinamiento,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Viviendas con hacinamiento,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Viviendas con hacinamiento,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Viviendas con hacinamiento,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Viviendas con piso de tierra,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Viviendas con piso de tierra,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Viviendas con piso de tierra,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Viviendas con piso de tierra,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Viviendas con piso de tierra,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas con todos los servicios,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas con todos los servicios,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Población con educación básica incompleta,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Población con educación básica incompleta,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Población con educación básica incompleta,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Población con educación básica incompleta,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Población con educación básica incompleta,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Población con educación básica incompleta,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Población con educación básica incompleta,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Población con educación básica incompleta,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Hogares con jefas de familia,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Hogares con jefas de familia,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Hogares con jefas de familia,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Hogares con jefas de familia,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Hogares con jefas de familia,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Hogares con jefas de familia,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Hogares con jefas de familia,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Hogares con jefas de familia,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,1,15866,0.0,0.0,0.0,0.0,Base,,Fondo Térmico Urbano
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,2,616,0.0,0.0,0.0,0.0,Base,,Zona de transición
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,3,384,0.0,0.0,0.0,0.0,Base,,Zona de impacto
+2,lst_classification_twin_map.tif,Viviendas particulares habitadas sin todos los servicios,4,36,0.0,0.0,0.0,0.0,Base,,Zona núcleo
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,1,16034,0.0,0.0,0.0,0.0,Intervención,,Fondo Térmico Urbano
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,2,567,0.0,0.0,0.0,0.0,Intervención,,Zona de transición
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,3,268,0.0,0.0,0.0,0.0,Intervención,,Zona de impacto
+2,lst_classification_intervention_map.tif,Viviendas particulares habitadas sin todos los servicios,4,33,0.0,0.0,0.0,0.0,Intervención,,Zona núcleo

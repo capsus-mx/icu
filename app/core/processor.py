@@ -285,6 +285,26 @@ class ResultProcessor:
         if is_global: # Adjust for global maps
             # Overlay gdf_interventions for global maps (entire extent)
             self.gdf_interventions.plot(ax=ax, facecolor='none', edgecolor='black', linewidth=1.5)
+            
+            # Add labels for Polygon IDs
+            for idx, row in self.gdf_interventions.iterrows():
+                # Get centroid and bounds for label placement
+                centroid = row.geometry.centroid
+                bounds = row.geometry.bounds
+                
+                polygon_id = row.get('id', idx)
+                try:
+                    polygon_id_str = str(int(polygon_id))
+                except (ValueError, TypeError):
+                    polygon_id_str = str(polygon_id)
+                
+                # Position the label above the polygon's bounding box
+                ax.annotate(text=polygon_id_str, xy=(centroid.x, bounds[3]), # Anchor at top-center
+                            xytext=(0, 5),  # Offset 5 points up
+                            textcoords="offset points",
+                            ha='center', va='bottom', fontsize=9, fontweight='bold', color='black',
+                            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="black", alpha=0.8))
+
             ax.legend(handles=[self.polygon_boundary_patch], bbox_to_anchor=(0.98, 0.02), loc='lower right', frameon=True, fancybox=True, edgecolor='black', facecolor='white')
 
         plt.tight_layout()

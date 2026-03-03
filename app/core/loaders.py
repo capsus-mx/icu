@@ -100,7 +100,7 @@ class GlobalDataLoader:
 
         if os.path.exists(municipalities_path):
             self.municipalities_df = pd.read_csv(municipalities_path, encoding='utf-8')
-            self.municipalities_df['CVEGEO'] = self.municipalities_df['CVEGEO'].astype(str)
+            self.municipalities_df['CVEGEO'] = self.municipalities_df['CVEGEO'].astype(str).str.zfill(5)
             logger.info(f"   Loaded municipalities data from {municipalities_path}")
         else:
             logger.warning(f"⚠️ WARNING: Municipalities data CSV not found at {municipalities_path}. Municipality names may not resolve.")

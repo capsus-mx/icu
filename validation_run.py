@@ -22,11 +22,11 @@ from app.core.processor import ResultProcessor
 
 def run_comparison():
     
-    logger.info("🧪 TEST DE COMPARACIÓN: PROTOTIPO VS REFACTORIZADO")
+    logger.info("🧪 TEST")
     
 
     # 1. CONFIGURACIÓN (Ajusta esto según tu prueba original)
-    MUNICIPIO_CLAVE = "15106" # Toluca
+    MUNICIPIO_CLAVE = "09005" # Toluca
     SAMPLING_FACTOR = 6       # Usa 6 para igualar al prototipo (o 1 para máxima precisión)
 
     # Rutas de datos (asumiendo que ya ejecutaste el setup de carpetas)
