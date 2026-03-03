@@ -707,7 +707,7 @@ class ResultProcessor:
     def _plot_and_save_energy_bar_chart(self, title_suffix, filename_suffix, total_sum_twin, total_sum_intervention):
         scenario_names = ['Base', 'Intervención']
         sum_values = [total_sum_twin, total_sum_intervention]
-        colors = ['#626f47', '#a4b465'] # Custom colors for consistency
+        colors = ['#cccccc', '#a4b465'] # Custom colors for consistency
 
         fig, ax = plt.subplots(figsize=(8, 6))
         ax.bar(scenario_names, sum_values, color=colors)
@@ -733,8 +733,8 @@ class ResultProcessor:
 
         LST_ZONE_ORDER = ['Fondo Térmico Urbano', 'Zona de transición', 'Zona de impacto', 'Zona núcleo']
         custom_scenario_colors = {
-            'Base': '#626f47',
-            'Intervención': '#a4b465'
+            'Base': "#cccccc",
+            'Intervención': "#a4b465"
         }
         plot_column_order = ['Base', 'Intervención']
 
