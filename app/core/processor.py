@@ -1162,42 +1162,6 @@ class ResultProcessor:
             story.append(enfriamiento_content)
             #story.append(PageBreak()) 
 
-        # --- RESUMEN GRÁFICO (GRID TIPO FACET_WRAP) ---
-        story.append(Paragraph("Resumen Visual de Impactos Globales", styles['Heading2Custom']))
-        
-        # Calculamos el ancho disponible dividiendo la página en 3 columnas (dejando un margen)
-        grid_col_width = (doc.width / 3.0) - 6 
-        
-        # Recopilamos las imágenes globales ya generadas
-        impact_map_img = get_image_for_reportlab(self.paths.get("map_impact"), grid_col_width)
-        energy_chart_path = os.path.join(self.report_inputs_dir, 'total_energy_consumption_bar_chart_global.png')
-        energy_chart_img = get_image_for_reportlab(energy_chart_path, grid_col_width)
-        ozone_chart_path = os.path.join(self.report_inputs_dir, 'ozone_improvement_donut_chart_global.png')
-        ozone_chart_img = get_image_for_reportlab(ozone_chart_path, grid_col_width)
-        
-        # Solo armamos el grid si las imágenes existen
-        if impact_map_img and energy_chart_img and ozone_chart_img:
-            grid_titles = [
-                Paragraph("<b>Enfriamiento LST</b>", styles['Centro']),
-                Paragraph("<b>Ahorro de Energía</b>", styles['Centro']),
-                Paragraph("<b>Reducción Ozono</b>", styles['Centro'])
-            ]
-            grid_images = [impact_map_img, energy_chart_img, ozone_chart_img]
-            
-            # Matriz de la tabla (Fila 1: Títulos, Fila 2: Imágenes)
-            grid_table = Table([grid_titles, grid_images], colWidths=[grid_col_width]*3)
-            grid_table.setStyle(TableStyle([
-                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
-                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-                ('LEFTPADDING', (0,0), (-1,-1), 2),
-                ('RIGHTPADDING', (0,0), (-1,-1), 2),
-                ('BOTTOMPADDING', (0,0), (-1,-1), 2),
-                ('TOPPADDING', (0,0), (-1,-1), 2),
-            ]))
-            
-            story.append(KeepTogether([grid_table])) # Evita que se divida en dos páginas
-            story.append(Spacer(1, 12))
-
         story.append(Paragraph("Conclusión", styles['Heading2Custom']))
         story.append(Paragraph(f"Los datos revelan que combatir las Islas de Calor no es solo un tema de confort, sino una inversión directa en salud pública, economía familiar y sostenibilidad ambiental. Implementar infraestructura verde, techos y pavimentos fríos en {municipality_name} es una estrategia altamente efectiva para proteger a la ciudadanía y construir una ciudad más resiliente ante el cambio climático.", styles['IntroJustify']))
         

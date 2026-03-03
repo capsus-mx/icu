@@ -106,7 +106,7 @@ def run_comparison():
     processor = ResultProcessor(
         result=result,
         output_base_dir=output_dir,
-        project_name="TestProject",
+        project_name= f"TestProject_{MUNICIPIO_CLAVE}",
         municipio_clave=MUNICIPIO_CLAVE,
         gdf_interventions=gdf_interventions,
         local_population_raster_path=loader.raster_paths.get('Population'),
