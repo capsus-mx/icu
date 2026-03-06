@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>LST_Celsius</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">24.88934408</MDI>
+      <MDI key="STATISTICS_MAXIMUM">31.99028063</MDI>
+      <MDI key="STATISTICS_MEAN">27.967007453079</MDI>
+      <MDI key="STATISTICS_STDDEV">0.98898907270468</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">44.07</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

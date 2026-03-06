@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>Albedo</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0.06504175</MDI>
+      <MDI key="STATISTICS_MAXIMUM">0.27344787375</MDI>
+      <MDI key="STATISTICS_MEAN">0.15402197775229</MDI>
+      <MDI key="STATISTICS_STDDEV">0.015908734357563</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">44.07</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
